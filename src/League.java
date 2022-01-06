@@ -69,6 +69,7 @@ public class League {
         playGames(TEAM_LIST);
         advanceWeek();
         playGames(TEAM_LIST);
+
     }
 
 
