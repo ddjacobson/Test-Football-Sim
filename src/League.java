@@ -39,26 +39,29 @@ public class League {
         //different matchups each schedule generation
 
 
-        listMatches(TEAM_LIST);
-
-        for (Team t : TEAM_LIST){
-            System.out.println("Scheduling for: " + t.name);
-            for (Team d : t.teamSchedule){
-
-                System.out.println(d.name + " ");
-            }
-            System.out.println();
-        }
-
-        playGames(TEAM_LIST);
-        advanceWeek();
-        playGames(TEAM_LIST);
+//        listMatches(TEAM_LIST);
+//
+//        for (Team t : TEAM_LIST){
+//            System.out.println("Scheduling for: " + t.name);
+//            for (Team d : t.teamSchedule){
+//
+//                System.out.println(d.name + " ");
+//            }
+//            System.out.println();
+//        }
+//
+//        playGames(TEAM_LIST);
+//        advanceWeek();
+//        playGames(TEAM_LIST);
 
     }
 
 
+    /**
+     * Creates full 16 game schedule for all 32 teams in league using round-robin scheduling.
+     * @param teamList
+     */
     public void playGames(ArrayList<Team> teamList){
-        int numWeeks = NUM_WEEKS;
         int teamsSize = TEAM_LIST.size() - 1;
         int halfSize = TEAM_LIST.size() / 2;
         //preseason won't work
@@ -67,7 +70,7 @@ public class League {
         teams.addAll(teamList);
         teams.remove(0);
 
-        System.out.println("Week " + (week + 1)); // week + 1
+        System.out.println("Week " + (week + 1));
         int teamIdx = week % teamsSize;
         System.out.println("" + teams.get(teamIdx).name + " vs " +  teamList.get(0).name);
 
@@ -146,7 +149,6 @@ public class League {
             currWeek++;
         }
 
-        weekToString();
     }
 
     private void weekToString(){
@@ -157,7 +159,7 @@ public class League {
         else week += "Week ";
 
         week =  week + Math.abs(currWeek);
-        System.out.println(week);
+
     }
 
     /**
@@ -209,19 +211,19 @@ public class League {
                 case "AFC":
                     switch (t.division) {
                         case "East" -> {
-                            leagueList[0][0][nextIndex] = t;//conferenceList.get(0).divisionList.get(0).divisionTeamList.add(t);
+                            leagueList[0][0][nextIndex] = t;
                             nextIndex++;
                         }
                         case "North" -> {
-                            leagueList[0][1][nextIndex] = t;//conferenceList.get(0).divisionList.get(1).divisionTeamList.add(t);
+                            leagueList[0][1][nextIndex] = t;
                             nextIndex++;
                         }
                         case "South" -> {
-                            leagueList[0][2][nextIndex] = t;//conferenceList.get(0).divisionList.get(2).divisionTeamList.add(t);
+                            leagueList[0][2][nextIndex] = t;
                             nextIndex++;
                         }
                         case "West" -> {
-                            leagueList[0][3][nextIndex] = t;//conferenceList.get(0).divisionList.get(3).divisionTeamList.add(t);
+                            leagueList[0][3][nextIndex] = t;
                             nextIndex++;
                         }
                     }
@@ -229,19 +231,19 @@ public class League {
                 case "NFC":
                     switch (t.division) {
                         case "East" -> {
-                            leagueList[1][0][nextIndex] = t; //conferenceList.get(1).divisionList.get(0).divisionTeamList.add(t);\
+                            leagueList[1][0][nextIndex] = t;
                             nextIndex++;
                         }
                         case "North" -> {
-                            leagueList[1][1][nextIndex] = t;//conferenceList.get(1).divisionList.get(1).divisionTeamList.add(t);
+                            leagueList[1][1][nextIndex] = t;
                             nextIndex++;
                         }
                         case "South" -> {
-                            leagueList[1][2][nextIndex] = t;//conferenceList.get(1).divisionList.get(2).divisionTeamList.add(t);
+                            leagueList[1][2][nextIndex] = t;
                             nextIndex++;
                         }
                         case "West" -> {
-                            leagueList[1][3][nextIndex] = t;//conferenceList.get(1).divisionList.get(3).divisionTeamList.add(t);
+                            leagueList[1][3][nextIndex] = t;
                             nextIndex++;
                         }
                     }

@@ -30,6 +30,9 @@ public class Team {
     Team [] teamSchedule;
 
 
+    public int passRtg;
+    public int runRtg;
+
     //bye team
     public Team(String city, String name){
         this.name = name;
@@ -49,12 +52,20 @@ public class Team {
         this.division = division;
         this.lastDivisionFinish = lastDivisionFinish;
         createRoster();
+
+        getTeamStats();
+
         switch (division){
             case "East" -> index = 0;
             case "North" -> index = 1;
             case "South" -> index = 2;
             case "West" -> index = 3;
         }
+    }
+
+    private void getTeamStats() {
+        setPassRtg();
+        setRunRtg();
     }
 
     //Roster
@@ -154,35 +165,36 @@ public class Team {
 //        k.add(new PlayerK(this));
 //        p.add(new PlayerP(this));
 
-        roster.put("Quarterbacks", qbs);
-        roster.put("Running Backs", rbs);
-        roster.put("Wide Receivers", wrs);
-        roster.put("Tight Ends", tes);
-        roster.put("Tackles", tackles);
-        roster.put("Guards", guards);
-        roster.put("Centers", centers);
-        roster.put("Defensive Ends", dEnds);
-        roster.put("Defensive Linemen", dTackles);
-        roster.put("Outside Linebackers", olbs);
-        roster.put("Inside Linebackers", ilbs);
-        roster.put("Cornerbacks", cbs);
-        roster.put("Free Safeties", fs);
-        roster.put("Strong Safeties", ss);
-        roster.put("Kickers", k);
-        roster.put("Punters", p);
+        roster.put("QB", qbs);
+        roster.put("RB", rbs);
+        roster.put("WR", wrs);
+        roster.put("TE", tes);
+        roster.put("OT", tackles);
+        roster.put("OG", guards);
+        roster.put("OC", centers);
+        roster.put("DE", dEnds);
+        roster.put("DL", dTackles);
+        roster.put("OLB", olbs);
+        roster.put("ILB", ilbs);
+        roster.put("CB", cbs);
+        roster.put("FS", fs);
+        roster.put("SS", ss);
+        roster.put("K", k);
+        roster.put("P", p);
 
-        //printTEs();
+        printRBs();
+
     }
 
     public void printQBs(){
-        for (Player p : roster.get("Quarterbacks")){
+        for (Player p : roster.get("QB")){
             p.printStats();
             System.out.println();
         }
     }
 
     public void printRBs(){
-        for (Player p : roster.get("Running Backs")){
+        for (Player p : roster.get("RB")){
             p.printStats();
             System.out.println();
 
@@ -190,7 +202,7 @@ public class Team {
     }
 
     public void printWRs(){
-        for (Player p : roster.get("Wide Receivers")){
+        for (Player p : roster.get("WR")){
             p.printStats();
             System.out.println();
 
@@ -198,7 +210,7 @@ public class Team {
     }
 
     public void printTEs(){
-        for (Player p : roster.get("Tight Ends")){
+        for (Player p : roster.get("TE")){
             p.printStats();
             System.out.println();
 
@@ -206,62 +218,148 @@ public class Team {
     }
 
     public void printOTs(){
-        for (Player p : roster.get("Tackles")){
+        for (Player p : roster.get("OT")){
             p.printStats();
         }
     }
 
     public void printOGs(){
-        for (Player p : roster.get("Guards")){
+        for (Player p : roster.get("OG")){
             p.printStats();
         }
     }
 
     public void printOCs(){
-        for (Player p : roster.get("Centers")){
+        for (Player p : roster.get("OC")){
             p.printStats();
         }
     }
 
     public void printDE(){
-        for (Player p : roster.get("Defensive Ends")){
+        for (Player p : roster.get("DE")){
             p.printStats();
         }
     }
 
     public void printDTs(){
-        for (Player p : roster.get("Defensive Tackles")){
+        for (Player p : roster.get("DT")){
             p.printStats();
         }
     }
     public void printOLBs(){
-        for (Player p : roster.get("Outside Linebackers")){
+        for (Player p : roster.get("OLB")){
             p.printStats();
         }
     }
 
     public void printILBs(){
-        for (Player p : roster.get("Inside Linebackers")){
+        for (Player p : roster.get("ILB")){
             p.printStats();
         }
     }
     public void printCBs(){
-        for (Player p : roster.get("Cornerbacks")){
+        for (Player p : roster.get("CB")){
             p.printStats();
         }
     }
 
     public void printFSs(){
-        for (Player p : roster.get("Free Safeties")){
+        for (Player p : roster.get("FS")){
             p.printStats();
         }
     }
 
     public void printSSs(){
-        for (Player p : roster.get("Strong Safeties")){
+        for (Player p : roster.get("SS")){
             p.printStats();
         }
     }
+
+    public void setPassRtg(){
+        int passRtg = 0;
+        int numPlayers = 0;
+        //passRtg
+        for (Player p : roster.get("QB")){
+            if (numPlayers > 0) break; //only want the first available qb
+            if (!p.isInjured){
+                passRtg += p.overall;
+                numPlayers++;
+            }
+        }
+
+        for (Player p : roster.get("WR")){
+            if (numPlayers > 3) break; //want one qb plus THREE wrs
+            if (!p.isInjured){
+                passRtg += p.overall;
+                numPlayers++;
+            }
+        }
+
+        for (Player p : roster.get("TE")){
+            if (numPlayers > 4)break; //want one more TE
+            if (!p.isInjured){
+                passRtg += p.overall;
+                numPlayers++;
+            }
+        }
+        //use OL method to get rating
+        //passRtg += getOLRtg();
+        //numPlayers += 5; //5 more OL
+
+        this.passRtg = passRtg / numPlayers;
+        }
+
+    public void setRunRtg(){
+        int runRtg = 0;
+        int numPlayers = 0;
+        //passRtg
+        for (Player p : roster.get("RB")){
+            if (numPlayers > 1) break; //only want the top two rbs
+            if (!p.isInjured){
+                runRtg += p.overall;
+                System.out.println(p.firstName + " " + p.lastName);
+                numPlayers++;
+            }
+        }
+        //runRtg += OLRtg();
+        //numPlayers += 5 //5 of our OL
+
+        this.runRtg = runRtg / numPlayers;
+
+    }
+
+
+    public int getOLRtg(){
+        int passRtg = 0;
+        int numPlayers = 0;
+        for (Player p : roster.get("OT")){
+            if (numPlayers > 1) break; //want two Ts
+            if (!p.isInjured){
+                passRtg += p.overall;
+                numPlayers++;
+            }
+        }
+
+        for (Player p : roster.get("OG")){
+            if (numPlayers > 3) break; //want one qb plus THREE wrs
+            if (!p.isInjured){
+                passRtg += p.overall;
+                numPlayers++;
+            }
+        }
+
+        for (Player p : roster.get("OC")) {
+            if (numPlayers > 5) break; //want one qb plus THREE wrs
+            if (!p.isInjured) {
+                passRtg += p.overall;
+                numPlayers++;
+            }
+        }
+
+        return passRtg;
+
+
+        }
 
 
 

@@ -5,6 +5,7 @@ public class Player {
     public String firstName;
     public String lastName;
     public String position;
+    public boolean isInjured;
     public Team team;
     public int weight;
     boolean isDraftProspect;

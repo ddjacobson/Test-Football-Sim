@@ -2,15 +2,10 @@ import java.util.Random;
 
 public class PlayerRB extends Player {
 
-    public int overall;
-    public String playerType;
     private static final String [] playerTypes = {"Bulldozer", "Elusive ", "Speed", "All-Purpose", "One Cut"};
     private static final int numTypes = playerTypes.length;
 
-    //Ratings
-    public int trucking;
-    public int elusiveness;
-    public int catching;
+
 
     //Rating weights
     final public double truckingWeight = 0.15;
@@ -24,9 +19,17 @@ public class PlayerRB extends Player {
     public PlayerRB(Team t){
         team = t;
 
+        whiteWeight = 5;
+        blackWeight = 95;
+
+
         position = "Running Back";
         this.playerType = playerTypes[(int) (Math.random() * numTypes)];
-        
+
+        this.race = findRace();
+        getNames();
+
+
         switch (this.playerType){
             case "Bulldozer" -> getBulldozerStats();
             case "Elusive" -> getElusiveStats();
@@ -224,6 +227,11 @@ public class PlayerRB extends Player {
 
     }
 
+    @Override
+    public void printStats(){
+        System.out.println("Name: " + firstName + " " + lastName + "\nRace: " + getRace() + "\nTeam: " + team.name + "\nPosition: " + position + "\nPlayer Archetype: " + playerType + "\nOverall: " + overall + "\nHeight: " + inToFt(heightIn) + "\nWeight: " + weight + " lbs.\nSpeed: " + speed + "\nQuickness: " + quickness + "\nStrength: " + strength + "\nTrucking: " + trucking + "\nElusiveness: " + elusiveness + "\nCatching: " + catching + "\n");
+
+    }
 
 
 }
