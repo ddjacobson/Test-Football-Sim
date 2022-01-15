@@ -32,6 +32,7 @@ public class Player {
     public int runBlock;
     public int trucking;
     public int elusiveness;
+    public int fieldVision;
     public int catching;
     public int routeRunning;
     public int blocking;
@@ -40,6 +41,10 @@ public class Player {
     public int poise;
     public int potential;
 
+    public int tackle;
+    public int zoneCoverage;
+    public int manCoverage;
+    public int hitPower;
     final public String [] letterGrades = {"A+", "A", "A-", "B+", "B", "B-", "C+", "C", "C-", "D+", "D", "D-", "F+", "F", "F-"};
 
     /**

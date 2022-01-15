@@ -8,8 +8,8 @@ public class test {
 
         League myLeague = new League();
 
-        int r = League.TEAM_LIST.get(31).passRtg;
-        System.out.println(r);
+       // int r = League.TEAM_LIST.get(31).passRtg;
+        //System.out.println(r);
 
 //        NameFile.getFirstNames();
 //        NameFile.getLastNames();

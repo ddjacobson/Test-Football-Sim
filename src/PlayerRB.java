@@ -2,7 +2,7 @@ import java.util.Random;
 
 public class PlayerRB extends Player {
 
-    private static final String [] playerTypes = {"Bulldozer", "Elusive ", "Speed", "All-Purpose", "One Cut"};
+    private static final String [] playerTypes = {"Bulldozer", "Elusive", "Speed", "All-Purpose", "One Cut"};
     private static final int numTypes = playerTypes.length;
 
 
@@ -125,7 +125,7 @@ public class PlayerRB extends Player {
         this.heightIn = rand.nextInt(minHeight, maxHeight);
 
         int maxWeight = 213;
-        int minWeight = 180;
+        int minWeight = 190;
         this.weight = rand.nextInt(minWeight, maxWeight);
 
         int maxSpeed = 97;
@@ -161,7 +161,7 @@ public class PlayerRB extends Player {
         this.heightIn = rand.nextInt(minHeight, maxHeight);
 
         int maxWeight = 215;
-        int minWeight = 175;
+        int minWeight = 185;
         this.weight = rand.nextInt(minWeight, maxWeight);
 
         int maxSpeed = 93;

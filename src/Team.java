@@ -1,6 +1,5 @@
 
-import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.*;
 
 public class Team {
 
@@ -10,7 +9,7 @@ public class Team {
     final public int rosterSize = 53;
 
 
-    public ArrayList<Team> teamList;
+    public ArrayList<Team> schedule;
     public String name;
     public String city;
     public String conference;
@@ -18,6 +17,7 @@ public class Team {
     public String sameConfDivision;
     public int lastDivisionFinish; //0 = first ... 3 = last
     public int index; //used to access the division of the team
+    public int teamIndex;
     public int lastGameOutcome; //-1 = loss, 1 = win, 0 = tie
     public int wins;
     public int losses;
@@ -26,8 +26,28 @@ public class Team {
     public int divWins;
     public int playsDivisionIndex; //index of same conf division that the team plays
 
-    Game [] schedule;
+
     Team [] teamSchedule;
+
+    public int gameScore;
+
+
+    ArrayList<PlayerQB> qbs;
+    ArrayList<PlayerRB> rbs;
+    ArrayList<PlayerWR> wrs;
+    ArrayList<PlayerTE> tes;
+    ArrayList<PlayerOT> tackles;
+    ArrayList<PlayerOG> guards;
+    ArrayList<PlayerOC> centers;
+    ArrayList<Player> dEnds;
+    ArrayList<Player> dTackles;
+    ArrayList<Player> olbs;
+    ArrayList<Player> ilbs;
+    ArrayList<Player> cbs;
+    ArrayList<Player> fs;
+    ArrayList<Player> ss;
+    ArrayList<Player> k;
+    ArrayList<Player> p;
 
 
     public int passRtg;
@@ -43,11 +63,13 @@ public class Team {
 
 
     }
-    public Team(String city, String name, String conference, String division, int lastDivisionFinish){
+    public Team(int tIndex, String city, String name, String conference, String division, int lastDivisionFinish){
         this.name = name;
         this.city = city;
         teamSchedule = new Team[17];
+        schedule = new ArrayList<>(17);
         hasGameOnWeek = new boolean[17];
+        this.teamIndex = tIndex;
         this.conference = conference;
         this.division = division;
         this.lastDivisionFinish = lastDivisionFinish;
@@ -71,22 +93,22 @@ public class Team {
     //Roster
     public void createRoster(){
         this.roster = new HashMap<>();
-        ArrayList<Player> qbs = new ArrayList<>();
-        ArrayList<Player> rbs = new ArrayList<>();
-        ArrayList<Player> wrs = new ArrayList<>();
-        ArrayList<Player> tes = new ArrayList<>();
-        ArrayList<Player> tackles = new ArrayList<>();
-        ArrayList<Player> guards = new ArrayList<>();
-        ArrayList<Player> centers = new ArrayList<>();
-        ArrayList<Player> dEnds = new ArrayList<>();
-        ArrayList<Player> dTackles = new ArrayList<>();
-        ArrayList<Player> olbs = new ArrayList<>();
-        ArrayList<Player> ilbs = new ArrayList<>();
-        ArrayList<Player> cbs = new ArrayList<>();
-        ArrayList<Player> fs = new ArrayList<>();
-        ArrayList<Player> ss = new ArrayList<>();
-        ArrayList<Player> k = new ArrayList<>();
-        ArrayList<Player> p = new ArrayList<>();
+        qbs = new ArrayList<>();
+        rbs = new ArrayList<>();
+        wrs = new ArrayList<>();
+        tes = new ArrayList<>();
+        tackles = new ArrayList<>();
+        guards = new ArrayList<>();
+        centers = new ArrayList<>();
+        dEnds = new ArrayList<>();
+        dTackles = new ArrayList<>();
+        olbs = new ArrayList<>();
+        ilbs = new ArrayList<>();
+        cbs = new ArrayList<>();
+        fs = new ArrayList<>();
+        ss = new ArrayList<>();
+        k = new ArrayList<>();
+        p = new ArrayList<>();
 
 
         //create 3 qbs
@@ -165,24 +187,33 @@ public class Team {
 //        k.add(new PlayerK(this));
 //        p.add(new PlayerP(this));
 
-        roster.put("QB", qbs);
-        roster.put("RB", rbs);
-        roster.put("WR", wrs);
-        roster.put("TE", tes);
-        roster.put("OT", tackles);
-        roster.put("OG", guards);
-        roster.put("OC", centers);
-        roster.put("DE", dEnds);
-        roster.put("DL", dTackles);
-        roster.put("OLB", olbs);
-        roster.put("ILB", ilbs);
-        roster.put("CB", cbs);
-        roster.put("FS", fs);
-        roster.put("SS", ss);
-        roster.put("K", k);
-        roster.put("P", p);
+//        roster.put("QB", qbs);
+//        roster.put("RB", rbs);
+//        roster.put("WR", wrs);
+//        roster.put("TE", tes);
+//        roster.put("OT", tackles);
+//        roster.put("OG", guards);
+//        roster.put("OC", centers);
+//        roster.put("DE", dEnds);
+//        roster.put("DL", dTackles);
+//        roster.put("OLB", olbs);
+//        roster.put("ILB", ilbs);
+//        roster.put("CB", cbs);
+//        roster.put("FS", fs);
+//        roster.put("SS", ss);
+//        roster.put("K", k);
+//        roster.put("P", p);
 
-        printRBs();
+        sortRoster();
+
+       // printRBs();
+
+    }
+
+    private void sortRoster() {
+
+        //Collections.sort(qbs, new Comparator<Player>());
+
 
     }
 
@@ -279,7 +310,7 @@ public class Team {
         int passRtg = 0;
         int numPlayers = 0;
         //passRtg
-        for (Player p : roster.get("QB")){
+        for (Player p : qbs){
             if (numPlayers > 0) break; //only want the first available qb
             if (!p.isInjured){
                 passRtg += p.overall;
@@ -287,7 +318,7 @@ public class Team {
             }
         }
 
-        for (Player p : roster.get("WR")){
+        for (Player p : wrs){
             if (numPlayers > 3) break; //want one qb plus THREE wrs
             if (!p.isInjured){
                 passRtg += p.overall;
@@ -295,7 +326,7 @@ public class Team {
             }
         }
 
-        for (Player p : roster.get("TE")){
+        for (Player p : tes){
             if (numPlayers > 4)break; //want one more TE
             if (!p.isInjured){
                 passRtg += p.overall;
@@ -313,7 +344,7 @@ public class Team {
         int runRtg = 0;
         int numPlayers = 0;
         //passRtg
-        for (Player p : roster.get("RB")){
+        for (Player p : rbs){
             if (numPlayers > 1) break; //only want the top two rbs
             if (!p.isInjured){
                 runRtg += p.overall;
@@ -329,37 +360,39 @@ public class Team {
     }
 
 
-    public int getOLRtg(){
-        int passRtg = 0;
-        int numPlayers = 0;
-        for (Player p : roster.get("OT")){
-            if (numPlayers > 1) break; //want two Ts
-            if (!p.isInjured){
-                passRtg += p.overall;
-                numPlayers++;
-            }
-        }
-
-        for (Player p : roster.get("OG")){
-            if (numPlayers > 3) break; //want one qb plus THREE wrs
-            if (!p.isInjured){
-                passRtg += p.overall;
-                numPlayers++;
-            }
-        }
-
-        for (Player p : roster.get("OC")) {
-            if (numPlayers > 5) break; //want one qb plus THREE wrs
-            if (!p.isInjured) {
-                passRtg += p.overall;
-                numPlayers++;
-            }
-        }
-
-        return passRtg;
-
-
-        }
+//    public int getOLRtg(){
+//        int passRtg = 0;
+//        int numPlayers = 0;
+//        for (Player p : tackles{
+//            if (numPlayers > 1) {
+//                break; //want two Ts
+//            }
+//            if (!p.isInjured){
+//                passRtg += p.overall;
+//                numPlayers++;
+//            }
+//        }
+//
+//        for (Player p : roster.get("OG")){
+//            if (numPlayers > 3) break; //want one qb plus THREE wrs
+//            if (!p.isInjured){
+//                passRtg += p.overall;
+//                numPlayers++;
+//            }
+//        }
+//
+//        for (Player p : roster.get("OC")) {
+//            if (numPlayers > 5) break; //want one qb plus THREE wrs
+//            if (!p.isInjured) {
+//                passRtg += p.overall;
+//                numPlayers++;
+//            }
+//        }
+//
+//        return passRtg;
+//
+//
+//        }
 
 
 

@@ -1,3 +1,4 @@
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.*;
@@ -39,8 +40,8 @@ public class League {
         //different matchups each schedule generation
 
 
-//        listMatches(TEAM_LIST);
-//
+        listMatches(TEAM_LIST);
+
 //        for (Team t : TEAM_LIST){
 //            System.out.println("Scheduling for: " + t.name);
 //            for (Team d : t.teamSchedule){
@@ -49,10 +50,14 @@ public class League {
 //            }
 //            System.out.println();
 //        }
-//
-//        playGames(TEAM_LIST);
-//        advanceWeek();
-//        playGames(TEAM_LIST);
+
+//        for (int week : regularSeasonWeeks){
+//            playGames(TEAM_LIST);
+//            advanceWeek();
+//        }
+
+        Game testGame = new Game(TEAM_LIST.get(0), TEAM_LIST.get(1));
+        testGame.playGame();
 
     }
 
@@ -87,7 +92,9 @@ public class League {
 
     }
 
-    private void playGame(Team teamOne, Team teamTwo) {
+    private void playGame(Team homeTeam, Team awayTeam) {
+        Game game = new Game(homeTeam, awayTeam);
+        game.playGame();
         //System.out.println("Today we have the " + teamOne.name + " vs. the " + teamTwo.name);
 
     }
@@ -172,7 +179,7 @@ public class League {
 
         TEAM_LIST = new ArrayList<>();
         String team, city, conference, division;
-        int lastDivisionFinish;
+        int lastDivisionFinish, teamIndex;
         Scanner input;
         try {
             input = new Scanner(teamFile);
@@ -181,6 +188,7 @@ public class League {
         }
         input = input.useDelimiter(",");
         while (input.hasNextLine()) {
+            teamIndex = input.nextInt();
             conference = input.next();
             division = input.next();
             lastDivisionFinish = input.nextInt();
@@ -188,7 +196,7 @@ public class League {
             team = input.nextLine();
             team = team.substring(1);
 
-            Team teamToAdd = new Team(city, team, conference, division, lastDivisionFinish);
+            Team teamToAdd = new Team(teamIndex, city, team, conference, division, lastDivisionFinish);
             TEAM_LIST.add(teamToAdd);
         }
 

@@ -5,11 +5,10 @@ public class PlayerWR extends Player{
     //Player stats
     private static final String [] playerTypes = {"Possession", "Slot", "Deep Threat", "All Purpose", "Physical"};
     private static final int numTypes = playerTypes.length;
-    public int catching;
+
+
     final public double catchingWeight = 0.20;
-    public int routeRunning;
     final public double routeRunningWeight = 0.20;
-    public int fieldVision;
     final public double fieldVisionWeight = 0.10;
     final public double speedWeight = 0.30;
     final public double quicknessWeight = 0.20;
@@ -36,6 +35,7 @@ public class PlayerWR extends Player{
             default -> getPossessionStats();
         }
         this.overall = getOverall();
+        //System.out.println(catching);
     }
 
     public PlayerWR(){
