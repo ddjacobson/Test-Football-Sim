@@ -8,15 +8,10 @@ public class test {
 
         League myLeague = new League();
 
-       // int r = League.TEAM_LIST.get(31).passRtg;
-        //System.out.println(r);
-
-//        NameFile.getFirstNames();
-//        NameFile.getLastNames();
-//        PlayerQB testQB = new PlayerQB();
+//        PlayerOLB testQB = new PlayerOLB();
 //       testQB.printStats();
 //       System.out.println();
-//       PlayerTE test2 = new PlayerTE();
+//       PlayerOLB test2 = new PlayerOLB();
 //       test2.printStats();
 
     }

@@ -1,3 +1,4 @@
+import java.util.HashMap;
 import java.util.Random;
 
 public class PlayerWR extends Player{
@@ -9,9 +10,11 @@ public class PlayerWR extends Player{
 
     final public double catchingWeight = 0.20;
     final public double routeRunningWeight = 0.20;
-    final public double fieldVisionWeight = 0.10;
+    final public double breakTackleWeight = 0.10;
     final public double speedWeight = 0.30;
     final public double quicknessWeight = 0.20;
+
+    //stats
 
 
 
@@ -21,6 +24,8 @@ public class PlayerWR extends Player{
 
         this.race = findRace();
         getNames();
+
+
 
         this.team = t;
         position = "Wide Receiver";
@@ -57,12 +62,6 @@ public class PlayerWR extends Player{
         this.overall = getOverall();
     }
 
-    /**
-     * Generates a first and last name based on the race and position of a player
-     */
-
-
-
     private void getPhysicalStats() {
         Random rand = new Random();
 
@@ -86,9 +85,9 @@ public class PlayerWR extends Player{
         int minRouteRunning = 63;
         this.routeRunning = rand.nextInt(minRouteRunning, maxRouteRunning);
 
-        int maxFieldVision = 84;
-        int minFieldVision = 70;
-        this.fieldVision = rand.nextInt(minFieldVision, maxFieldVision);
+        int maxBreakTackle = 84;
+        int minBreakTackle = 70;
+        this.breakTackle = rand.nextInt(minBreakTackle, maxBreakTackle);
 
         int maxQuickness = 85;
         int minQuickness = 75;
@@ -120,9 +119,9 @@ public class PlayerWR extends Player{
         int minRouteRunning = 68;
         this.routeRunning = rand.nextInt(minRouteRunning, maxRouteRunning);
 
-        int maxFieldVision = 88;
-        int minFieldVision = 72;
-        this.fieldVision = rand.nextInt(minFieldVision, maxFieldVision);
+        int maxBreakTackle = 84;
+        int minBreakTackle = 70;
+        this.breakTackle = rand.nextInt(minBreakTackle, maxBreakTackle);
 
         int maxQuickness = 93;
         int minQuickness = 87;
@@ -153,9 +152,9 @@ public class PlayerWR extends Player{
         int minRouteRunning = 65;
         this.routeRunning = rand.nextInt(minRouteRunning, maxRouteRunning);
 
-        int maxFieldVision = 86;
-        int minFieldVision = 66;
-        this.fieldVision = rand.nextInt(minFieldVision, maxFieldVision);
+        int maxBreakTackle = 84;
+        int minBreakTackle = 70;
+        this.breakTackle = rand.nextInt(minBreakTackle, maxBreakTackle);
 
         int maxQuickness = 94;
         int minQuickness = 80;
@@ -188,9 +187,9 @@ public class PlayerWR extends Player{
         int minRouteRunning = 70;
         this.routeRunning = rand.nextInt(minRouteRunning, maxRouteRunning);
 
-        int maxFieldVision = 90;
-        int minFieldVision = 70;
-        this.fieldVision = rand.nextInt(minFieldVision, maxFieldVision);
+        int maxBreakTackle = 84;
+        int minBreakTackle = 70;
+        this.breakTackle = rand.nextInt(minBreakTackle, maxBreakTackle);
 
         int maxQuickness = 97;
         int minQuickness = 85;
@@ -222,9 +221,9 @@ public class PlayerWR extends Player{
         int minRouteRunning = 70;
         this.routeRunning = rand.nextInt(minRouteRunning, maxRouteRunning);
 
-        int maxFieldVision = 92;
-        int minFieldVision = 75;
-        this.fieldVision = rand.nextInt(minFieldVision, maxFieldVision);
+        int maxBreakTackle = 84;
+        int minBreakTackle = 70;
+        this.breakTackle = rand.nextInt(minBreakTackle, maxBreakTackle);
 
         int maxQuickness = 85;
         int minQuickness = 74;
@@ -232,14 +231,14 @@ public class PlayerWR extends Player{
     }
 
     private int getOverall(){
-        int overall = (int)(catching*catchingWeight + routeRunning*routeRunningWeight + fieldVision*fieldVisionWeight + speed*speedWeight + quickness*quicknessWeight);
+        int overall = (int)(catching*catchingWeight + routeRunning*routeRunningWeight + breakTackle* breakTackleWeight + speed*speedWeight + quickness*quicknessWeight);
         return overall;
     }
 
 
 
     public void printStats(){
-        System.out.println("Name: " + firstName + " " + lastName + "\nRace: " + getRace() + "\nPosition: " + position + "\nPlayer Archetype: " + playerType + "\nOverall: " + overall + "\nHeight: " + inToFt(heightIn) + "\nWeight: " + weight + " lbs.\nSpeed: " + speed + "\nQuickness: " + quickness + "\nCatching: " + catching + "\nRoute Running: " + routeRunning + "\nField Vision: " + fieldVision);
+        System.out.println("Name: " + firstName + " " + lastName + "\nRace: " + getRace() + "\nPosition: " + position + "\nPlayer Archetype: " + playerType + "\nOverall: " + overall + "\nHeight: " + inToFt(heightIn) + "\nWeight: " + weight + " lbs.\nSpeed: " + speed + "\nQuickness: " + quickness + "\nCatching: " + catching + "\nRoute Running: " + routeRunning + "\nBreak Tackle: " + breakTackle);
     }
 
 

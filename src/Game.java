@@ -5,6 +5,7 @@ public class Game {
 
     public Team homeTeam;
     public Team awayTeam;
+    public String gameLog;
 
     public int qtr;
     public int homeScore;
@@ -12,20 +13,22 @@ public class Game {
     public boolean isByeWeek;
 
     //ingame variables
+
     private int time;
     private int yardLine;
     private int down;
     private int yardsNeeded;
-    private boolean hasPosession; //true = home, false = away
+    private boolean hasPossession; //true = home, false = away
 
 
-    //initalize stats
-    int totalPassPlays = 0;
-    int totalRunPlays = 0;
-    int teamDrops = 0;
-    int totalPlays = 0;
-    int wr1Targets = 0;
-    int wr2Targets = 0;
+    //initalize home stats
+    int totalPassPlaysHome = 0;
+    int totalRunPlaysHome = 0;
+    int totalPassYardsHome = 0;
+    int teamDropsHome = 0;
+    int totalPlaysHome = 0;
+    int wr1TargetsHome = 0;
+    int wr2TargetsHome = 0;
     int wr3Targets = 0;
     int teTargets = 0;
     int rbTargets = 0;
@@ -49,68 +52,171 @@ public class Game {
     }
 
     public void playGame(){
-
+        gameLog += homeTeam.city + homeTeam.name + " vs. " + awayTeam.city + awayTeam.name;
         time = 3600; //60 minute football game in seconds
         Team kickingTeam;
         Team receivingTeam;
         if (coinFlip() == 0){
-            hasPosession = true;
+            hasPossession = true;
             kickingTeam = awayTeam;
             receivingTeam = homeTeam;
         }
         else {
-            hasPosession = false;
+            hasPossession = false;
             kickingTeam = homeTeam;
             receivingTeam = awayTeam;
         }
 
-//        kickOff(receivingTeam, kickingTeam);
+        kickOff(receivingTeam, kickingTeam);
 
         while (time>0){
-            if (hasPosession){
+
+            if (down > 4) { // turnover on downs
+                System.out.println("Turnover on downs");
+                hasPossession = !hasPossession;
+                down = 1;
+                yardsNeeded = 10;
+                yardLine = 100 - yardLine; //flip the field
+
+            }
+
+                System.out.println(hasPossession);
+            if (hasPossession){
+                System.out.println("Running play for " + homeTeam.name);
                 runPlay(homeTeam, awayTeam); //home team has possession, they are on offense
             }
             else runPlay(awayTeam, homeTeam);
         }
 
-        System.out.println("Game finished");
+        System.out.println("Game finished\n\n" + homeTeam.name + " - " + homeTeam.gameScore + "\n" + awayTeam.name + " - " + awayTeam.gameScore);
+        System.out.println("Yards/pass: " + (double) totalPassYardsHome / totalPassPlaysHome);
+        System.out.println("Team drops: " + teamDropsHome);
+        System.out.println("Total plays: " + totalPlaysHome);
+        System.out.println("Total pass plays" + totalPassPlaysHome);
+        printFinalStats();
 
     }
 
+    private void printFinalStats(){
+        System.out.println("\n-----Final Stats-----");
+
+        System.out.println(homeTeam.name);
+        for (Player player : homeTeam.qbs){
+            if (player.passAttempts > 0){
+                System.out.println( player.position + " " + player.firstName + " " + player.lastName);
+                System.out.println("Pass Attempts: " + player.passCompletions + "/" + player.passAttempts + "\nPass Yards: " + player.passYards + "\nPass Touchdowns: " + player.passTDs + "\nInterceptions: " + player.passInterceptions + "\n");
+
+            }
+        }
+        for (Player player : homeTeam.wrs){
+            if (player.recCatches > 0){
+                System.out.println( player.position + " " + player.firstName + " " + player.lastName);
+                System.out.println("Catches: " + player.recCatches + "\nRec Yards: " + player.recYards + "\nRec Touchdowns: " + player.recTDs + "\nDrops: " + player.recDrops + "\n");
+            }
+        }
+        for (Player player : homeTeam.tes){
+            if (player.recCatches > 0){
+                System.out.println( player.position + " " + player.firstName + " " + player.lastName);
+                System.out.println("Catches: " + player.recCatches + "\nRec Yards: " + player.recYards + "\nRec Touchdowns: " + player.recTDs + "\nDrops: " + player.recDrops + "\n");
+            }
+        }
+        for (Player player : homeTeam.rbs){
+            if (player.rushAttempts > 0){
+                System.out.println( player.position + " " + player.firstName + " " + player.lastName);
+                System.out.println("Catches: " + player.recCatches + "\nRec Yards: " + player.recYards + "\nRec Touchdowns: " + player.recTDs + "\nDrops: " + player.recDrops + "\nRushes: " + player.rushAttempts + "\nRush Yards: " + player.rushYards + "\nRush TDs: " + player.rushTDs + "\n" );
+            }
+        }
+
+        System.out.println("\n" + awayTeam.name);
+        for (Player player : awayTeam.qbs){
+            if (player.passAttempts > 0){
+                System.out.println( player.position + " " + player.firstName + " " + player.lastName);
+                System.out.println("Pass Attempts: " + player.passCompletions + "/" + player.passAttempts + "\nPass Yards: " + player.passYards + "\nPass Touchdowns: " + player.passTDs + "\nInterceptions: " + player.passInterceptions + "\n");
+
+            }
+        }
+        for (Player player : awayTeam.wrs){
+            if (player.recCatches > 0){
+                System.out.println( player.position + " " + player.firstName + " " + player.lastName);
+                System.out.println("Catches: " + player.recCatches + "\nRec Yards: " + player.recYards + "\nRec Touchdowns: " + player.recTDs + "\nDrops: " + player.recDrops + "\n");
+            }
+        }
+        for (Player player : awayTeam.tes){
+            if (player.recCatches > 0){
+                System.out.println( player.position + " " + player.firstName + " " + player.lastName);
+                System.out.println("Catches: " + player.recCatches + "\nRec Yards: " + player.recYards + "\nRec Touchdowns: " + player.recTDs + "\nDrops: " + player.recDrops + "\n");
+            }
+        }
+        for (Player player : awayTeam.rbs){
+            if (player.rushAttempts > 0){
+                System.out.println( player.position + " " + player.firstName + " " + player.lastName);
+                System.out.println("Catches: " + player.recCatches + "\nRec Yards: " + player.recYards + "\nRec Touchdowns: " + player.recTDs + "\nDrops: " + player.recDrops + "\nRushes: " + player.rushAttempts + "\nRush Yards: " + player.rushYards + "\nRush TDs: " + player.rushTDs + "\n" );
+            }
+        }
+
+
+
+    }
+
+    private void kickOff(Team receivingTeam, Team kickingTeam) {
+        //TODO: implement kickoff
+        hasPossession = !hasPossession;
+        System.out.println("\n\n" + hasPossession + "\n\n");
+        yardLine = 25;
+    }
+
     public void runPlay(Team offense, Team defense){
-        totalPlays++;
-        if (down > 4){ // turnover on downs
-            hasPosession = !hasPosession;
-            down = 1;
-            yardsNeeded = 10;
-            yardLine = 100 - yardLine; //flip the field
-            return;
-        } else { //not fourth down, offense will run a play.
+        totalPlaysHome++;
+         //not fourth down, offense will run a play.
             String play = choosePlay(offense, defense);
             System.out.println(play);
             switch (play){
                 case "Pass"-> runPassPlay(offense, defense);
-//                case "Run"-> runRushPlay(offense, defense);
-//                case "Punt"-> runPuntPlay(offense, defense);
-//                case "Field Goal"-> runFieldGoalPlay(offense, defense);
+                case "Run"-> runRushPlay(offense, defense);
+                case "Punt"-> runPuntPlay(offense, defense);
+                case "Field Goal"-> runFieldGoalPlay(offense, defense);
 //                case "Hail Mary" -> runHailMaryPlay(offense, defense);
 
             }
-            time -= 24; // gets us to 150 plays/game, but we want to have dynamic clock management
+            time -= 34; // gets us to 150 plays/game, but we want to have dynamic clock management
 
         }
 
+    private void runPuntPlay(Team offense, Team defense) {
+        hasPossession = !hasPossession;
+        down = 1;
+    }
 
-            System.out.println("FINAL STATS -------\n");
-            System.out.println(wr1Targets);
-            System.out.println(wr2Targets);
-            System.out.println(wr3Targets);
-            System.out.println(teTargets);
-            System.out.println(rbTargets);
-            System.out.println(wr1Targets+wr2Targets+wr3Targets+teTargets+rbTargets);
-            System.out.println(totalPlays);
+    private void runFieldGoalPlay(Team offense, Team defense) {
+        offense.gameScore += 3;
+        kickOff(defense, offense);
+    }
 
-            System.out.println(teamDrops);
+
+    private void runRushPlay(Team offense, Team defense) {
+        PlayerRB playRB = null;
+        for (PlayerRB rb : offense.rbs){
+            if (!rb.isInjured){
+                playRB = rb;
+            }
+        }
+        playRB.rushAttempts++;
+
+        int yardsGained = 0;
+
+        //yardsGained = ;
+
+        yardLine +=3;
+
+        if (yardLine >= 100){
+            //touchdown
+
+            playRB.rushTDs++;
+            offense.gameScore += 6;
+            runExtraPoint(offense, defense);
+        }
+
+        down++;
 
 
     }
@@ -118,12 +224,26 @@ public class Game {
 
     private void runPassPlay(Team offense, Team defense) {
         //TODO: implement a playbook system to have different offensive looks
+        // offense
         PlayerQB playQB = null;
         ArrayList<PlayerWR> playWRs = new ArrayList<>(0);//3wrs
         PlayerTE playTE = null;
         PlayerRB playRB = null;
         Player focus = null;
+
+        // defense, assume 4-3 defense
+        ArrayList<PlayerCB> playCBs = new ArrayList<>(0);
+        PlayerILB playILB = null;
+        ArrayList<Player> playOLBs = new ArrayList<>(0);
         Player dFocus = null;
+
+        //stats
+        int yardsGained = 0;
+
+
+        totalPassPlaysHome++;
+
+
         //TODO: implement a collection sort to make sure best qb is at the top of the depth chart
         //TODO: implement a stamina system
         for (PlayerQB qb : offense.qbs){
@@ -150,6 +270,26 @@ public class Game {
             }
         }
 
+        //get defensive players
+        for (PlayerOLB olb : defense.olbs){
+            if (!olb.isInjured){
+                playOLBs.add(olb);
+            }
+        }
+
+        for (PlayerILB ilb : defense.ilbs){
+            if (!ilb.isInjured){
+                playILB = ilb;
+            }
+        }
+
+
+        for (PlayerCB cb : defense.cbs){
+            if (!cb.isInjured){
+                playCBs.add(cb);
+            }
+        }
+
         /*
          * wr distros:
          *      wr1: 23
@@ -158,11 +298,11 @@ public class Game {
          *      rb: 15
          *      te: 20
          */
-        int wr1Weight = 23;
-        int wr2Weight = 22;
+        int wr1Weight = 25;
+        int wr2Weight = 25;
         int teWeight = 20;
         int wr3Weight = 20;
-        int rbWeight = 15;
+        int rbWeight = 10;
 
         // get player weights to use when finding focus player for a down
         PlayerWR wr1 = playWRs.get(0);
@@ -176,77 +316,203 @@ public class Game {
         wr3Weight -= playTE.overall - wr3.overall;
         teWeight += playTE.overall - wr3.overall;
         wr3Weight -= 3;
+
+        //DEBUGS
 //        System.out.println("WR1: " + wr1Weight + " " + wr1.overall);
 //        System.out.println("WR2: " + wr2Weight + " " + wr2.overall);
 //        System.out.println("WR3: " + wr3Weight + " " + wr3.overall);
 //        System.out.println("TE: " + teWeight + " " + playTE.overall);
 //        System.out.println("RB: " + rbWeight + " " + playRB.overall);
 
+
         //get the target player
-
-        //stats
-
+        int defenseChoice;
         int rand = (int) (Math.random() * 100);
         if (rand < (wr1Weight)){
-            System.out.println("WR1");
             focus = wr1;
-            wr1Targets++;
+            dFocus = playCBs.get(0);
+            wr1TargetsHome++;
         } else if (rand > wr1Weight && rand < (wr1Weight+wr2Weight)){
-            System.out.println("WR2");
+            dFocus = playCBs.get(1);
             focus = wr2;
-            wr2Targets++;
+            wr2TargetsHome++;
         } else if (rand > (wr1Weight+wr2Weight) && rand < (wr1Weight+wr2Weight+wr3Weight)){
-            System.out.println("WR3");
+            dFocus = playCBs.get(2);
             focus = wr3;
+
             wr3Targets++;
         } else if (rand < (wr1Weight+wr2Weight+wr3Weight+teWeight)){
-            System.out.println("TE");
             focus = playTE;
+            dFocus = playOLBs.get((int) Math.round(Math.random())); //between 0 and 1, either starting olb
             teTargets++;
         } else {
-            System.out.println("RB");
             focus = playRB;
+            defenseChoice = (int) (Math.random()*3); //determines who the rb is covered by, make sure to implement for strong safety
+            switch (defenseChoice){
+                case 0 -> dFocus = playOLBs.get(0);
+                case 1 -> dFocus = playOLBs.get(1);
+                case 2 -> dFocus = playILB;
+                default -> dFocus = playOLBs.get(0); // TODO: fix this
+            }
+
             rbTargets++;
         }
-        //TODO: get a defensive focus player
 
         // determine what happens once the ball is snapped
-        boolean isTackled;
-        boolean isCaught = true;
+
+        //TODO: check for a sack
+
+
+
+        //if not sacked, pass is thrown.
+        //check for a bad pass
+
+        playQB.passAttempts++;
+
+        //something about pass rush
+        if (playQB.throwAccuracy/1.25 < (Math.random()*100)) {
+            System.out.println("Pass is incomplete");
+            return;
+        }
+        //if (playQB.throwAccuracy/.8)
+
+
+
+
+        int breakupChance = 20;
+        int interceptionChance = (int) (Math.random() * dFocus.catching);
+        int qbIntChance = (int) (Math.random() * playQB.throwAccuracy);
+        int randBreakup = (int) (Math.random() * 100);
+        //TODO: check if defender can break up pass.
+        if (dFocus.manCoverage > focus.routeRunning){
+
+            breakupChance += dFocus.manCoverage - focus.routeRunning;
+
+        } else {
+            breakupChance -= focus.routeRunning - dFocus.manCoverage;
+        }
+
+
+        if (breakupChance > 40){
+
+            if (breakupChance < randBreakup){
+                //pass is broken up
+                dFocus.defensePBUs++;
+                //check for int
+
+                if (interceptionChance+5 > qbIntChance){
+                    dFocus.defenseInterceptions++;
+                    playQB.passInterceptions++;
+                }
+            }
+
+        } else {
+            if (breakupChance < randBreakup) {
+                //pass is broken up
+                dFocus.defensePBUs++;
+                //check for int
+            }
+
+        }
+
+
         //check for a drop
         int catchPct = (int) (focus.catching + (focus.catching*Math.random()));
         int catchChance = (int) (Math.random() * 105);
-        if (catchPct < catchChance){
-            teamDrops++;
-            isCaught = false;
+        if (catchPct < catchChance){ //ball is dropped
+            teamDropsHome++;
+            focus.recDrops++;
             time -= 6; //take off 5-8 seconds for drop
+            return;
             //end play
 
         } else { //pass is caught
+            focus.recCatches++;
+            int airYards = getAirYards(focus, dFocus, playQB);
+            //after the play
+            yardsGained += airYards;
+            int lastDownYard = yardLine;
+            yardLine += yardsGained;
 
-            //get air yards
-            int airYards = (int) (( playQB.throwPower + focus.speed - dFocus.speed) * Math.random());
-            System.out.println("Air yards: " + airYards);
-            //what is done after the catch
-            int yardsGained;
-            //while (!isTackled) { // for the ball carrying sequence, use lb and db tackle stats. randomly get defensive players to tackle
+            if (yardLine >= 100){
+                //touchdown!!!
+                yardsGained = 100 - lastDownYard;
+                playQB.passTDs++;
+                focus.recYards += yardsGained;
+                focus.recTDs++;
+                playQB.passYards += yardsGained;
+                playQB.passCompletions++;
+                offense.gameScore += 6;
+                runExtraPoint(offense, defense);
+            } else {
+                //not a touchdown, collect stats for the play
+                System.out.println("Total yards gained on pass: " + yardsGained);
+                focus.recYards += yardsGained;
+                playQB.passYards += yardsGained;
+                playQB.passCompletions++;
+                down++;
+            }
+
+            //check for first down
+            yardsNeeded -= yardsGained;
+            if (yardsNeeded <= 0){
+                down = 1;
+                yardsNeeded = 10;
+            }
 
 
 
-            //}
+        }
+        // ------------ END OF PASSING PLAY ------------ //
+    }
+
+    private int getAirYards(Player focus, Player dFocus, Player playQB) {
+        int airYards = 0;
+        boolean isTackled = false;
+        //get air yards
+        airYards = (int) (( playQB.throwPower + focus.speed - dFocus.speed) * Math.random() * Math.random()/1.5);
+        System.out.println("Air yards: " + airYards);
+        //what is done after the catch
+        int yardsGained = 0;
+        while (!isTackled) { // for the ball carrying sequence, use lb and db tackle stats. randomly get defensive players to tackle
+
+            int edge = 0; //0 offense, 1 defense
+            int broken = 0;
+            if (dFocus.tackle > focus.breakTackle){
+                edge = 1;
+            }
+            switch (edge){
+                case 0:
+                    broken = (int) (Math.random() * (100 + focus.breakTackle-dFocus.tackle));
+
+                case 1:
+                    broken = (int) (Math.random() * (100 + dFocus.tackle-focus.breakTackle));
+            }
+            if (airYards > 40){
+                int x = (int) (Math.random()*100);
+                if (x < 80){
+                    airYards -= 40;
+                }
+            }
+            if (broken > 50){
+                dFocus.defenseTackles++;
+                isTackled = true;
+            }
 
 
         }
 
 
-
-
-
-
-        System.out.println("Catch percentage: " + catchPct);
-
-
+        return airYards;
     }
+
+    private void runExtraPoint(Team offense, Team defense) {
+
+        offense.gameScore += 1;
+
+        kickOff(defense, offense);
+    }
+
 
     /**
      * Simulates the offense choosing a play given the current game conditions:
@@ -306,12 +572,20 @@ public class Game {
                 return "Punt";
             }
             //want to pass
+        } else if (yardLine > 90) {
+            if (Math.random() * 100 >= 70 ){
+                return "Run";
+            } else {
+                return "Pass";
+            }
+
         } else if (down == 3 && yardsNeeded > 5 || preferPass) { //third and greater than 5
             return "Pass";
         } else {
             return "Run";
         }
-        return "Didn't pick";
+        System.out.println(down);
+        return "Punt";
     }
 
     /**

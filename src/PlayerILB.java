@@ -1,8 +1,8 @@
 import java.util.Random;
 
-public class PlayerCB extends Player{
+public class PlayerILB extends Player{
 
-    private static final String [] playerTypes = {"Nickel", "Zone", "Man", "Island"};
+    private static final String [] playerTypes = {"Thumper", "Coverage", "Hybrid", "Balanced"};
     private static final int numTypes = playerTypes.length;
 
 
@@ -15,204 +15,231 @@ public class PlayerCB extends Player{
 
 
 
-    public PlayerCB(Team t){
-        whiteWeight = 2;
-        blackWeight = 98;
+    public PlayerILB(Team t){
+        whiteWeight = 45;
+        blackWeight = 55;
 
         this.race = findRace();
         getNames();
 
         this.team = t;
-        position = "Cornerback";
+        position = "Inside Linebacker";
         this.playerType = playerTypes[(int) (Math.random() * numTypes)];
 
         switch (this.playerType){
-            case "Nickel" -> getNickelStats();
-            case "Zone" -> getZoneStats();
-            case "Man" -> getManStats();
-            case "Island" -> getIslandStats();
+            case "Thumper" -> getThumperStats();
+            case "Coverage" -> getCoverageStats();
+            case "Hybrid" -> getHybridStats();
+            case "Balanced" -> getBalancedStats();
 
         }
         this.overall = getOverall();
 
     }
 
-    public PlayerCB(){
+    public PlayerILB(){
+        whiteWeight = 45;
+        blackWeight = 55;
 
-        whiteWeight = 2;
-        blackWeight = 98;
-
-        race = findRace();
+        this.race = findRace();
         getNames();
 
-        position = "Cornerback";
+        position = "Inside Linebacker";
         this.playerType = playerTypes[(int) (Math.random() * numTypes)];
 
         switch (this.playerType){
-            case "Nickel" -> getNickelStats();
-            case "Zone" -> getZoneStats();
-            case "Man" -> getManStats();
-            case "Island" -> getIslandStats();
+            case "Thumper" -> getThumperStats();
+            case "Coverage" -> getCoverageStats();
+            case "Hybrid" -> getHybridStats();
+            case "Balanced" -> getBalancedStats();
 
         }
         this.overall = getOverall();
     }
 
-    /**
-     * Generates a first and last name based on the race and position of a player
-     */
 
 
 
-
-    private void getIslandStats() {
+    private void getBalancedStats() {
 
         Random rand = new Random();
-        int maxHeight = 74;
-        int minHeight = 71;
+        int maxHeight = 75;
+        int minHeight = 73;
         this.heightIn = rand.nextInt(minHeight, maxHeight);
 
-        int maxWeight = 210;
-        int minWeight = 190;
+        int maxWeight = 250;
+        int minWeight = 230;
         this.weight = rand.nextInt(minWeight, maxWeight);
 
-        int maxSpeed = 94;
-        int minSpeed = 88;
+        int maxSpeed = 85;
+        int minSpeed = 79;
         this.speed = rand.nextInt(minSpeed, maxSpeed);
 
         int maxCatching = 65;
         int minCatching = 48;
         this.catching = rand.nextInt(minCatching, maxCatching);
 
-        int maxManCoverage = 88;
-        int minManCoverage = 79;
+        int maxManCoverage = 69;
+        int minManCoverage = 60;
         this.manCoverage = rand.nextInt(minManCoverage, maxManCoverage);
 
-        int maxZoneCoverage = 83;
-        int minZoneCoverage = 72;
+        int maxZoneCoverage = 72;
+        int minZoneCoverage = 64;
         this.zoneCoverage = rand.nextInt(minZoneCoverage, maxZoneCoverage);
 
-        int maxTackle = 69;
-        int minTackle = 48;
+        int maxTackle = 88;
+        int minTackle = 80;
         this.tackle = rand.nextInt(minTackle, maxTackle);
 
-        int maxQuickness = 96;
-        int minQuickness = 89;
+        int maxQuickness = 85;
+        int minQuickness = 77;
         this.quickness = rand.nextInt(minQuickness, maxQuickness);
+
+        int maxPursuit = 85;
+        int minPursuit = 77;
+        this.pursuit = rand.nextInt(minPursuit, maxPursuit);
+
+        int maxHitPower = 81;
+        int minHitPower = 73;
+        this.hitPower = rand.nextInt(minHitPower, maxHitPower);
+
 
     }
 
-    private void getManStats() {
+    private void getHybridStats() {
 
         Random rand = new Random();
         int maxHeight = 75;
-        int minHeight = 71;
+        int minHeight = 72;
         this.heightIn = rand.nextInt(minHeight, maxHeight);
 
-        int maxWeight = 210;
-        int minWeight = 180;
+        int maxWeight = 240;
+        int minWeight = 220;
         this.weight = rand.nextInt(minWeight, maxWeight);
 
-        int maxSpeed = 92;
-        int minSpeed = 86;
-        this.speed = rand.nextInt(minSpeed, maxSpeed);
-
-        int maxCatching = 80;
-        int minCatching = 65;
-        this.catching = rand.nextInt(minCatching, maxCatching);
-
-        int maxManCoverage = 80;
-        int minManCoverage = 68;
-        this.manCoverage = rand.nextInt(minManCoverage, maxManCoverage);
-
-        int maxZoneCoverage = 88;
-        int minZoneCoverage = 72;
-        this.zoneCoverage = rand.nextInt(minZoneCoverage, maxZoneCoverage);
-
-        int maxTackle = 65;
-        int minTackle = 47;
-        this.tackle = rand.nextInt(minTackle, maxTackle);
-
-        int maxQuickness = 93;
-        int minQuickness = 87;
-        this.quickness = rand.nextInt(minQuickness, maxQuickness);
-
-
-    }
-
-    private void getZoneStats() {
-
-
-        Random rand = new Random();
-        int maxHeight = 73;
-        int minHeight = 69;
-        this.heightIn = rand.nextInt(minHeight, maxHeight);
-
-        int maxWeight = 204;
-        int minWeight = 185;
-        this.weight = rand.nextInt(minWeight, maxWeight);
-
-        int maxSpeed = 93;
-        int minSpeed = 88;
-        this.speed = rand.nextInt(minSpeed, maxSpeed);
-
-        int maxCatching = 67;
-        int minCatching = 55;
-        this.catching = rand.nextInt(minCatching, maxCatching);
-
-        int maxManCoverage = 80;
-        int minManCoverage = 70;
-        this.manCoverage = rand.nextInt(minManCoverage, maxManCoverage);
-
-        int maxZoneCoverage = 88;
-        int minZoneCoverage = 72;
-        this.zoneCoverage = rand.nextInt(minZoneCoverage, maxZoneCoverage);
-
-        int maxTackle = 72;
-        int minTackle = 63;
-        this.tackle = rand.nextInt(minTackle, maxTackle);
-
-        int maxQuickness = 93;
-        int minQuickness = 87;
-        this.quickness = rand.nextInt(minQuickness, maxQuickness);
-
-    }
-
-
-    private void getNickelStats() {
-
-        Random rand = new Random();
-        int maxHeight = 73;
-        int minHeight = 68;
-        this.heightIn = rand.nextInt(minHeight, maxHeight);
-
-        int maxWeight = 200;
-        int minWeight = 178;
-        this.weight = rand.nextInt(minWeight, maxWeight);
-
-        int maxSpeed = 93;
-        int minSpeed = 87;
+        int maxSpeed = 90;
+        int minSpeed = 85;
         this.speed = rand.nextInt(minSpeed, maxSpeed);
 
         int maxCatching = 74;
-        int minCatching = 53;
+        int minCatching = 66;
         this.catching = rand.nextInt(minCatching, maxCatching);
 
-        int maxManCoverage = 83;
-        int minManCoverage = 75;
+        int maxManCoverage = 73;
+        int minManCoverage = 63;
         this.manCoverage = rand.nextInt(minManCoverage, maxManCoverage);
 
-        int maxZoneCoverage = 83;
-        int minZoneCoverage = 77;
+        int maxZoneCoverage = 80;
+        int minZoneCoverage = 69;
         this.zoneCoverage = rand.nextInt(minZoneCoverage, maxZoneCoverage);
 
-        int maxTackle = 73;
-        int minTackle = 66;
+        int maxTackle = 84;
+        int minTackle = 74;
         this.tackle = rand.nextInt(minTackle, maxTackle);
 
-        int maxQuickness = 97;
-        int minQuickness = 89;
+        int maxQuickness = 90;
+        int minQuickness = 83;
         this.quickness = rand.nextInt(minQuickness, maxQuickness);
+
+        int maxPursuit = 85;
+        int minPursuit = 77;
+        this.pursuit = rand.nextInt(minPursuit, maxPursuit);
+
+        int maxHitPower = 81;
+        int minHitPower = 73;
+        this.hitPower = rand.nextInt(minHitPower, maxHitPower);
+    }
+
+    private void getCoverageStats() {
+
+
+        Random rand = new Random();
+        int maxHeight = 74;
+        int minHeight = 71;
+        this.heightIn = rand.nextInt(minHeight, maxHeight);
+
+        int maxWeight = 245;
+        int minWeight = 230;
+        this.weight = rand.nextInt(minWeight, maxWeight);
+
+        int maxSpeed = 87;
+        int minSpeed = 83;
+        this.speed = rand.nextInt(minSpeed, maxSpeed);
+
+        int maxCatching = 67;
+        int minCatching = 58;
+        this.catching = rand.nextInt(minCatching, maxCatching);
+
+        int maxManCoverage = 76;
+        int minManCoverage = 66;
+        this.manCoverage = rand.nextInt(minManCoverage, maxManCoverage);
+
+        int maxZoneCoverage = 80;
+        int minZoneCoverage = 70;
+        this.zoneCoverage = rand.nextInt(minZoneCoverage, maxZoneCoverage);
+
+        int maxTackle = 82;
+        int minTackle = 69;
+        this.tackle = rand.nextInt(minTackle, maxTackle);
+
+        int maxQuickness = 88;
+        int minQuickness = 80;
+        this.quickness = rand.nextInt(minQuickness, maxQuickness);
+
+        int maxPursuit = 85;
+        int minPursuit = 75;
+        this.pursuit = rand.nextInt(minPursuit, maxPursuit);
+
+        int maxHitPower = 80;
+        int minHitPower = 71;
+        this.hitPower = rand.nextInt(minHitPower, maxHitPower);
+
+    }
+
+
+    private void getThumperStats() {
+
+        Random rand = new Random();
+        int maxHeight = 76;
+        int minHeight = 74;
+        this.heightIn = rand.nextInt(minHeight, maxHeight);
+
+        int maxWeight = 260;
+        int minWeight = 240;
+        this.weight = rand.nextInt(minWeight, maxWeight);
+
+        int maxSpeed = 83;
+        int minSpeed = 74;
+        this.speed = rand.nextInt(minSpeed, maxSpeed);
+
+        int maxCatching = 59;
+        int minCatching = 44;
+        this.catching = rand.nextInt(minCatching, maxCatching);
+
+        int maxManCoverage = 68;
+        int minManCoverage = 45;
+        this.manCoverage = rand.nextInt(minManCoverage, maxManCoverage);
+
+        int maxZoneCoverage = 70;
+        int minZoneCoverage = 59;
+        this.zoneCoverage = rand.nextInt(minZoneCoverage, maxZoneCoverage);
+
+        int maxTackle = 89;
+        int minTackle = 80;
+        this.tackle = rand.nextInt(minTackle, maxTackle);
+
+        int maxQuickness = 81;
+        int minQuickness = 72;
+        this.quickness = rand.nextInt(minQuickness, maxQuickness);
+
+        int maxPursuit = 85;
+        int minPursuit = 77;
+        this.pursuit = rand.nextInt(minPursuit, maxPursuit);
+
+        int maxHitPower = 90;
+        int minHitPower = 81;
+        this.hitPower = rand.nextInt(minHitPower, maxHitPower);
+
     }
 
     private int getOverall(){
@@ -228,7 +255,3 @@ public class PlayerCB extends Player{
 
 
 }
-
-
-
-

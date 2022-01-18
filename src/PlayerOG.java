@@ -1,7 +1,7 @@
 import java.util.Random;
 
 public class PlayerOG extends Player{
-    private static final String [] playerTypes = {"Mauler", "Agile", "Blindside", "Puller"};
+    private static final String [] playerTypes = {"Mauler", "Agile", "Puller"};
     private static final int numTypes = playerTypes.length;
 
 
@@ -38,6 +38,34 @@ public class PlayerOG extends Player{
     }
 
     private void getPullerStats() {
+        Random rand = new Random();
+        int maxHeight = 76;
+        int minHeight = 74;
+        this.heightIn = rand.nextInt(minHeight, maxHeight);
+
+        int maxWeight = 325;
+        int minWeight = 298;
+        this.weight = rand.nextInt(minWeight, maxWeight);
+
+        int maxSpeed = 70;
+        int minSpeed = 62;
+        this.speed = rand.nextInt(minSpeed, maxSpeed);
+
+        int maxPassBlock = 83;
+        int minPassBlock = 74;
+        this.passBlock = rand.nextInt(minPassBlock, maxPassBlock);
+
+        int maxRunBlock = 93;
+        int minRunBlock = 82;
+        this.runBlock = rand.nextInt(minRunBlock, maxRunBlock);
+
+        int maxQuickness = 69;
+        int minQuickness = 50;
+        this.quickness = rand.nextInt(minQuickness, maxQuickness);
+
+        int maxStrength = 97;
+        int minStrength = 88;
+        this.strength = rand.nextInt(minStrength, maxStrength);
 
     }
 

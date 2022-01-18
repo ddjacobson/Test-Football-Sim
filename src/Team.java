@@ -41,9 +41,9 @@ public class Team {
     ArrayList<PlayerOC> centers;
     ArrayList<Player> dEnds;
     ArrayList<Player> dTackles;
-    ArrayList<Player> olbs;
-    ArrayList<Player> ilbs;
-    ArrayList<Player> cbs;
+    ArrayList<PlayerOLB> olbs;
+    ArrayList<PlayerILB> ilbs;
+    ArrayList<PlayerCB> cbs;
     ArrayList<Player> fs;
     ArrayList<Player> ss;
     ArrayList<Player> k;
@@ -158,22 +158,22 @@ public class Team {
 //        dTackles.add(new PlayerDT(this));
 //
 //        //create 5 OLB
-//        olbs.add(new PlayerOLB(this));
-//        olbs.add(new PlayerOLB(this));
-//        olbs.add(new PlayerOLB(this));
-//        olbs.add(new PlayerOLB(this));
-//        olbs.add(new PlayerOLB(this));
+        olbs.add(new PlayerOLB(this));
+        olbs.add(new PlayerOLB(this));
+        olbs.add(new PlayerOLB(this));
+        olbs.add(new PlayerOLB(this));
+        olbs.add(new PlayerOLB(this));
 //
 //        //create 2 ILB
-//        ilbs.add(new PlayerILB(this));
-//        ilbs.add(new PlayerILB(this));
+        ilbs.add(new PlayerILB(this));
+        ilbs.add(new PlayerILB(this));
 //        //create 6 CB
-//        cbs.add(new PlayerCB(this));
-//        cbs.add(new PlayerCB(this));
-//        cbs.add(new PlayerCB(this));
-//        cbs.add(new PlayerCB(this));
-//        cbs.add(new PlayerCB(this));
-//        cbs.add(new PlayerCB(this));
+        cbs.add(new PlayerCB(this));
+        cbs.add(new PlayerCB(this));
+        cbs.add(new PlayerCB(this));
+        cbs.add(new PlayerCB(this));
+        cbs.add(new PlayerCB(this));
+        cbs.add(new PlayerCB(this));
 //
 //        //create 2 FS
 //        fs.add(new PlayerFS(this));

@@ -8,7 +8,7 @@ public class PlayerRB extends Player {
 
 
     //Rating weights
-    final public double truckingWeight = 0.15;
+    final public double breakTackleWeight = 0.15;
     final public double elusivenessWeight = 0.15;
     final public double catchingWeight = 0.10;
     final public double speedWeight = 0.30;
@@ -42,7 +42,7 @@ public class PlayerRB extends Player {
     }
 
     private int getOverall() {
-        int overall = (int) (trucking*truckingWeight + elusiveness*elusivenessWeight + catching*catchingWeight + speedWeight*speed + strength*strengthWeight + quickness*quicknessWeight);
+        int overall = (int) (breakTackle * breakTackleWeight + elusiveness*elusivenessWeight + catching*catchingWeight + speedWeight*speed + strength*strengthWeight + quickness*quicknessWeight);
         return overall;
     }
 
@@ -62,7 +62,7 @@ public class PlayerRB extends Player {
 
         int maxTrucking = 86;
         int minTrucking = 68;
-        this.trucking = rand.nextInt(minTrucking, maxTrucking);
+        this.breakTackle = rand.nextInt(minTrucking, maxTrucking);
 
         int maxElusiveness = 90;
         int minElusiveness = 75;
@@ -98,7 +98,7 @@ public class PlayerRB extends Player {
 
         int maxTrucking = 75;
         int minTrucking = 62;
-        this.trucking = rand.nextInt(minTrucking, maxTrucking);
+        this.breakTackle = rand.nextInt(minTrucking, maxTrucking);
 
         int maxElusiveness = 93;
         int minElusiveness = 75;
@@ -134,7 +134,7 @@ public class PlayerRB extends Player {
 
         int maxTrucking = 73;
         int minTrucking = 50;
-        this.trucking = rand.nextInt(minTrucking, maxTrucking);
+        this.breakTackle = rand.nextInt(minTrucking, maxTrucking);
 
         int maxElusiveness = 88;
         int minElusiveness = 69;
@@ -170,7 +170,7 @@ public class PlayerRB extends Player {
 
         int maxTrucking = 75;
         int minTrucking = 59;
-        this.trucking = rand.nextInt(minTrucking, maxTrucking);
+        this.breakTackle = rand.nextInt(minTrucking, maxTrucking);
 
         int maxElusiveness = 95;
         int minElusiveness = 83;
@@ -207,7 +207,7 @@ public class PlayerRB extends Player {
 
         int maxTrucking = 94;
         int minTrucking = 83;
-        this.trucking = rand.nextInt(minTrucking, maxTrucking);
+        this.breakTackle = rand.nextInt(minTrucking, maxTrucking);
 
         int maxElusiveness = 82;
         int minElusiveness = 65;
@@ -229,7 +229,7 @@ public class PlayerRB extends Player {
 
     @Override
     public void printStats(){
-        System.out.println("Name: " + firstName + " " + lastName + "\nRace: " + getRace() + "\nTeam: " + team.name + "\nPosition: " + position + "\nPlayer Archetype: " + playerType + "\nOverall: " + overall + "\nHeight: " + inToFt(heightIn) + "\nWeight: " + weight + " lbs.\nSpeed: " + speed + "\nQuickness: " + quickness + "\nStrength: " + strength + "\nTrucking: " + trucking + "\nElusiveness: " + elusiveness + "\nCatching: " + catching + "\n");
+        System.out.println("Name: " + firstName + " " + lastName + "\nRace: " + getRace() + "\nTeam: " + team.name + "\nPosition: " + position + "\nPlayer Archetype: " + playerType + "\nOverall: " + overall + "\nHeight: " + inToFt(heightIn) + "\nWeight: " + weight + " lbs.\nSpeed: " + speed + "\nQuickness: " + quickness + "\nStrength: " + strength + "\nBreak Tackle: " + breakTackle + "\nElusiveness: " + elusiveness + "\nCatching: " + catching + "\n");
 
     }
 
