@@ -29,7 +29,6 @@ public class PlayerOG extends Player{
         switch (this.playerType){
             case "Mauler" -> getMaulerStats();
             case "Agile" -> getAgileStats();
-            case "Blindside" -> getBlindsideStats();
             case "Puller" -> getPullerStats();
         }
         this.overall = getOverall();
@@ -70,8 +69,8 @@ public class PlayerOG extends Player{
     }
 
     private int getOverall() {
-        int overall = (int) ( + passBlockWeight*passBlock + runBlockWeight*runBlock + strength*strengthWeight + quickness*quicknessWeight);
-        return overall;
+        int o = (int) ( + passBlockWeight*passBlock + runBlockWeight*runBlock + strength*strengthWeight + quickness*quicknessWeight);
+        return o;
     }
 
     private void getMaulerStats() {

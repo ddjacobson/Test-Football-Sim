@@ -141,12 +141,12 @@ public class Team {
         tackles.add(new PlayerOT(this));
 
         //create 4 OG
-//        guards.add(new PlayerOG(this));
-//        guards.add(new PlayerOG(this));
-//        guards.add(new PlayerOG(this));
-//        guards.add(new PlayerOG(this));
+        guards.add(new PlayerOG(this));
+        guards.add(new PlayerOG(this));
+        guards.add(new PlayerOG(this));
+        guards.add(new PlayerOG(this));
 //        //create 1 OC
-//        centers.add(new PlayerOC(this));
+        centers.add(new PlayerOC(this));
 //        //create 4 DE
 //        dEnds.add(new PlayerDE(this));
 //        dEnds.add(new PlayerDE(this));

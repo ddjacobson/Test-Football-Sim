@@ -42,7 +42,7 @@ public class PlayerRB extends Player {
     }
 
     private int getOverall() {
-        int overall = (int) (breakTackle * breakTackleWeight + elusiveness*elusivenessWeight + catching*catchingWeight + speedWeight*speed + strength*strengthWeight + quickness*quicknessWeight);
+        int overall = (int) (breakTackle * breakTackleWeight + elusiveness*elusivenessWeight + passRush *catchingWeight + speedWeight*speed + strength*strengthWeight + quickness*quicknessWeight);
         return overall;
     }
 
@@ -78,7 +78,7 @@ public class PlayerRB extends Player {
 
         int maxCatching = 75;
         int minCatching = 63;
-        this.catching = rand.nextInt(minCatching, maxCatching);
+        this.passRush = rand.nextInt(minCatching, maxCatching);
 
     }
 
@@ -114,7 +114,7 @@ public class PlayerRB extends Player {
 
         int maxCatching = 82;
         int minCatching = 68;
-        this.catching = rand.nextInt(minCatching, maxCatching);
+        this.passRush = rand.nextInt(minCatching, maxCatching);
 
     }
 
@@ -150,7 +150,7 @@ public class PlayerRB extends Player {
 
         int maxCatching = 71;
         int minCatching = 58;
-        this.catching = rand.nextInt(minCatching, maxCatching);
+        this.passRush = rand.nextInt(minCatching, maxCatching);
 
     }
 
@@ -186,7 +186,7 @@ public class PlayerRB extends Player {
 
         int maxCatching = 80;
         int minCatching = 66;
-        this.catching = rand.nextInt(minCatching, maxCatching);
+        this.passRush = rand.nextInt(minCatching, maxCatching);
 
 
     }
@@ -223,13 +223,13 @@ public class PlayerRB extends Player {
 
         int maxCatching = 69;
         int minCatching = 54;
-        this.catching = rand.nextInt(minCatching, maxCatching);
+        this.passRush = rand.nextInt(minCatching, maxCatching);
 
     }
 
     @Override
     public void printStats(){
-        System.out.println("Name: " + firstName + " " + lastName + "\nRace: " + getRace() + "\nTeam: " + team.name + "\nPosition: " + position + "\nPlayer Archetype: " + playerType + "\nOverall: " + overall + "\nHeight: " + inToFt(heightIn) + "\nWeight: " + weight + " lbs.\nSpeed: " + speed + "\nQuickness: " + quickness + "\nStrength: " + strength + "\nBreak Tackle: " + breakTackle + "\nElusiveness: " + elusiveness + "\nCatching: " + catching + "\n");
+        System.out.println("Name: " + firstName + " " + lastName + "\nRace: " + getRace() + "\nTeam: " + team.name + "\nPosition: " + position + "\nPlayer Archetype: " + playerType + "\nOverall: " + overall + "\nHeight: " + inToFt(heightIn) + "\nWeight: " + weight + " lbs.\nSpeed: " + speed + "\nQuickness: " + quickness + "\nStrength: " + strength + "\nBreak Tackle: " + breakTackle + "\nElusiveness: " + elusiveness + "\nCatching: " + passRush + "\n");
 
     }
 

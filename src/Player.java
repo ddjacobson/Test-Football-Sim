@@ -32,7 +32,6 @@ public class Player {
     public int breakTackle;
     public int elusiveness;
     public int fieldVision;
-    public int catching;
     public int routeRunning;
     public int blocking;
     public int throwPower;
@@ -41,9 +40,10 @@ public class Player {
     public int potential;
 
     public int tackle;
-    public int zoneCoverage;
-    public int manCoverage;
+    public int runStop;
     public int hitPower;
+    public int passRush;
+
     public int pursuit;
     final public String [] letterGrades = {"A+", "A", "A-", "B+", "B", "B-", "C+", "C", "C-", "D+", "D", "D-", "F+", "F", "F-"};
 
@@ -120,7 +120,7 @@ public class Player {
     }
 
     public void printStats(){
-        System.out.println("Name: " + firstName + " " + lastName + "\nRace: " + getRace() + "\nTeam: " + team + "\nPosition: " + position + "\nPlayer Archetype: " + playerType + "\nOverall: " + overall + "\nHeight: " + inToFt(heightIn) + "\nWeight: " + weight + " lbs.\nSpeed: " + speed + "\nQuickness: " + quickness + "\nStrength: " + strength + "\nTrucking: " + breakTackle + "\nElusiveness: " + elusiveness + "\nCatching: " + catching + "\n");
+        System.out.println("Name: " + firstName + " " + lastName + "\nRace: " + getRace() + "\nTeam: " + team + "\nPosition: " + position + "\nPlayer Archetype: " + playerType + "\nOverall: " + overall + "\nHeight: " + inToFt(heightIn) + "\nWeight: " + weight + " lbs.\nSpeed: " + speed + "\nQuickness: " + quickness + "\nStrength: " + strength + "\nTrucking: " + breakTackle + "\nElusiveness: " + elusiveness + "\nCatching: " + passRush + "\n");
 
     }
 

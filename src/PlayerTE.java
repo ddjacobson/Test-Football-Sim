@@ -41,7 +41,7 @@ public class PlayerTE extends Player{
     }
 
     private int getOverall() {
-        int overall = (int) (routeRunning*routeRunningWeight + breakTackle *truckingWeight + blocking*blockingWeight + catching*catchingWeight + speedWeight*speed + strength*strengthWeight + quickness*quicknessWeight);
+        int overall = (int) (routeRunning*routeRunningWeight + breakTackle *truckingWeight + blocking*blockingWeight + passRush *catchingWeight + speedWeight*speed + strength*strengthWeight + quickness*quicknessWeight);
         return overall;
     }
 
@@ -77,8 +77,8 @@ public class PlayerTE extends Player{
         this.strength = rand.nextInt(minStrength, maxStrength);
 
         int maxCatching = 87;
-        int minCatching = 73;
-        this.catching = rand.nextInt(minCatching, maxCatching);
+        int minCatching = 79;
+        this.passRush = rand.nextInt(minCatching, maxCatching);
 
         int maxRouteRunning = 78;
         int minRouteRunning = 65;
@@ -118,7 +118,7 @@ public class PlayerTE extends Player{
 
         int maxCatching = 77;
         int minCatching = 62;
-        this.catching = rand.nextInt(minCatching, maxCatching);
+        this.passRush = rand.nextInt(minCatching, maxCatching);
 
         int maxRouteRunning = 73;
         int minRouteRunning = 59;
@@ -158,7 +158,7 @@ public class PlayerTE extends Player{
 
         int maxCatching = 83;
         int minCatching = 71;
-        this.catching = rand.nextInt(minCatching, maxCatching);
+        this.passRush = rand.nextInt(minCatching, maxCatching);
 
         int maxRouteRunning = 83;
         int minRouteRunning = 67;
@@ -198,7 +198,7 @@ public class PlayerTE extends Player{
 
         int maxCatching = 75;
         int minCatching = 64;
-        this.catching = rand.nextInt(minCatching, maxCatching);
+        this.passRush = rand.nextInt(minCatching, maxCatching);
 
         int maxRouteRunning = 78;
         int minRouteRunning = 68;
@@ -207,7 +207,7 @@ public class PlayerTE extends Player{
     }
 
     public void printStats(){
-        System.out.println("Name: " + firstName + " " + lastName + "\nRace: " + getRace() + "\nPosition: " + position + "\nPlayer Archetype: " + playerType + "\nOverall: " + overall + "\nHeight: " + inToFt(heightIn) + "\nWeight: " + weight + " lbs.\nSpeed: " + speed + "\nQuickness: " + quickness + "\nStrength: " + strength + "\nTrucking: " + breakTackle + "\nBlocking: " + blocking + "\nCatching: " + catching + "\nRoute Running: " + routeRunning);
+        System.out.println("Name: " + firstName + " " + lastName + "\nRace: " + getRace() + "\nPosition: " + position + "\nPlayer Archetype: " + playerType + "\nOverall: " + overall + "\nHeight: " + inToFt(heightIn) + "\nWeight: " + weight + " lbs.\nSpeed: " + speed + "\nQuickness: " + quickness + "\nStrength: " + strength + "\nTrucking: " + breakTackle + "\nBlocking: " + blocking + "\nCatching: " + passRush + "\nRoute Running: " + routeRunning);
     }
 
 

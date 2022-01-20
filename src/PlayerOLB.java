@@ -77,15 +77,15 @@ public class PlayerOLB extends Player{
 
         int maxCatching = 59;
         int minCatching = 49;
-        this.catching = rand.nextInt(minCatching, maxCatching);
+        this.passRush = rand.nextInt(minCatching, maxCatching);
 
         int maxManCoverage = 67;
         int minManCoverage = 55;
-        this.manCoverage = rand.nextInt(minManCoverage, maxManCoverage);
+        this.runStop = rand.nextInt(minManCoverage, maxManCoverage);
 
         int maxZoneCoverage = 70;
         int minZoneCoverage = 59;
-        this.zoneCoverage = rand.nextInt(minZoneCoverage, maxZoneCoverage);
+        this.strength = rand.nextInt(minZoneCoverage, maxZoneCoverage);
 
         int maxTackle = 94;
         int minTackle = 83;
@@ -121,15 +121,15 @@ public class PlayerOLB extends Player{
 
         int maxCatching = 55;
         int minCatching = 49;
-        this.catching = rand.nextInt(minCatching, maxCatching);
+        this.passRush = rand.nextInt(minCatching, maxCatching);
 
         int maxManCoverage = 69;
         int minManCoverage = 56;
-        this.manCoverage = rand.nextInt(minManCoverage, maxManCoverage);
+        this.runStop = rand.nextInt(minManCoverage, maxManCoverage);
 
         int maxZoneCoverage = 71;
         int minZoneCoverage = 63;
-        this.zoneCoverage = rand.nextInt(minZoneCoverage, maxZoneCoverage);
+        this.strength = rand.nextInt(minZoneCoverage, maxZoneCoverage);
 
         int maxTackle = 90;
         int minTackle = 78;
@@ -164,15 +164,15 @@ public class PlayerOLB extends Player{
 
         int maxCatching = 68;
         int minCatching = 58;
-        this.catching = rand.nextInt(minCatching, maxCatching);
+        this.passRush = rand.nextInt(minCatching, maxCatching);
 
         int maxManCoverage = 75;
         int minManCoverage = 67;
-        this.manCoverage = rand.nextInt(minManCoverage, maxManCoverage);
+        this.runStop = rand.nextInt(minManCoverage, maxManCoverage);
 
         int maxZoneCoverage = 80;
         int minZoneCoverage = 68;
-        this.zoneCoverage = rand.nextInt(minZoneCoverage, maxZoneCoverage);
+        this.strength = rand.nextInt(minZoneCoverage, maxZoneCoverage);
 
         int maxTackle = 84;
         int minTackle = 68;
@@ -208,15 +208,15 @@ public class PlayerOLB extends Player{
 
         int maxCatching = 75;
         int minCatching = 65;
-        this.catching = rand.nextInt(minCatching, maxCatching);
+        this.passRush = rand.nextInt(minCatching, maxCatching);
 
         int maxManCoverage = 77;
         int minManCoverage = 70;
-        this.manCoverage = rand.nextInt(minManCoverage, maxManCoverage);
+        this.runStop = rand.nextInt(minManCoverage, maxManCoverage);
 
         int maxZoneCoverage = 83;
         int minZoneCoverage = 77;
-        this.zoneCoverage = rand.nextInt(minZoneCoverage, maxZoneCoverage);
+        this.strength = rand.nextInt(minZoneCoverage, maxZoneCoverage);
 
         int maxTackle = 83;
         int minTackle = 72;
@@ -235,14 +235,14 @@ public class PlayerOLB extends Player{
         this.quickness = rand.nextInt(minQuickness, maxQuickness);    }
 
     private int getOverall(){
-        int overall = (int)(hitPowerWeight*hitPower + pursuitWeight*pursuit + manCoverage*manCoverageWeight + zoneCoverage*zoneCoverageWeight + speed*speedWeight + quickness*quicknessWeight + tackle*tackleWeight);
+        int overall = (int)(hitPowerWeight*hitPower + pursuitWeight*pursuit + runStop *manCoverageWeight + strength *zoneCoverageWeight + speed*speedWeight + quickness*quicknessWeight + tackle*tackleWeight);
         return overall;
     }
 
 
 
     public void printStats(){
-        System.out.println("Name: " + firstName + " " + lastName + "\nRace: " + getRace() + "\nPosition: " + position + "\nPlayer Archetype: " + playerType + "\nOverall: " + overall + "\nHeight: " + inToFt(heightIn) + "\nWeight: " + weight + " lbs.\nSpeed: " + speed + "\nQuickness: " + quickness + "\nPursuit: " + pursuit + "\nHit Power: " + hitPower + "\nMan Coverage: " + manCoverage + "\nZone Coverage: " + zoneCoverage + "\nTackle: " + tackle);
+        System.out.println("Name: " + firstName + " " + lastName + "\nRace: " + getRace() + "\nPosition: " + position + "\nPlayer Archetype: " + playerType + "\nOverall: " + overall + "\nHeight: " + inToFt(heightIn) + "\nWeight: " + weight + " lbs.\nSpeed: " + speed + "\nQuickness: " + quickness + "\nPursuit: " + pursuit + "\nHit Power: " + hitPower + "\nMan Coverage: " + runStop + "\nZone Coverage: " + strength + "\nTackle: " + tackle);
     }
 
 

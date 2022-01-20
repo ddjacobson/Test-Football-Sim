@@ -77,15 +77,15 @@ public class PlayerILB extends Player{
 
         int maxCatching = 65;
         int minCatching = 48;
-        this.catching = rand.nextInt(minCatching, maxCatching);
+        this.passRush = rand.nextInt(minCatching, maxCatching);
 
         int maxManCoverage = 69;
         int minManCoverage = 60;
-        this.manCoverage = rand.nextInt(minManCoverage, maxManCoverage);
+        this.runStop = rand.nextInt(minManCoverage, maxManCoverage);
 
         int maxZoneCoverage = 72;
         int minZoneCoverage = 64;
-        this.zoneCoverage = rand.nextInt(minZoneCoverage, maxZoneCoverage);
+        this.strength = rand.nextInt(minZoneCoverage, maxZoneCoverage);
 
         int maxTackle = 88;
         int minTackle = 80;
@@ -123,15 +123,15 @@ public class PlayerILB extends Player{
 
         int maxCatching = 74;
         int minCatching = 66;
-        this.catching = rand.nextInt(minCatching, maxCatching);
+        this.passRush = rand.nextInt(minCatching, maxCatching);
 
         int maxManCoverage = 73;
         int minManCoverage = 63;
-        this.manCoverage = rand.nextInt(minManCoverage, maxManCoverage);
+        this.runStop = rand.nextInt(minManCoverage, maxManCoverage);
 
         int maxZoneCoverage = 80;
         int minZoneCoverage = 69;
-        this.zoneCoverage = rand.nextInt(minZoneCoverage, maxZoneCoverage);
+        this.strength = rand.nextInt(minZoneCoverage, maxZoneCoverage);
 
         int maxTackle = 84;
         int minTackle = 74;
@@ -168,15 +168,15 @@ public class PlayerILB extends Player{
 
         int maxCatching = 67;
         int minCatching = 58;
-        this.catching = rand.nextInt(minCatching, maxCatching);
+        this.passRush = rand.nextInt(minCatching, maxCatching);
 
         int maxManCoverage = 76;
         int minManCoverage = 66;
-        this.manCoverage = rand.nextInt(minManCoverage, maxManCoverage);
+        this.runStop = rand.nextInt(minManCoverage, maxManCoverage);
 
         int maxZoneCoverage = 80;
         int minZoneCoverage = 70;
-        this.zoneCoverage = rand.nextInt(minZoneCoverage, maxZoneCoverage);
+        this.strength = rand.nextInt(minZoneCoverage, maxZoneCoverage);
 
         int maxTackle = 82;
         int minTackle = 69;
@@ -214,15 +214,15 @@ public class PlayerILB extends Player{
 
         int maxCatching = 59;
         int minCatching = 44;
-        this.catching = rand.nextInt(minCatching, maxCatching);
+        this.passRush = rand.nextInt(minCatching, maxCatching);
 
         int maxManCoverage = 68;
         int minManCoverage = 45;
-        this.manCoverage = rand.nextInt(minManCoverage, maxManCoverage);
+        this.runStop = rand.nextInt(minManCoverage, maxManCoverage);
 
         int maxZoneCoverage = 70;
         int minZoneCoverage = 59;
-        this.zoneCoverage = rand.nextInt(minZoneCoverage, maxZoneCoverage);
+        this.strength = rand.nextInt(minZoneCoverage, maxZoneCoverage);
 
         int maxTackle = 89;
         int minTackle = 80;
@@ -243,14 +243,14 @@ public class PlayerILB extends Player{
     }
 
     private int getOverall(){
-        int overall = (int)(catching*catchingWeight + manCoverage*manCoverageWeight + zoneCoverage*zoneCoverageWeight + speed*speedWeight + quickness*quicknessWeight + tackle*tackleWeight);
+        int overall = (int)(passRush *catchingWeight + runStop *manCoverageWeight + strength *zoneCoverageWeight + speed*speedWeight + quickness*quicknessWeight + tackle*tackleWeight);
         return overall;
     }
 
 
 
     public void printStats(){
-        System.out.println("Name: " + firstName + " " + lastName + "\nRace: " + getRace() + "\nPosition: " + position + "\nPlayer Archetype: " + playerType + "\nOverall: " + overall + "\nHeight: " + inToFt(heightIn) + "\nWeight: " + weight + " lbs.\nSpeed: " + speed + "\nQuickness: " + quickness + "\nCatching: " + catching + "\nMan Coverage: " + manCoverage + "\nZone Coverage: " + zoneCoverage + "\nTackle: " + tackle);
+        System.out.println("Name: " + firstName + " " + lastName + "\nRace: " + getRace() + "\nPosition: " + position + "\nPlayer Archetype: " + playerType + "\nOverall: " + overall + "\nHeight: " + inToFt(heightIn) + "\nWeight: " + weight + " lbs.\nSpeed: " + speed + "\nQuickness: " + quickness + "\nCatching: " + passRush + "\nMan Coverage: " + runStop + "\nZone Coverage: " + strength + "\nTackle: " + tackle);
     }
 
 

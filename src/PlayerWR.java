@@ -1,4 +1,3 @@
-import java.util.HashMap;
 import java.util.Random;
 
 public class PlayerWR extends Player{
@@ -79,7 +78,7 @@ public class PlayerWR extends Player{
 
         int maxCatching = 85;
         int minCatching = 72;
-        this.catching = rand.nextInt(minCatching, maxCatching);
+        this.passRush = rand.nextInt(minCatching, maxCatching);
 
         int maxRouteRunning = 78;
         int minRouteRunning = 63;
@@ -113,7 +112,7 @@ public class PlayerWR extends Player{
 
         int maxCatching = 80;
         int minCatching = 65;
-        this.catching = rand.nextInt(minCatching, maxCatching);
+        this.passRush = rand.nextInt(minCatching, maxCatching);
 
         int maxRouteRunning = 80;
         int minRouteRunning = 68;
@@ -146,7 +145,7 @@ public class PlayerWR extends Player{
 
         int maxCatching = 85;
         int minCatching = 69;
-        this.catching = rand.nextInt(minCatching, maxCatching);
+        this.passRush = rand.nextInt(minCatching, maxCatching);
 
         int maxRouteRunning = 84;
         int minRouteRunning = 65;
@@ -181,7 +180,7 @@ public class PlayerWR extends Player{
 
         int maxCatching = 87;
         int minCatching = 75;
-        this.catching = rand.nextInt(minCatching, maxCatching);
+        this.passRush = rand.nextInt(minCatching, maxCatching);
 
         int maxRouteRunning = 90;
         int minRouteRunning = 70;
@@ -215,7 +214,7 @@ public class PlayerWR extends Player{
 
         int maxCatching = 95;
         int minCatching = 83;
-        this.catching = rand.nextInt(minCatching, maxCatching);
+        this.passRush = rand.nextInt(minCatching, maxCatching);
 
         int maxRouteRunning = 84;
         int minRouteRunning = 70;
@@ -231,14 +230,14 @@ public class PlayerWR extends Player{
     }
 
     private int getOverall(){
-        int overall = (int)(catching*catchingWeight + routeRunning*routeRunningWeight + breakTackle* breakTackleWeight + speed*speedWeight + quickness*quicknessWeight);
+        int overall = (int)(passRush *catchingWeight + routeRunning*routeRunningWeight + breakTackle* breakTackleWeight + speed*speedWeight + quickness*quicknessWeight);
         return overall;
     }
 
 
 
     public void printStats(){
-        System.out.println("Name: " + firstName + " " + lastName + "\nRace: " + getRace() + "\nPosition: " + position + "\nPlayer Archetype: " + playerType + "\nOverall: " + overall + "\nHeight: " + inToFt(heightIn) + "\nWeight: " + weight + " lbs.\nSpeed: " + speed + "\nQuickness: " + quickness + "\nCatching: " + catching + "\nRoute Running: " + routeRunning + "\nBreak Tackle: " + breakTackle);
+        System.out.println("Name: " + firstName + " " + lastName + "\nRace: " + getRace() + "\nPosition: " + position + "\nPlayer Archetype: " + playerType + "\nOverall: " + overall + "\nHeight: " + inToFt(heightIn) + "\nWeight: " + weight + " lbs.\nSpeed: " + speed + "\nQuickness: " + quickness + "\nCatching: " + passRush + "\nRoute Running: " + routeRunning + "\nBreak Tackle: " + breakTackle);
     }
 
 
