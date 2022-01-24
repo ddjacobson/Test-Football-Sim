@@ -95,6 +95,304 @@ public class Game {
         System.out.println("Total pass plays" + totalPassPlaysHome);
         printFinalStats();
 
+        endGame();
+
+    }
+
+    /**
+     * Collects stats, updates records, etc.
+     */
+    private void endGame() {
+        //record updating
+        if (homeScore > awayScore){
+            homeTeam.wins++;
+            awayTeam.losses++;
+        } else{
+            homeTeam.losses++;
+            awayTeam.wins++;
+        }
+
+        //stat updating
+
+        //QBs
+        for (Player player : homeTeam.qbs){
+            if (player.passAttempts > 0){
+                //passing
+                player.seasonPassAttempts += player.passAttempts;
+                player.seasonPassCompletions += player.passCompletions;
+                player.seasonPassInterceptions += player.passInterceptions;
+                player.seasonPassYards += player.passYards;
+                player.seasonPassTDs += player.passTDs;
+
+                //rushing
+                player.seasonRushAttempts += player.rushAttempts;
+                player.seasonRushYards += player.rushYards;
+                player.seasonRushTDs += player.rushTDs;
+                player.seasonFumbles += player.fumbles;
+            }
+        }
+        for (Player player : awayTeam.qbs){
+            if (player.passAttempts > 0){
+                //passing
+                player.seasonPassAttempts += player.passAttempts;
+                player.seasonPassCompletions += player.passCompletions;
+                player.seasonPassInterceptions += player.passInterceptions;
+                player.seasonPassYards += player.passYards;
+                player.seasonPassTDs += player.passTDs;
+
+                //rushing
+                player.seasonRushAttempts += player.rushAttempts;
+                player.seasonRushYards += player.rushYards;
+                player.seasonRushTDs += player.rushTDs;
+                player.seasonFumbles += player.fumbles;
+            }
+        }
+
+
+        //RBS
+
+        for (Player player : homeTeam.wrs){
+            if (player.recCatches > 0){
+                //passing
+                player.seasonRecCatches += player.recCatches;
+                player.seasonRecYards += player.recYards;
+                player.seasonRecTDs += player.recTDs;
+                player.seasonRecDrops += player.recDrops;
+
+                //rushing
+                player.seasonRushAttempts += player.rushAttempts;
+                player.seasonRushYards += player.rushYards;
+                player.seasonRushTDs += player.rushTDs;
+                player.seasonFumbles += player.fumbles;
+            }
+        }
+
+        for (Player player : awayTeam.wrs){
+            if (player.recCatches > 0){
+                //passing
+                player.seasonRecCatches += player.recCatches;
+                player.seasonRecYards += player.recYards;
+                player.seasonRecTDs += player.recTDs;
+                player.seasonRecDrops += player.recDrops;
+
+                //rushing
+                player.seasonRushAttempts += player.rushAttempts;
+                player.seasonRushYards += player.rushYards;
+                player.seasonRushTDs += player.rushTDs;
+                player.seasonFumbles += player.fumbles;
+            }
+        }
+
+        //TEs
+        for (Player player : homeTeam.tes){
+            if (player.recCatches > 0){
+                //passing
+                player.seasonRecCatches += player.recCatches;
+                player.seasonRecYards += player.recYards;
+                player.seasonRecTDs += player.recTDs;
+                player.seasonRecDrops += player.recDrops;
+
+                //rushing
+                player.seasonRushAttempts += player.rushAttempts;
+                player.seasonRushYards += player.rushYards;
+                player.seasonRushTDs += player.rushTDs;
+                player.seasonFumbles += player.fumbles;
+            }
+        }
+        for (Player player : awayTeam.tes){
+            if (player.recCatches > 0){
+                //passing
+                player.seasonRecCatches += player.recCatches;
+                player.seasonRecYards += player.recYards;
+                player.seasonRecTDs += player.recTDs;
+                player.seasonRecDrops += player.recDrops;
+
+                //rushing
+                player.seasonRushAttempts += player.rushAttempts;
+                player.seasonRushYards += player.rushYards;
+                player.seasonRushTDs += player.rushTDs;
+                player.seasonFumbles += player.fumbles;
+            }
+        }
+
+
+        ///RBs
+
+        for (Player player : homeTeam.rbs){
+            if (player.rushAttempts > 0 || player.recCatches > 0){
+                //receiving
+                player.seasonRecCatches += player.recCatches;
+                player.seasonRecYards += player.recYards;
+                player.seasonRecTDs += player.recTDs;
+                player.seasonRecDrops += player.recDrops;
+
+                //rushing
+                player.seasonRushAttempts += player.rushAttempts;
+                player.seasonRushYards += player.rushYards;
+                player.seasonRushTDs += player.rushTDs;
+                player.seasonFumbles += player.fumbles;
+            }
+        }
+
+        for (Player player : awayTeam.rbs){
+            if (player.rushAttempts > 0 || player.recCatches > 0){
+                //receiving
+                player.seasonRecCatches += player.recCatches;
+                player.seasonRecYards += player.recYards;
+                player.seasonRecTDs += player.recTDs;
+                player.seasonRecDrops += player.recDrops;
+
+                //rushing
+                player.seasonRushAttempts += player.rushAttempts;
+                player.seasonRushYards += player.rushYards;
+                player.seasonRushTDs += player.rushTDs;
+                player.seasonFumbles += player.fumbles;
+            }
+        }
+
+
+        //defense
+        //TODO: implement game snaps
+        //DTS
+        for (Player player : homeTeam.dTackles){
+            if (player.defenseTackles > 0){
+                //receiving
+                player.seasonDefenseTackles += player.defenseTackles;
+                player.seasonDefenseInterceptions += player.defenseInterceptions;
+                player.seasonDefensePBUs += player.defensePBUs;
+                player.seasonDefenseSacks += player.defenseSacks;
+            }
+        }
+        for (Player player : awayTeam.dTackles){
+            if (player.defenseTackles > 0){
+                //receiving
+                player.seasonDefenseTackles += player.defenseTackles;
+                player.seasonDefenseInterceptions += player.defenseInterceptions;
+                player.seasonDefensePBUs += player.defensePBUs;
+                player.seasonDefenseSacks += player.defenseSacks;
+            }
+        }
+
+        //DEs
+        for (Player player : homeTeam.dEnds){
+            if (player.defenseTackles > 0){
+                //receiving
+                player.seasonDefenseTackles += player.defenseTackles;
+                player.seasonDefenseInterceptions += player.defenseInterceptions;
+                player.seasonDefensePBUs += player.defensePBUs;
+                player.seasonDefenseSacks += player.defenseSacks;
+            }
+        }
+        for (Player player : awayTeam.dEnds){
+            if (player.defenseTackles > 0){
+                //receiving
+                player.seasonDefenseTackles += player.defenseTackles;
+                player.seasonDefenseInterceptions += player.defenseInterceptions;
+                player.seasonDefensePBUs += player.defensePBUs;
+                player.seasonDefenseSacks += player.defenseSacks;
+            }
+        }
+
+        //ILBs
+        for (Player player : homeTeam.ilbs){
+            if (player.defenseTackles > 0){
+                //receiving
+                player.seasonDefenseTackles += player.defenseTackles;
+                player.seasonDefenseInterceptions += player.defenseInterceptions;
+                player.seasonDefensePBUs += player.defensePBUs;
+                player.seasonDefenseSacks += player.defenseSacks;
+            }
+        }
+        for (Player player : awayTeam.ilbs){
+            if (player.defenseTackles > 0){
+                //receiving
+                player.seasonDefenseTackles += player.defenseTackles;
+                player.seasonDefenseInterceptions += player.defenseInterceptions;
+                player.seasonDefensePBUs += player.defensePBUs;
+                player.seasonDefenseSacks += player.defenseSacks;
+            }
+        }
+        //OLBs
+        for (Player player : homeTeam.olbs){
+            if (player.defenseTackles > 0){
+                //receiving
+                player.seasonDefenseTackles += player.defenseTackles;
+                player.seasonDefenseInterceptions += player.defenseInterceptions;
+                player.seasonDefensePBUs += player.defensePBUs;
+                player.seasonDefenseSacks += player.defenseSacks;
+            }
+        }
+        for (Player player : awayTeam.olbs){
+            if (player.defenseTackles > 0){
+                //receiving
+                player.seasonDefenseTackles += player.defenseTackles;
+                player.seasonDefenseInterceptions += player.defenseInterceptions;
+                player.seasonDefensePBUs += player.defensePBUs;
+                player.seasonDefenseSacks += player.defenseSacks;
+            }
+        }
+
+        //CBs
+        for (Player player : homeTeam.cbs){
+            if (player.defenseTackles > 0 || player.defensePBUs > 0){
+                //receiving
+                player.seasonDefenseTackles += player.defenseTackles;
+                player.seasonDefenseInterceptions += player.defenseInterceptions;
+                player.seasonDefensePBUs += player.defensePBUs;
+                player.seasonDefenseSacks += player.defenseSacks;
+            }
+        }
+        for (Player player : awayTeam.cbs){
+            if (player.defenseTackles > 0 || player.defensePBUs > 0){
+                //receiving
+                player.seasonDefenseTackles += player.defenseTackles;
+                player.seasonDefenseInterceptions += player.defenseInterceptions;
+                player.seasonDefensePBUs += player.defensePBUs;
+                player.seasonDefenseSacks += player.defenseSacks;
+            }
+        }
+
+        //SS
+        for (Player player : homeTeam.fs){
+            if (player.defenseTackles > 0 || player.defensePBUs > 0){
+                //receiving
+                player.seasonDefenseTackles += player.defenseTackles;
+                player.seasonDefenseInterceptions += player.defenseInterceptions;
+                player.seasonDefensePBUs += player.defensePBUs;
+                player.seasonDefenseSacks += player.defenseSacks;
+            }
+        }
+        for (Player player : awayTeam.fs){
+            if (player.defenseTackles > 0 || player.defensePBUs > 0){
+                //receiving
+                player.seasonDefenseTackles += player.defenseTackles;
+                player.seasonDefenseInterceptions += player.defenseInterceptions;
+                player.seasonDefensePBUs += player.defensePBUs;
+                player.seasonDefenseSacks += player.defenseSacks;
+            }
+        }
+
+        //SS
+        for (Player player : homeTeam.ss){
+            if (player.defenseTackles > 0 || player.defensePBUs > 0){
+                //receiving
+                player.seasonDefenseTackles += player.defenseTackles;
+                player.seasonDefenseInterceptions += player.defenseInterceptions;
+                player.seasonDefensePBUs += player.defensePBUs;
+                player.seasonDefenseSacks += player.defenseSacks;
+            }
+        }
+        for (Player player : awayTeam.ss){
+            if (player.defenseTackles > 0 || player.defensePBUs > 0){
+                //receiving
+                player.seasonDefenseTackles += player.defenseTackles;
+                player.seasonDefenseInterceptions += player.defenseInterceptions;
+                player.seasonDefensePBUs += player.defensePBUs;
+                player.seasonDefenseSacks += player.defenseSacks;
+            }
+        }
+
+
     }
 
     private void printFinalStats(){
@@ -158,6 +456,7 @@ public class Game {
             if (player.rushAttempts > 0){
                 System.out.println( player.position + " " + player.firstName + " " + player.lastName);
                 System.out.println("Overall: " + player.overall);
+                System.out.println("Speed: " + player.speed);
                 System.out.println("Catches: " + player.recCatches + "\nRec Yards: " + player.recYards + "\nRec Touchdowns: " + player.recTDs + "\nDrops: " + player.recDrops + "\nRushes: " + player.rushAttempts + "\nRush Yards: " + player.rushYards + "\nRush TDs: " + player.rushTDs + "\nYPC: " + ((float) player.rushYards / player.rushAttempts) );
             }
         }
@@ -228,20 +527,17 @@ public class Game {
 
         //get oline rating
         int oLineRating = getOlineRating(offense, "Run");
-
-        System.out.println(oLineRating);
+        int dlRating = getDLRating(defense, "Run");
+        System.out.println(dlRating);
         int rbRating = playRB.overall;
-        yardsGained += (rand.nextGaussian()*oLineRating + rbRating) / 18;
+        //lb rating
+        yardsGained += ((rand.nextGaussian()*oLineRating + (rbRating+ playRB.speed)/2)/(dlRating/4));
+        System.out.println("Rush yards gained: " + yardsGained);
         int random = (int) (Math.random() * 100);
-        //big gain
+
+        //implement big play
 
         playRB.rushYards += yardsGained;
-
-
-
-
-        //yardsGained = ;
-
         yardLine += yardsGained;
 
         if (yardLine >= 100){
@@ -250,13 +546,43 @@ public class Game {
             playRB.rushTDs++;
             offense.gameScore += 6;
             runExtraPoint(offense, defense);
+        }
+        down++;
+    }
+
+    private int getDLRating(Team defense, String play) {
+        int rating = 0;
+        int lineNum = 0;
+
+        switch (play){
+            case "Run": {
+                for  (PlayerDE lineman : defense.dEnds){
+                    if (lineNum > 1) break; //want two DEs
+                    if (!lineman.isInjured){
+                        rating += lineman.runStop;
+                        lineNum++;
+                    }
+                }
+
+                for  (PlayerDT lineman : defense.dTackles){
+                    if (lineNum > 3) break; //want two DTs
+                    if (!lineman.isInjured){
+                        rating += lineman.runStop;
+                        lineNum++;
+                    }
+                }
 
 
 
+            }
+            case "Pass": {
+
+            }
         }
 
-        down++;
+        rating = rating/lineNum;
 
+        return rating;
 
     }
 

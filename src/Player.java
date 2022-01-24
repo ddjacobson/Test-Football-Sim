@@ -47,11 +47,13 @@ public class Player {
     public int pursuit;
     final public String [] letterGrades = {"A+", "A", "A-", "B+", "B", "B-", "C+", "C", "C-", "D+", "D", "D-", "F+", "F", "F-"};
 
-    //stats
+    //game stats
+    public int gameSnaps;
     public int recDrops;
     public int recCatches;
     public int rushAttempts;
     public int rushYards;
+    public int fumbles;
     public int recYards;
     public int recTDs;
     public int rushTDs;
@@ -64,6 +66,27 @@ public class Player {
     public int defenseTackles;
     public int defensePBUs;
     public int defenseInterceptions;
+    public double defenseSacks;
+
+    //season stats
+    public int seasonRecCatches;
+    public int seasonRecDrops;
+    public int seasonRushAttempts;
+    public int seasonRushYards;
+    public int seasonFumbles;
+    public int seasonRecYards;
+    public int seasonRecTDs;
+    public int seasonRushTDs;
+    public int seasonPassYards;
+    public int seasonPassTDs;
+    public int seasonPassAttempts;
+    public int seasonPassCompletions;
+    public int seasonPassInterceptions;
+
+    public int seasonDefenseTackles;
+    public int seasonDefensePBUs;
+    public int seasonDefenseInterceptions;
+    public double seasonDefenseSacks;
 
     public HashMap<String, Integer> gameStats;
     public HashMap<String, Integer> seasonStats;

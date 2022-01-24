@@ -39,13 +39,13 @@ public class Team {
     ArrayList<PlayerOT> tackles;
     ArrayList<PlayerOG> guards;
     ArrayList<PlayerOC> centers;
-    ArrayList<Player> dEnds;
-    ArrayList<Player> dTackles;
+    ArrayList<PlayerDE> dEnds;
+    ArrayList<PlayerDT> dTackles;
     ArrayList<PlayerOLB> olbs;
     ArrayList<PlayerILB> ilbs;
     ArrayList<PlayerCB> cbs;
-    ArrayList<Player> fs;
-    ArrayList<Player> ss;
+    ArrayList<PlayerFS> fs;
+    ArrayList<PlayerSS> ss;
     ArrayList<Player> k;
     ArrayList<Player> p;
 
@@ -148,15 +148,14 @@ public class Team {
 //        //create 1 OC
         centers.add(new PlayerOC(this));
 //        //create 4 DE
-//        dEnds.add(new PlayerDE(this));
-//        dEnds.add(new PlayerDE(this));
-//        dEnds.add(new PlayerDE(this));
-//        dEnds.add(new PlayerDE(this));
+        dEnds.add(new PlayerDE(this));
+        dEnds.add(new PlayerDE(this));
+        dEnds.add(new PlayerDE(this));
+        dEnds.add(new PlayerDE(this));
 //        //create 3 DT
-//        dTackles.add(new PlayerDT(this));
-//        dTackles.add(new PlayerDT(this));
-//        dTackles.add(new PlayerDT(this));
-//
+        dTackles.add(new PlayerDT(this));
+        dTackles.add(new PlayerDT(this));
+        dTackles.add(new PlayerDT(this));
 //        //create 5 OLB
         olbs.add(new PlayerOLB(this));
         olbs.add(new PlayerOLB(this));
@@ -176,12 +175,12 @@ public class Team {
         cbs.add(new PlayerCB(this));
 //
 //        //create 2 FS
-//        fs.add(new PlayerFS(this));
-//        fs.add(new PlayerFS(this));
+        fs.add(new PlayerFS(this));
+        fs.add(new PlayerFS(this));
 //
 //        //create 2 SS
-//        ss.add(new PlayerSS(this));
-//        ss.add(new PlayerSS(this));
+        ss.add(new PlayerSS(this));
+        ss.add(new PlayerSS(this));
 //
 //        //create 1 K, P
 //        k.add(new PlayerK(this));
