@@ -79,7 +79,7 @@ public class PlayerFS extends Player{
 
         int maxManCoverage = 78;
         int minManCoverage = 70;
-        this.runStop = rand.nextInt(minManCoverage, maxManCoverage);
+        this.manCoverage = rand.nextInt(minManCoverage, maxManCoverage);
 
         int maxZoneCoverage = 92;
         int minZoneCoverage = 79;
@@ -125,7 +125,7 @@ public class PlayerFS extends Player{
 
         int maxManCoverage = 73;
         int minManCoverage = 67;
-        this.runStop = rand.nextInt(minManCoverage, maxManCoverage);
+        this.manCoverage = rand.nextInt(minManCoverage, maxManCoverage);
 
         int maxZoneCoverage = 83;
         int minZoneCoverage = 74;
@@ -170,7 +170,7 @@ public class PlayerFS extends Player{
 
         int maxManCoverage = 80;
         int minManCoverage = 68;
-        this.runStop = rand.nextInt(minManCoverage, maxManCoverage);
+        this.manCoverage = rand.nextInt(minManCoverage, maxManCoverage);
 
         int maxZoneCoverage = 94;
         int minZoneCoverage = 72;
@@ -194,14 +194,15 @@ public class PlayerFS extends Player{
     }
 
     private int getOverall(){
-        int overall = (int)(passRush *catchingWeight + runStop *manCoverageWeight + strength *zoneCoverageWeight + speed*speedWeight + quickness*quicknessWeight + tackle*tackleWeight + hitPowerWeight*hitPower + pursuitWeight*pursuit);
+        int overall = (int)(passRush *catchingWeight + manCoverage *manCoverageWeight + strength *zoneCoverageWeight + speed*speedWeight + quickness*quicknessWeight + tackle*tackleWeight + hitPowerWeight*hitPower + pursuitWeight*pursuit);
         return overall;
     }
 
 
 
     public void printStats(){
-        System.out.println("Name: " + firstName + " " + lastName + "\nRace: " + getRace() + "\nPosition: " + position + "\nPlayer Archetype: " + playerType + "\nOverall: " + overall + "\nHeight: " + inToFt(heightIn) + "\nWeight: " + weight + " lbs.\nSpeed: " + speed + "\nQuickness: " + quickness + "\nCatching: " + passRush + "\nMan Coverage: " + runStop + "\nZone Coverage: " + strength + "\nTackle: " + tackle);
+        System.out.println("Name: " + firstName + " " + lastName + "\nRace: " + getRace() + "\nPosition: " + position + "\nPlayer Archetype: " + playerType + "\nOverall: " + overall + "\nHeight: " + inToFt(heightIn) + "\nWeight: " + weight + " lbs.\nSpeed: " + speed + "\nQuickness: " + quickness + "\nCatching: " + passRush + "\nMan Coverage: " + manCoverage
+            + "\nZone Coverage: " + strength + "\nTackle: " + tackle);
     }
 
 

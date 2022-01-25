@@ -79,7 +79,7 @@ public class PlayerDT extends Player{
 
         int maxRunStop = 80;
         int minRunStop = 68;
-        this.runStop = rand.nextInt(minRunStop, maxRunStop);
+        this.manCoverage = rand.nextInt(minRunStop, maxRunStop);
 
         int maxStrength = 85;
         int minStrength = 74;
@@ -124,7 +124,7 @@ public class PlayerDT extends Player{
 
         int maxRunStop = 94;
         int minRunStop = 80;
-        this.runStop = rand.nextInt(minRunStop, maxRunStop);
+        this.manCoverage = rand.nextInt(minRunStop, maxRunStop);
 
         int maxStrength = 94;
         int minStrength = 85;
@@ -169,7 +169,7 @@ public class PlayerDT extends Player{
 
         int maxRunStop = 94;
         int minRunStop = 81;
-        this.runStop = rand.nextInt(minRunStop, maxRunStop);
+        this.manCoverage = rand.nextInt(minRunStop, maxRunStop);
 
         int maxStrength = 97;
         int minStrength = 88;
@@ -194,14 +194,15 @@ public class PlayerDT extends Player{
     }
 
     private int getOverall(){
-        int overall = (int)(passRush * passRushWeight + runStop * runStopWeight + strength * strengthWeight + speed*speedWeight + quickness*quicknessWeight + tackle*tackleWeight + hitPowerWeight*hitPower + pursuitWeight*pursuit);
+        int overall = (int)(passRush * passRushWeight + manCoverage * runStopWeight + strength * strengthWeight + speed*speedWeight + quickness*quicknessWeight + tackle*tackleWeight + hitPowerWeight*hitPower + pursuitWeight*pursuit);
         return overall;
     }
 
 
 
     public void printStats(){
-        System.out.println("Name: " + firstName + " " + lastName + "\nRace: " + getRace() + "\nPosition: " + position + "\nPlayer Archetype: " + playerType + "\nOverall: " + overall + "\nHeight: " + inToFt(heightIn) + "\nWeight: " + weight + " lbs.\nSpeed: " + speed + "\nQuickness: " + quickness + "\nCatching: " + passRush + "\nMan Coverage: " + runStop + "\nZone Coverage: " + strength + "\nTackle: " + tackle);
+        System.out.println("Name: " + firstName + " " + lastName + "\nRace: " + getRace() + "\nPosition: " + position + "\nPlayer Archetype: " + playerType + "\nOverall: " + overall + "\nHeight: " + inToFt(heightIn) + "\nWeight: " + weight + " lbs.\nSpeed: " + speed + "\nQuickness: " + quickness + "\nCatching: " + passRush + "\nMan Coverage: " + manCoverage
+            + "\nZone Coverage: " + strength + "\nTackle: " + tackle);
     }
 
 

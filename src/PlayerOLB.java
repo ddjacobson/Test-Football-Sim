@@ -81,7 +81,7 @@ public class PlayerOLB extends Player{
 
         int maxManCoverage = 67;
         int minManCoverage = 55;
-        this.runStop = rand.nextInt(minManCoverage, maxManCoverage);
+        this.manCoverage = rand.nextInt(minManCoverage, maxManCoverage);
 
         int maxZoneCoverage = 70;
         int minZoneCoverage = 59;
@@ -125,7 +125,7 @@ public class PlayerOLB extends Player{
 
         int maxManCoverage = 69;
         int minManCoverage = 56;
-        this.runStop = rand.nextInt(minManCoverage, maxManCoverage);
+        this.manCoverage = rand.nextInt(minManCoverage, maxManCoverage);
 
         int maxZoneCoverage = 71;
         int minZoneCoverage = 63;
@@ -168,7 +168,7 @@ public class PlayerOLB extends Player{
 
         int maxManCoverage = 75;
         int minManCoverage = 67;
-        this.runStop = rand.nextInt(minManCoverage, maxManCoverage);
+        this.manCoverage = rand.nextInt(minManCoverage, maxManCoverage);
 
         int maxZoneCoverage = 80;
         int minZoneCoverage = 68;
@@ -212,7 +212,7 @@ public class PlayerOLB extends Player{
 
         int maxManCoverage = 77;
         int minManCoverage = 70;
-        this.runStop = rand.nextInt(minManCoverage, maxManCoverage);
+        this.manCoverage = rand.nextInt(minManCoverage, maxManCoverage);
 
         int maxZoneCoverage = 83;
         int minZoneCoverage = 77;
@@ -235,14 +235,14 @@ public class PlayerOLB extends Player{
         this.quickness = rand.nextInt(minQuickness, maxQuickness);    }
 
     private int getOverall(){
-        int overall = (int)(hitPowerWeight*hitPower + pursuitWeight*pursuit + runStop *manCoverageWeight + strength *zoneCoverageWeight + speed*speedWeight + quickness*quicknessWeight + tackle*tackleWeight);
+        int overall = (int)(hitPowerWeight*hitPower + pursuitWeight*pursuit + manCoverage *manCoverageWeight + strength *zoneCoverageWeight + speed*speedWeight + quickness*quicknessWeight + tackle*tackleWeight);
         return overall;
     }
 
 
 
     public void printStats(){
-        System.out.println("Name: " + firstName + " " + lastName + "\nRace: " + getRace() + "\nPosition: " + position + "\nPlayer Archetype: " + playerType + "\nOverall: " + overall + "\nHeight: " + inToFt(heightIn) + "\nWeight: " + weight + " lbs.\nSpeed: " + speed + "\nQuickness: " + quickness + "\nPursuit: " + pursuit + "\nHit Power: " + hitPower + "\nMan Coverage: " + runStop + "\nZone Coverage: " + strength + "\nTackle: " + tackle);
+        System.out.println("Name: " + firstName + " " + lastName + "\nRace: " + getRace() + "\nPosition: " + position + "\nPlayer Archetype: " + playerType + "\nOverall: " + overall + "\nHeight: " + inToFt(heightIn) + "\nWeight: " + weight + " lbs.\nSpeed: " + speed + "\nQuickness: " + quickness + "\nPursuit: " + pursuit + "\nHit Power: " + hitPower + "\nMan Coverage: " + manCoverage + "\nZone Coverage: " + strength + "\nTackle: " + tackle);
     }
 
 

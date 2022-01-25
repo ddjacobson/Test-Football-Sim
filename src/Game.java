@@ -252,10 +252,10 @@ public class Game {
 
 
         //defense
-        //TODO: implement game snaps
+
         //DTS
         for (Player player : homeTeam.dTackles){
-            if (player.defenseTackles > 0){
+            if (player.gameSnaps > 0){
                 //receiving
                 player.seasonDefenseTackles += player.defenseTackles;
                 player.seasonDefenseInterceptions += player.defenseInterceptions;
@@ -264,7 +264,7 @@ public class Game {
             }
         }
         for (Player player : awayTeam.dTackles){
-            if (player.defenseTackles > 0){
+            if (player.gameSnaps > 0){
                 //receiving
                 player.seasonDefenseTackles += player.defenseTackles;
                 player.seasonDefenseInterceptions += player.defenseInterceptions;
@@ -275,7 +275,7 @@ public class Game {
 
         //DEs
         for (Player player : homeTeam.dEnds){
-            if (player.defenseTackles > 0){
+            if (player.gameSnaps > 0){
                 //receiving
                 player.seasonDefenseTackles += player.defenseTackles;
                 player.seasonDefenseInterceptions += player.defenseInterceptions;
@@ -284,7 +284,7 @@ public class Game {
             }
         }
         for (Player player : awayTeam.dEnds){
-            if (player.defenseTackles > 0){
+            if (player.gameSnaps > 0){
                 //receiving
                 player.seasonDefenseTackles += player.defenseTackles;
                 player.seasonDefenseInterceptions += player.defenseInterceptions;
@@ -295,7 +295,7 @@ public class Game {
 
         //ILBs
         for (Player player : homeTeam.ilbs){
-            if (player.defenseTackles > 0){
+            if (player.gameSnaps > 0){
                 //receiving
                 player.seasonDefenseTackles += player.defenseTackles;
                 player.seasonDefenseInterceptions += player.defenseInterceptions;
@@ -304,7 +304,7 @@ public class Game {
             }
         }
         for (Player player : awayTeam.ilbs){
-            if (player.defenseTackles > 0){
+            if (player.gameSnaps > 0){
                 //receiving
                 player.seasonDefenseTackles += player.defenseTackles;
                 player.seasonDefenseInterceptions += player.defenseInterceptions;
@@ -314,7 +314,7 @@ public class Game {
         }
         //OLBs
         for (Player player : homeTeam.olbs){
-            if (player.defenseTackles > 0){
+            if (player.gameSnaps > 0){
                 //receiving
                 player.seasonDefenseTackles += player.defenseTackles;
                 player.seasonDefenseInterceptions += player.defenseInterceptions;
@@ -323,7 +323,7 @@ public class Game {
             }
         }
         for (Player player : awayTeam.olbs){
-            if (player.defenseTackles > 0){
+            if (player.gameSnaps > 0){
                 //receiving
                 player.seasonDefenseTackles += player.defenseTackles;
                 player.seasonDefenseInterceptions += player.defenseInterceptions;
@@ -334,7 +334,7 @@ public class Game {
 
         //CBs
         for (Player player : homeTeam.cbs){
-            if (player.defenseTackles > 0 || player.defensePBUs > 0){
+            if (player.gameSnaps > 0){
                 //receiving
                 player.seasonDefenseTackles += player.defenseTackles;
                 player.seasonDefenseInterceptions += player.defenseInterceptions;
@@ -343,7 +343,7 @@ public class Game {
             }
         }
         for (Player player : awayTeam.cbs){
-            if (player.defenseTackles > 0 || player.defensePBUs > 0){
+            if (player.gameSnaps > 0){
                 //receiving
                 player.seasonDefenseTackles += player.defenseTackles;
                 player.seasonDefenseInterceptions += player.defenseInterceptions;
@@ -352,9 +352,9 @@ public class Game {
             }
         }
 
-        //SS
+        //FS
         for (Player player : homeTeam.fs){
-            if (player.defenseTackles > 0 || player.defensePBUs > 0){
+            if (player.gameSnaps > 0){
                 //receiving
                 player.seasonDefenseTackles += player.defenseTackles;
                 player.seasonDefenseInterceptions += player.defenseInterceptions;
@@ -363,7 +363,7 @@ public class Game {
             }
         }
         for (Player player : awayTeam.fs){
-            if (player.defenseTackles > 0 || player.defensePBUs > 0){
+            if (player.gameSnaps > 0){
                 //receiving
                 player.seasonDefenseTackles += player.defenseTackles;
                 player.seasonDefenseInterceptions += player.defenseInterceptions;
@@ -374,7 +374,7 @@ public class Game {
 
         //SS
         for (Player player : homeTeam.ss){
-            if (player.defenseTackles > 0 || player.defensePBUs > 0){
+            if (player.gameSnaps > 0){
                 //receiving
                 player.seasonDefenseTackles += player.defenseTackles;
                 player.seasonDefenseInterceptions += player.defenseInterceptions;
@@ -383,7 +383,7 @@ public class Game {
             }
         }
         for (Player player : awayTeam.ss){
-            if (player.defenseTackles > 0 || player.defensePBUs > 0){
+            if (player.gameSnaps > 0){
                 //receiving
                 player.seasonDefenseTackles += player.defenseTackles;
                 player.seasonDefenseInterceptions += player.defenseInterceptions;
@@ -429,7 +429,85 @@ public class Game {
             }
         }
 
-        System.out.println("\n" + awayTeam.name);
+        //----Defense----\
+        for (Player player : homeTeam.dTackles){
+            if (player.gameSnaps > 0){
+                System.out.println( player.position + " " + player.firstName + " " + player.lastName);
+                System.out.println("Overall: " + player.overall);
+                System.out.println("Speed: " + player.speed);
+                System.out.println("\nSnaps: " + player.gameSnaps + "\nTackles: " + player.defenseTackles + "\nInterceptions: " + player.defenseInterceptions + "\nPBUs: " + player.defensePBUs + "\n");
+
+            }
+        }
+
+        for (Player player : homeTeam.dEnds){
+            if (player.gameSnaps > 0){
+                System.out.println( player.position + " " + player.firstName + " " + player.lastName);
+                System.out.println("Overall: " + player.overall);
+                System.out.println("Speed: " + player.speed);
+                System.out.println("\nSnaps: " + player.gameSnaps + "\nTackles: " + player.defenseTackles + "\nInterceptions: " + player.defenseInterceptions + "\nPBUs: " + player.defensePBUs + "\n");
+
+            }
+        }
+
+        for (Player player : homeTeam.ilbs){
+            if (player.gameSnaps > 0){
+                System.out.println( player.position + " " + player.firstName + " " + player.lastName);
+                System.out.println("Overall: " + player.overall);
+                System.out.println("Speed: " + player.speed);
+                System.out.println("\nSnaps: " + player.gameSnaps + "\nTackles: " + player.defenseTackles + "\nInterceptions: " + player.defenseInterceptions + "\nPBUs: " + player.defensePBUs + "\n");
+
+            }
+        }
+
+        for (Player player : homeTeam.olbs){
+            if (player.gameSnaps > 0){
+                System.out.println( player.position + " " + player.firstName + " " + player.lastName);
+                System.out.println("Overall: " + player.overall);
+                System.out.println("Speed: " + player.speed);
+                System.out.println("\nSnaps: " + player.gameSnaps + "\nTackles: " + player.defenseTackles + "\nInterceptions: " + player.defenseInterceptions + "\nPBUs: " + player.defensePBUs + "\n");
+
+            }
+        }
+
+        for (Player player : homeTeam.cbs){
+            if (player.gameSnaps > 0){
+                System.out.println( player.position + " " + player.firstName + " " + player.lastName);
+                System.out.println("Overall: " + player.overall);
+                System.out.println("Speed: " + player.speed);
+                System.out.println("\nSnaps: " + player.gameSnaps + "\nTackles: " + player.defenseTackles + "\nInterceptions: " + player.defenseInterceptions + "\nPBUs: " + player.defensePBUs + "\n");
+
+            }
+        }
+
+
+        for (Player player : homeTeam.fs){
+            if (player.gameSnaps > 0){
+                System.out.println( player.position + " " + player.firstName + " " + player.lastName);
+                System.out.println("Overall: " + player.overall);
+                System.out.println("Speed: " + player.speed);
+                System.out.println("\nSnaps: " + player.gameSnaps + "\nTackles: " + player.defenseTackles + "\nInterceptions: " + player.defenseInterceptions + "\nPBUs: " + player.defensePBUs + "\n");
+
+            }
+        }
+
+        for (Player player : homeTeam.ss){
+            if (player.gameSnaps > 0){
+                System.out.println( player.position + " " + player.firstName + " " + player.lastName);
+                System.out.println("Overall: " + player.overall);
+                System.out.println("Speed: " + player.speed);
+                System.out.println("\nSnaps: " + player.gameSnaps + "\nTackles: " + player.defenseTackles + "\nInterceptions: " + player.defenseInterceptions + "\nPBUs: " + player.defensePBUs + "\n");
+
+            }
+        }
+
+
+
+
+
+
+
+        System.out.println("\n\n" + awayTeam.name + "---------------");
         for (Player player : awayTeam.qbs){
             if (player.passAttempts > 0){
                 System.out.println( player.position + " " + player.firstName + " " + player.lastName);
@@ -457,10 +535,80 @@ public class Game {
                 System.out.println( player.position + " " + player.firstName + " " + player.lastName);
                 System.out.println("Overall: " + player.overall);
                 System.out.println("Speed: " + player.speed);
-                System.out.println("Catches: " + player.recCatches + "\nRec Yards: " + player.recYards + "\nRec Touchdowns: " + player.recTDs + "\nDrops: " + player.recDrops + "\nRushes: " + player.rushAttempts + "\nRush Yards: " + player.rushYards + "\nRush TDs: " + player.rushTDs + "\nYPC: " + ((float) player.rushYards / player.rushAttempts) );
+                System.out.println("Catches: " + player.recCatches + "\nRec Yards: " + player.recYards + "\nRec Touchdowns: " + player.recTDs + "\nDrops: " + player.recDrops + "\nRushes: " + player.rushAttempts + "\nRush Yards: " + player.rushYards + "\nRush TDs: " + player.rushTDs + "\nYPC: " + ((float) player.rushYards / player.rushAttempts) + "\n");
+            }
+        }
+        //--Defense__\\
+        for (Player player : awayTeam.dTackles){
+            if (player.gameSnaps > 0){
+                System.out.println( player.position + " " + player.firstName + " " + player.lastName);
+                System.out.println("Overall: " + player.overall);
+                System.out.println("Speed: " + player.speed);
+                System.out.println("\nSnaps: " + player.gameSnaps + "\nTackles: " + player.defenseTackles + "\nInterceptions: " + player.defenseInterceptions + "\nPBUs: " + player.defensePBUs + "\n");
+
             }
         }
 
+        for (Player player : awayTeam.dEnds){
+            if (player.gameSnaps > 0){
+                System.out.println( player.position + " " + player.firstName + " " + player.lastName);
+                System.out.println("Overall: " + player.overall);
+                System.out.println("Speed: " + player.speed);
+                System.out.println("\nSnaps: " + player.gameSnaps + "\nTackles: " + player.defenseTackles + "\nInterceptions: " + player.defenseInterceptions + "\nPBUs: " + player.defensePBUs + "\n");
+
+            }
+        }
+
+        for (Player player : awayTeam.ilbs){
+            if (player.gameSnaps > 0){
+                System.out.println( player.position + " " + player.firstName + " " + player.lastName);
+                System.out.println("Overall: " + player.overall);
+                System.out.println("Speed: " + player.speed);
+                System.out.println("\nSnaps: " + player.gameSnaps + "\nTackles: " + player.defenseTackles + "\nInterceptions: " + player.defenseInterceptions + "\nPBUs: " + player.defensePBUs + "\n");
+
+            }
+        }
+
+        for (Player player : awayTeam.olbs){
+            if (player.gameSnaps > 0){
+                System.out.println( player.position + " " + player.firstName + " " + player.lastName);
+                System.out.println("Overall: " + player.overall);
+                System.out.println("Speed: " + player.speed);
+                System.out.println("\nSnaps: " + player.gameSnaps + "\nTackles: " + player.defenseTackles + "\nInterceptions: " + player.defenseInterceptions + "\nPBUs: " + player.defensePBUs + "\n");
+
+            }
+        }
+
+        for (Player player : awayTeam.cbs){
+            if (player.gameSnaps > 0){
+                System.out.println( player.position + " " + player.firstName + " " + player.lastName);
+                System.out.println("Overall: " + player.overall);
+                System.out.println("Speed: " + player.speed);
+                System.out.println("\nSnaps: " + player.gameSnaps + "\nTackles: " + player.defenseTackles + "\nInterceptions: " + player.defenseInterceptions + "\nPBUs: " + player.defensePBUs + "\n");
+
+            }
+        }
+
+
+        for (Player player : awayTeam.fs){
+            if (player.gameSnaps > 0){
+                System.out.println( player.position + " " + player.firstName + " " + player.lastName);
+                System.out.println("Overall: " + player.overall);
+                System.out.println("Speed: " + player.speed);
+                System.out.println("\nSnaps: " + player.gameSnaps + "\nTackles: " + player.defenseTackles + "\nInterceptions: " + player.defenseInterceptions + "\nPBUs: " + player.defensePBUs + "\n");
+
+            }
+        }
+
+        for (Player player : awayTeam.ss){
+            if (player.gameSnaps > 0){
+                System.out.println( player.position + " " + player.firstName + " " + player.lastName);
+                System.out.println("Overall: " + player.overall);
+                System.out.println("Speed: " + player.speed);
+                System.out.println("\nSnaps: " + player.gameSnaps + "\nTackles: " + player.defenseTackles + "\nInterceptions: " + player.defenseInterceptions + "\nPBUs: " + player.defensePBUs + "\n");
+
+            }
+        }
 
 
     }
@@ -508,20 +656,87 @@ public class Game {
      */
     private void runRushPlay(Team offense, Team defense) {
         //4-3 defense
-        PlayerOLB playOLB = null;
-        PlayerOLB playOLB2 = null;
+        ArrayList<PlayerDE> playDEs = new ArrayList<>(0);
+        ArrayList<PlayerDT> playDTs = new ArrayList<>(0);
+        ArrayList<PlayerOLB> playOLBs = new ArrayList<>(0);
+        ArrayList<PlayerCB> playCBs = new ArrayList<>(0);
         PlayerILB playILB = null;
-        PlayerCB playCB = null;
-        PlayerCB playCB2 = null;
         PlayerFS playFS = null;
         PlayerSS playSS = null;
+
+
         PlayerRB playRB = null;
         for (PlayerRB rb : offense.rbs){
             if (!rb.isInjured){
                 playRB = rb;
             }
         }
+
+        for (PlayerDE defender : defense.dEnds){
+            if (!defender.isInjured && playDEs.size() < 2){
+                defender.gameSnaps++;
+               playDEs.add(defender);
+            }
+        }
+
+        for (PlayerDT defender : defense.dTackles){
+            if (!defender.isInjured && playDTs.size() < 2){
+                defender.gameSnaps++;
+                playDTs.add(defender);
+            }
+        }
+
+        for (PlayerOLB defender : defense.olbs){
+            if (!defender.isInjured && playOLBs.size() < 2){
+                defender.gameSnaps++;
+                playOLBs.add(defender);
+            }
+        }
+
+        for (PlayerILB defender : defense.ilbs){
+            if (!defender.isInjured){
+                defender.gameSnaps++;
+                playILB = defender;
+                break;
+            }
+        }
+
+        for (PlayerCB defender : defense.cbs){
+            if (!defender.isInjured && playCBs.size() < 2){
+                defender.gameSnaps++;
+                playCBs.add(defender);
+            }
+        }
+
+        for (PlayerFS defender : defense.fs){
+            if (!defender.isInjured && playCBs.size() < 2){
+                defender.gameSnaps++;
+                playFS = defender;
+                break;
+            }
+        }
+
+        for (PlayerSS defender : defense.ss){
+            if (!defender.isInjured){
+                defender.gameSnaps++;
+                playSS = defender;
+                break;
+            }
+        }
+
+        //get defensive players
+        PlayerDT playDT = playDTs.get(0);
+        PlayerDT playDT2 = playDTs.get(1);
+        PlayerDE playDE = playDEs.get(0);
+        PlayerDE platDE2 = playDEs.get(1);
+        PlayerOLB playOLB = playOLBs.get(0);
+        PlayerOLB playOLB2 = playOLBs.get(1);
+        PlayerCB playCB = playCBs.get(0);
+        PlayerCB playCB2 = playCBs.get(1);
+
+
         playRB.rushAttempts++;
+        playRB.gameSnaps++;
         Random rand = new Random();
         int yardsGained = 0;
 
@@ -546,8 +761,60 @@ public class Game {
             playRB.rushTDs++;
             offense.gameScore += 6;
             runExtraPoint(offense, defense);
+        } else {
+            int choiceDT;
+            int choiceDT2;
+            int choiceDE;
+            int choiceDE2;
+            int choiceOLB;
+            int choiceOLB2;
+            int choiceILB;
+            int choiceCB;
+            int choiceCB2;
+            int choiceFS;
+            int choiceSS;
+            Player dFocus = null;
+            //track stats
+
+            //determine who makes the tackle
+            if (yardsGained < 2){
+                //one of the DL/OLBs
+                choiceDT = (int) (Math.random() * (playDT.overall * playDT.tackle));
+                choiceDT2 = (int) (Math.random() * (playDT2.overall * playDT2.tackle));
+
+                if (choiceDT > choiceDT2){
+                    playDT.defenseTackles++;
+                } else {
+                    playDT2.defenseTackles++;
+                }
+
+            }
+            else if (yardsGained < 10){
+                //one of the LBS/SS
+                choiceOLB = (int) (Math.random() * (playOLB.overall * playOLB.tackle));
+                choiceOLB2 = (int) (Math.random() * (playOLB2.overall * playOLB2.tackle));
+                choiceILB = (int) (Math.random() * (playILB.overall * playILB.tackle));
+                choiceSS = (int) (Math.random() * (playSS.overall * playSS.tackle));
+
+                if (choiceOLB > choiceOLB2 && choiceOLB > choiceILB && choiceOLB > choiceSS){
+                    playOLB.defenseTackles++;
+                } else if (choiceOLB2 > choiceILB && choiceOLB2 > choiceSS) {
+                    playOLB2.defenseTackles++;
+                } else if (choiceILB > choiceSS){
+                    playILB.defenseTackles++;
+                } else {
+                    playSS.defenseTackles++;
+                }
+            }
+            else {
+                //one of the CBs/S
+                System.out.println("--------------------Greater than 10 yards");
+            }
+
+
+            down++;
+
         }
-        down++;
     }
 
     private int getDLRating(Team defense, String play) {
@@ -559,7 +826,7 @@ public class Game {
                 for  (PlayerDE lineman : defense.dEnds){
                     if (lineNum > 1) break; //want two DEs
                     if (!lineman.isInjured){
-                        rating += lineman.runStop;
+                        rating += lineman.manCoverage;
                         lineNum++;
                     }
                 }
@@ -567,7 +834,7 @@ public class Game {
                 for  (PlayerDT lineman : defense.dTackles){
                     if (lineNum > 3) break; //want two DTs
                     if (!lineman.isInjured){
-                        rating += lineman.runStop;
+                        rating += lineman.manCoverage;
                         lineNum++;
                     }
                 }
@@ -617,10 +884,6 @@ public class Game {
                         lineNum++;
                     }
                 }
-
-
-
-
             }
 
             case "Pass":
@@ -644,10 +907,51 @@ public class Game {
         PlayerRB playRB = null;
         Player focus = null;
 
-        // defense, assume 4-3 defense
+        //4-3 defense
+        ArrayList<PlayerDE> playDEs = new ArrayList<>(0);
+        ArrayList<PlayerDT> playDTs = new ArrayList<>(0);
+        ArrayList<PlayerOLB> playOLBs = new ArrayList<>(0);
         ArrayList<PlayerCB> playCBs = new ArrayList<>(0);
+
+        PlayerDT playDT = null;
+        PlayerDT platDT2 = null;
+        PlayerOLB playOLB = null;
+        PlayerOLB playOLB2 = null;
         PlayerILB playILB = null;
-        ArrayList<Player> playOLBs = new ArrayList<>(0);
+        PlayerCB playCB = null;
+        PlayerCB playCB2 = null;
+        PlayerFS playFS = null;
+        PlayerSS playSS = null;
+
+
+        for (PlayerDE defender : defense.dEnds){
+            if (!defender.isInjured && playDEs.size() < 2){
+                defender.gameSnaps++;
+                playDEs.add(defender);
+            }
+        }
+
+        for (PlayerDT defender : defense.dTackles){
+            if (!defender.isInjured && playDTs.size() < 2){
+                defender.gameSnaps++;
+                playDTs.add(defender);
+            }
+        }
+
+        for (PlayerOLB defender : defense.olbs){
+            if (!defender.isInjured && playOLBs.size() < 2){
+                defender.gameSnaps++;
+                playOLBs.add(defender);
+            }
+        }
+
+        for (PlayerCB defender : defense.cbs){
+            if (!defender.isInjured && playCBs.size() < 3){
+                defender.gameSnaps++;
+                playCBs.add(defender);
+            }
+        }
+
         Player dFocus = null;
 
         //stats
@@ -703,14 +1007,7 @@ public class Game {
             }
         }
 
-        /*
-         * wr distros:
-         *      wr1: 23
-         *      wr2: 22
-         *      wr3: 20
-         *      rb: 15
-         *      te: 20
-         */
+        //receiver distros
         int wr1Weight = 25;
         int wr2Weight = 25;
         int teWeight = 20;
@@ -777,6 +1074,7 @@ public class Game {
 
 
 
+
         //if not sacked, pass is thrown.
         //check for a bad pass
 
@@ -792,17 +1090,18 @@ public class Game {
 
 
 
-        int breakupChance = 20;
+        int breakupChance = 10;
         int interceptionChance = (int) (Math.random() * dFocus.passRush);
         int qbIntChance = (int) (Math.random() * playQB.throwAccuracy);
         int randBreakup = (int) (Math.random() * 100);
-        //TODO: check if defender can break up pass.
-        if (dFocus.runStop > focus.routeRunning){
 
-            breakupChance += dFocus.runStop - focus.routeRunning;
+        //check if defender can break up pass
+        if (dFocus.manCoverage > focus.routeRunning){
+
+            breakupChance += dFocus.manCoverage - focus.routeRunning;
 
         } else {
-            breakupChance -= focus.routeRunning - dFocus.runStop;
+            breakupChance -= focus.routeRunning - dFocus.manCoverage;
         }
 
 
@@ -884,7 +1183,7 @@ public class Game {
         boolean isTackled = false;
         //get air yards
         if (focus.position.equals("Running Back")){
-            airYards = (int) (( focus.passRush + focus.routeRunning - dFocus.runStop * Math.random())/4);
+            airYards = (int) (( focus.passRush + focus.routeRunning - dFocus.manCoverage * Math.random())/4);
             System.out.println("-----------------------------------------------------RB air yards: " + airYards);
 
         } else {

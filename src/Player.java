@@ -40,7 +40,7 @@ public class Player {
     public int potential;
 
     public int tackle;
-    public int runStop;
+    public int manCoverage;
     public int hitPower;
     public int passRush;
 
