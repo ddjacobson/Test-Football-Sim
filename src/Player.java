@@ -1,10 +1,10 @@
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 public class Player {
     public String firstName;
     public String lastName;
     public String position;
+    public boolean isInjured;
     public Team team;
     public int weight;
     boolean isDraftProspect;
@@ -29,9 +29,9 @@ public class Player {
     public int strength;
     public int passBlock;
     public int runBlock;
-    public int trucking;
+    public int breakTackle;
     public int elusiveness;
-    public int catching;
+    public int fieldVision;
     public int routeRunning;
     public int blocking;
     public int throwPower;
@@ -39,7 +39,57 @@ public class Player {
     public int poise;
     public int potential;
 
+    public int tackle;
+    public int manCoverage;
+    public int hitPower;
+    public int passRush;
+
+    public int pursuit;
     final public String [] letterGrades = {"A+", "A", "A-", "B+", "B", "B-", "C+", "C", "C-", "D+", "D", "D-", "F+", "F", "F-"};
+
+    //game stats
+    public int gameSnaps;
+    public int recDrops;
+    public int recCatches;
+    public int rushAttempts;
+    public int rushYards;
+    public int fumbles;
+    public int recYards;
+    public int recTDs;
+    public int rushTDs;
+    public int passYards;
+    public int passTDs;
+    public int passAttempts;
+    public int passCompletions;
+    public int passInterceptions;
+
+    public int defenseTackles;
+    public int defensePBUs;
+    public int defenseInterceptions;
+    public double defenseSacks;
+
+    //season stats
+    public int seasonRecCatches;
+    public int seasonRecDrops;
+    public int seasonRushAttempts;
+    public int seasonRushYards;
+    public int seasonFumbles;
+    public int seasonRecYards;
+    public int seasonRecTDs;
+    public int seasonRushTDs;
+    public int seasonPassYards;
+    public int seasonPassTDs;
+    public int seasonPassAttempts;
+    public int seasonPassCompletions;
+    public int seasonPassInterceptions;
+
+    public int seasonDefenseTackles;
+    public int seasonDefensePBUs;
+    public int seasonDefenseInterceptions;
+    public double seasonDefenseSacks;
+
+    public HashMap<String, Integer> gameStats;
+    public HashMap<String, Integer> seasonStats;
 
     /**
      * 0 = White, 1 = Black
@@ -93,10 +143,30 @@ public class Player {
     }
 
     public void printStats(){
-        System.out.println("Name: " + firstName + " " + lastName + "\nRace: " + getRace() + "\nTeam: " + team + "\nPosition: " + position + "\nPlayer Archetype: " + playerType + "\nOverall: " + overall + "\nHeight: " + inToFt(heightIn) + "\nWeight: " + weight + " lbs.\nSpeed: " + speed + "\nQuickness: " + quickness + "\nStrength: " + strength + "\nTrucking: " + trucking + "\nElusiveness: " + elusiveness + "\nCatching: " + catching + "\n");
+        System.out.println("Name: " + firstName + " " + lastName + "\nRace: " + getRace() + "\nTeam: " + team + "\nPosition: " + position + "\nPlayer Archetype: " + playerType + "\nOverall: " + overall + "\nHeight: " + inToFt(heightIn) + "\nWeight: " + weight + " lbs.\nSpeed: " + speed + "\nQuickness: " + quickness + "\nStrength: " + strength + "\nTrucking: " + breakTackle + "\nElusiveness: " + elusiveness + "\nCatching: " + passRush + "\n");
 
     }
 
+    private void statSetup() {
+
+        gameStats.put("Rushes", 0);
+        gameStats.put("Rush Yards", 0);
+        gameStats.put("Rush TDs", 0);
+        gameStats.put("Catches", 0);
+        gameStats.put("Rec Yards", 0);
+        gameStats.put("Rec TDs", 0);
+        gameStats.put("Drops", 0);
+
+        //eventually move season stats to new method
+        seasonStats.put("Rushes", 0);
+        seasonStats.put("Rush Yards", 0);
+        seasonStats.put("Rush TDs", 0);
+        seasonStats.put("Catches", 0);
+        seasonStats.put("Rec Yards", 0);
+        seasonStats.put("Rec TDs", 0);
+        seasonStats.put("Drops", 0);
+
+    }
 
 
 }

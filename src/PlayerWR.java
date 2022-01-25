@@ -5,14 +5,15 @@ public class PlayerWR extends Player{
     //Player stats
     private static final String [] playerTypes = {"Possession", "Slot", "Deep Threat", "All Purpose", "Physical"};
     private static final int numTypes = playerTypes.length;
-    public int catching;
+
+
     final public double catchingWeight = 0.20;
-    public int routeRunning;
     final public double routeRunningWeight = 0.20;
-    public int fieldVision;
-    final public double fieldVisionWeight = 0.10;
+    final public double breakTackleWeight = 0.10;
     final public double speedWeight = 0.30;
     final public double quicknessWeight = 0.20;
+
+    //stats
 
 
 
@@ -22,6 +23,8 @@ public class PlayerWR extends Player{
 
         this.race = findRace();
         getNames();
+
+
 
         this.team = t;
         position = "Wide Receiver";
@@ -36,6 +39,7 @@ public class PlayerWR extends Player{
             default -> getPossessionStats();
         }
         this.overall = getOverall();
+        //System.out.println(catching);
     }
 
     public PlayerWR(){
@@ -57,12 +61,6 @@ public class PlayerWR extends Player{
         this.overall = getOverall();
     }
 
-    /**
-     * Generates a first and last name based on the race and position of a player
-     */
-
-
-
     private void getPhysicalStats() {
         Random rand = new Random();
 
@@ -80,15 +78,15 @@ public class PlayerWR extends Player{
 
         int maxCatching = 85;
         int minCatching = 72;
-        this.catching = rand.nextInt(minCatching, maxCatching);
+        this.passRush = rand.nextInt(minCatching, maxCatching);
 
         int maxRouteRunning = 78;
         int minRouteRunning = 63;
         this.routeRunning = rand.nextInt(minRouteRunning, maxRouteRunning);
 
-        int maxFieldVision = 84;
-        int minFieldVision = 70;
-        this.fieldVision = rand.nextInt(minFieldVision, maxFieldVision);
+        int maxBreakTackle = 84;
+        int minBreakTackle = 70;
+        this.breakTackle = rand.nextInt(minBreakTackle, maxBreakTackle);
 
         int maxQuickness = 85;
         int minQuickness = 75;
@@ -114,15 +112,15 @@ public class PlayerWR extends Player{
 
         int maxCatching = 80;
         int minCatching = 65;
-        this.catching = rand.nextInt(minCatching, maxCatching);
+        this.passRush = rand.nextInt(minCatching, maxCatching);
 
         int maxRouteRunning = 80;
         int minRouteRunning = 68;
         this.routeRunning = rand.nextInt(minRouteRunning, maxRouteRunning);
 
-        int maxFieldVision = 88;
-        int minFieldVision = 72;
-        this.fieldVision = rand.nextInt(minFieldVision, maxFieldVision);
+        int maxBreakTackle = 84;
+        int minBreakTackle = 70;
+        this.breakTackle = rand.nextInt(minBreakTackle, maxBreakTackle);
 
         int maxQuickness = 93;
         int minQuickness = 87;
@@ -147,15 +145,15 @@ public class PlayerWR extends Player{
 
         int maxCatching = 85;
         int minCatching = 69;
-        this.catching = rand.nextInt(minCatching, maxCatching);
+        this.passRush = rand.nextInt(minCatching, maxCatching);
 
         int maxRouteRunning = 84;
         int minRouteRunning = 65;
         this.routeRunning = rand.nextInt(minRouteRunning, maxRouteRunning);
 
-        int maxFieldVision = 86;
-        int minFieldVision = 66;
-        this.fieldVision = rand.nextInt(minFieldVision, maxFieldVision);
+        int maxBreakTackle = 84;
+        int minBreakTackle = 70;
+        this.breakTackle = rand.nextInt(minBreakTackle, maxBreakTackle);
 
         int maxQuickness = 94;
         int minQuickness = 80;
@@ -182,15 +180,15 @@ public class PlayerWR extends Player{
 
         int maxCatching = 87;
         int minCatching = 75;
-        this.catching = rand.nextInt(minCatching, maxCatching);
+        this.passRush = rand.nextInt(minCatching, maxCatching);
 
         int maxRouteRunning = 90;
         int minRouteRunning = 70;
         this.routeRunning = rand.nextInt(minRouteRunning, maxRouteRunning);
 
-        int maxFieldVision = 90;
-        int minFieldVision = 70;
-        this.fieldVision = rand.nextInt(minFieldVision, maxFieldVision);
+        int maxBreakTackle = 84;
+        int minBreakTackle = 70;
+        this.breakTackle = rand.nextInt(minBreakTackle, maxBreakTackle);
 
         int maxQuickness = 97;
         int minQuickness = 85;
@@ -216,15 +214,15 @@ public class PlayerWR extends Player{
 
         int maxCatching = 95;
         int minCatching = 83;
-        this.catching = rand.nextInt(minCatching, maxCatching);
+        this.passRush = rand.nextInt(minCatching, maxCatching);
 
         int maxRouteRunning = 84;
         int minRouteRunning = 70;
         this.routeRunning = rand.nextInt(minRouteRunning, maxRouteRunning);
 
-        int maxFieldVision = 92;
-        int minFieldVision = 75;
-        this.fieldVision = rand.nextInt(minFieldVision, maxFieldVision);
+        int maxBreakTackle = 84;
+        int minBreakTackle = 70;
+        this.breakTackle = rand.nextInt(minBreakTackle, maxBreakTackle);
 
         int maxQuickness = 85;
         int minQuickness = 74;
@@ -232,14 +230,14 @@ public class PlayerWR extends Player{
     }
 
     private int getOverall(){
-        int overall = (int)(catching*catchingWeight + routeRunning*routeRunningWeight + fieldVision*fieldVisionWeight + speed*speedWeight + quickness*quicknessWeight);
+        int overall = (int)(passRush *catchingWeight + routeRunning*routeRunningWeight + breakTackle* breakTackleWeight + speed*speedWeight + quickness*quicknessWeight);
         return overall;
     }
 
 
 
     public void printStats(){
-        System.out.println("Name: " + firstName + " " + lastName + "\nRace: " + getRace() + "\nPosition: " + position + "\nPlayer Archetype: " + playerType + "\nOverall: " + overall + "\nHeight: " + inToFt(heightIn) + "\nWeight: " + weight + " lbs.\nSpeed: " + speed + "\nQuickness: " + quickness + "\nCatching: " + catching + "\nRoute Running: " + routeRunning + "\nField Vision: " + fieldVision);
+        System.out.println("Name: " + firstName + " " + lastName + "\nRace: " + getRace() + "\nPosition: " + position + "\nPlayer Archetype: " + playerType + "\nOverall: " + overall + "\nHeight: " + inToFt(heightIn) + "\nWeight: " + weight + " lbs.\nSpeed: " + speed + "\nQuickness: " + quickness + "\nCatching: " + passRush + "\nRoute Running: " + routeRunning + "\nBreak Tackle: " + breakTackle);
     }
 
 
