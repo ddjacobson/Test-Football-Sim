@@ -3,6 +3,7 @@ import java.util.*;
 public class Player {
     public String firstName;
     public String lastName;
+    public String fullName = firstName + " " + lastName;
     public String position;
     public boolean isInjured;
     public Team team;
@@ -42,6 +43,7 @@ public class Player {
     public int tackle;
     public int manCoverage;
     public int hitPower;
+    public int runStop;
     public int passRush;
 
     public int pursuit;

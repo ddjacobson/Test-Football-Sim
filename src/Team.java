@@ -3,7 +3,6 @@ import java.util.*;
 
 public class Team {
 
-
     //Roster
     public HashMap<String, ArrayList<Player>> roster;
     final public int rosterSize = 53;
@@ -347,7 +346,6 @@ public class Team {
             if (numPlayers > 1) break; //only want the top two rbs
             if (!p.isInjured){
                 runRtg += p.overall;
-                System.out.println(p.firstName + " " + p.lastName);
                 numPlayers++;
             }
         }
