@@ -20,7 +20,7 @@ public class Game {
     private int down;
     private int yardsNeeded;
     private String downDist;
-    private boolean hasPossession; //true = home, false = away
+    private boolean hasPossession; //true = home, must get ball to the 0 for TD, false = away
 
 
     //initalize home stats
@@ -82,11 +82,11 @@ public class Game {
         while (time>0){
 
             if (down > 4) { // turnover on downs
+
                 gameLog += "Turnover on downs!\n";
-                hasPossession = !hasPossession;
+                changePossession();
                 down = 1;
                 yardsNeeded = 10;
-                yardLine = 100 - yardLine; //flip the field
             }
 
             if (hasPossession){
@@ -622,16 +622,32 @@ public class Game {
 
     private void kickOff(Team receivingTeam, Team kickingTeam) {
         //TODO: implement kickoff
-        hasPossession = !hasPossession;
-        System.out.println("\n\n" + hasPossession + "\n\n");
-        yardLine = 25;
+        gameLog += "The " + kickingTeam.name + " kick off to the " + receivingTeam.name + "\n";
+
+        if (hasPossession){
+            yardLine = 25;
+        } else {
+            yardLine = 75;
+        }
+        down = 1;
+        yardsNeeded = 10;
+        changePossession();
+    }
+
+    private boolean isTouchdown(){
+        if (hasPossession){
+            //ball must be at 0
+            return yardLine <= 0;
+        } else {
+            //ball must be at 100
+            return yardLine >= 100;
+        }
     }
 
     public void runPlay(Team offense, Team defense){
          //not fourth down, offense will run a play.
             String play = choosePlay(offense, defense);
             downDist = getDownDist();
-            System.out.println(play);
             switch (play){
                 case "Pass"-> runPassPlay(offense, defense);
                 case "Run"-> runRushPlay(offense, defense);
@@ -640,13 +656,14 @@ public class Game {
 //                case "Hail Mary" -> runHailMaryPlay(offense, defense);
 
             }
-
+            if (play.equals("Pass")||play.equals("Run")){
             if (gotFirstDown()){
                 down = 1;
                 yardsNeeded = 10;
                 gameLog += "  First Down!\n";
             } else {
                 down++;
+            }
             }
 
             qtrTime -= 28;
@@ -663,22 +680,43 @@ public class Game {
         return false;
     }
 
+    private void spotBall(int yardsGained){
+        if (hasPossession){
+            yardLine -= yardsGained;
+
+        } else {
+            yardLine += yardsGained;
+        }
+    }
+
 
     private void runPuntPlay(Team offense, Team defense) {
 
-        hasPossession = !hasPossession;
+        gameLog += "(" + getQtr() + " " + getQtrTime() + " " + downDist + " ball on the " + yardLine  + ") " + "The " + offense.name + " punt the ball away to the " + awayTeam.name + ". "
+            + "They start their drive at the " + yardLine + "\n\n";
         down = 1;
         yardsNeeded = 10;
-        gameLog += "The " + offense.name + " punt the ball away to the " + awayTeam.name + ". "
-            + "They start their drive at the " + yardLine + "\n\n";
+        if (hasPossession){
+            yardLine -= 40;
+            if (yardLine < 0) yardLine = 20;//touchback
+        } else {
+            yardLine += 40;
+            if (yardLine > 100) yardLine = 80;//touchback
+        }
         time -= 15;
+        changePossession();
+    }
+
+    private void changePossession(){
+        hasPossession = !hasPossession;
     }
 
     private void runFieldGoalPlay(Team offense, Team defense) {
         offense.gameScore += 3;
-        kickOff(defense, offense);
+
         gameLog += "The " + offense.name + " kick a field goal.\n";
         time -= 10;
+        kickOff(defense, offense);
     }
 
 
@@ -776,24 +814,17 @@ public class Game {
         //get oline rating
         int oLineRating = getOlineRating(offense, "Run");
         int dlRating = getDLRating(defense, "Run");
-        System.out.println(dlRating);
         int rbRating = playRB.overall;
         //lb rating
         yardsGained += ((rand.nextGaussian()*oLineRating + (rbRating + playRB.speed)/2)/(dlRating/2));
-        int random = (int) (Math.random() * 100);
+        gameLog += "(" + getQtr() + " " + getQtrTime() + " " + downDist + " ball on the " + yardLine  + ") ";
+        spotBall(yardsGained);
 
-        //implement big play
-
-
-        if (yardLine >= 100){
+        if (isTouchdown()){
             //touchdown
-
-
-
             playRB.rushYards += yardLine;
 
-            gameLog += "(" + getQtr() + " " + getQtrTime() + " " + downDist + " ball on the " + yardLine  + ") " + playRB.position + " " + playRB.firstName +
-                " " + playRB.lastName + " runs "
+            gameLog += playRB.position + " " + playRB.firstName + " " + playRB.lastName + " runs "
                 + "in for a " + yardsGained + " yard touchdown!\n";
 
             yardLine = 0;
@@ -802,7 +833,7 @@ public class Game {
             runExtraPoint(offense, defense);
 
         } else {
-            gameLog += "(" + getQtr() + " " + getQtrTime() + " " + downDist + " ball on the " + yardLine + ") " + playRB.team.name +
+            gameLog += playRB.team.name +
                 " " + playRB.position +
                 " " + playRB.firstName + " " + playRB.lastName + " runs " + "for a gain of " + yardsGained + ".\n";
             playRB.rushYards += yardsGained;
@@ -1173,14 +1204,7 @@ public class Game {
         teWeight += playTE.overall - wr3.overall;
         wr3Weight -= 3;
 
-        //DEBUGS
-//        System.out.println("WR1: " + wr1Weight + " " + wr1.overall);
-//        System.out.println("WR2: " + wr2Weight + " " + wr2.overall);
-//        System.out.println("WR3: " + wr3Weight + " " + wr3.overall);
-//        System.out.println("TE: " + teWeight + " " + playTE.overall);
-//        System.out.println("RB: " + rbWeight + " " + playRB.overall);
-
-        // determine what happens once the ball is snapped
+        //ball is snapped...
 
         //TODO: check for a sack
 
@@ -1190,7 +1214,6 @@ public class Game {
                 " " + playQB.firstName + " " + playQB.lastName + " throws an incomplete pass.\n";
             return;
         }
-
 
         //get the target player
         int defenseChoice;
@@ -1227,12 +1250,10 @@ public class Game {
 
         gameLog += "(" + getQtr() + " " + getQtrTime() + " " + downDist + " ball on the " + yardLine + ") " + playQB.team.name + " " + playQB.position +
             " " + playQB.firstName + " " + playQB.lastName + " throws a pass to " + focus.position + " " + focus.firstName + " " + focus.lastName + ".\n";
+
         playQB.passAttempts++;
 
-
-
-
-        int breakupChance = 10;
+        int breakupChance = 50;
         int interceptionChance = (int) (Math.random() * dFocus.passRush);
         int qbIntChance = (int) (Math.random() * playQB.throwAccuracy);
         int randBreakup = (int) (Math.random() * 100);
@@ -1249,22 +1270,24 @@ public class Game {
 
         if (breakupChance > 40){
 
+
             if (breakupChance < randBreakup){
                 //pass is broken up
                 dFocus.defensePBUs++;
 
                 //check for int
-
                 if (interceptionChance+5 > qbIntChance){
                     dFocus.defenseInterceptions++;
                     playQB.passInterceptions++;
                     gameLog += " The pass is INTERCEPTED by " + dFocus.team.name + " " + dFocus.position + " " + dFocus.firstName + " " + dFocus.lastName + "!! \n";
-                    return;
-                    //change possession
+                    down = 1;
+                    yardsNeeded = 10;
+                    changePossession();
                 }
+                return;
             }
-
-        } else {
+        }
+        else {
             if (breakupChance < randBreakup) {
                 //pass is broken up
                 dFocus.defensePBUs++;
@@ -1293,11 +1316,15 @@ public class Game {
             //after the play
             yardsGained += airYards;
             int lastDownYard = yardLine;
-            yardLine += yardsGained;
+            spotBall(yardsGained);
 
-            if (yardLine >= 100){
+            if (isTouchdown()){
                 //touchdown!!!
-                yardsGained = 100 - lastDownYard;
+                if (hasPossession){
+                    yardsGained = yardLine;
+                } else {
+                    yardsGained = 100 - lastDownYard;
+                }
                 gameLog += " " + focus.position + " " + focus.firstName + " " + focus.lastName + " "
                     + "caught a " + yardsGained + " yard pass for a TOUCHDOWN!\n";
                 playQB.passTDs++;
