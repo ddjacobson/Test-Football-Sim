@@ -1,3 +1,9 @@
+import World.League;
+import World.NameFile;
+import World.Game;
+import World.Team;
+
+import static World.League.TEAM_LIST;
 
 //TODO: put int 03 ints for each division team for easy testing access
 public class test {
@@ -8,15 +14,17 @@ public class test {
 
         League myLeague = new League();
 
+        Game game = new Game(TEAM_LIST.get(0), TEAM_LIST.get(17));
+        game.playGame();
 
 
 
-//        NameFile.getFirstNames();
-//        NameFile.getLastNames();
-//        PlayerQB testQB = new PlayerQB();
+//        World.NameFile.getFirstNames();
+//        World.NameFile.getLastNames();
+//        World.PlayerQB testQB = new World.PlayerQB();
 //       testQB.printStats();
 //       System.out.println();
-//       PlayerTE test2 = new PlayerTE();
+//       World.PlayerTE test2 = new World.PlayerTE();
 //       test2.printStats();
 
     }
