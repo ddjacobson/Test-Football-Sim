@@ -10,6 +10,8 @@ import java.util.List;
 import java.util.Random;
 
 public class Player {
+
+    //player bio
     public String firstName;
     public String lastName;
     public String fullName;
@@ -17,7 +19,7 @@ public class Player {
     public boolean isInjured;
     public Team team;
     public int weight;
-    public int catching;
+    public int zoneCoverage;
     boolean isDraftProspect;
     public int heightIn;
     public int years;
@@ -28,29 +30,40 @@ public class Player {
     public int hispanicWeight;
     public int islanderWeight;
     public String playerType;
+
+
     public int overall;
     public int speed;
     public int quickness;
     public int strength;
+
+    // offense attributes
+    public int trucking;
+    public int elusiveness;
     public int passBlock;
     public int runBlock;
     public int breakTackle;
-    public int elusiveness;
-    public int fieldVision;
     public int routeRunning;
     public int blocking;
     public int throwPower;
     public int throwAccuracy;
     public int poise;
     public int potential;
+    public int catching;
+
+    // defense attributes
     public int tackle;
     public int manCoverage;
     public int hitPower;
     public int runStop;
     public int passRush;
     public int pursuit;
+
     public final String[] letterGrades;
+
     public int gameSnaps;
+
+    // offense stats
     public int recDrops;
     public int recCatches;
     public int rushAttempts;
@@ -65,6 +78,8 @@ public class Player {
     public int passCompletions;
     public int passInterceptions;
     public int brokenTackles;
+
+    // defense stats
     public int defenseTackles;
     public int defensePBUs;
     public int defenseInterceptions;

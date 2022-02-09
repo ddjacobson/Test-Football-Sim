@@ -81,7 +81,7 @@ public class PlayerDE extends Player{
 
     int maxRunStop = 80;
     int minRunStop = 68;
-    this.manCoverage = rand.nextInt(minRunStop, maxRunStop);
+    this.runStop = rand.nextInt(minRunStop, maxRunStop);
 
     int maxStrength = 85;
     int minStrength = 74;
@@ -126,7 +126,7 @@ public class PlayerDE extends Player{
 
     int maxRunStop = 92;
     int minRunStop = 76;
-    this.manCoverage = rand.nextInt(minRunStop, maxRunStop);
+    this.runStop = rand.nextInt(minRunStop, maxRunStop);
 
     int maxStrength = 92;
     int minStrength = 83;
@@ -171,7 +171,7 @@ public class PlayerDE extends Player{
 
     int maxRunStop = 84;
     int minRunStop = 71;
-    this.manCoverage = rand.nextInt(minRunStop, maxRunStop);
+    this.runStop = rand.nextInt(minRunStop, maxRunStop);
 
     int maxStrength = 88;
     int minStrength = 78;

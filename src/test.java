@@ -19,13 +19,6 @@ public class test {
 
 
 
-//        World.NameFile.getFirstNames();
-//        World.NameFile.getLastNames();
-//        World.PlayerQB testQB = new World.PlayerQB();
-//       testQB.printStats();
-//       System.out.println();
-//       World.PlayerTE test2 = new World.PlayerTE();
-//       test2.printStats();
 
     }
 

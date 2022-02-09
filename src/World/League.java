@@ -59,14 +59,6 @@ public class League {
 
         listMatches(TEAM_LIST);
 
-        for (Team t : TEAM_LIST){
-            System.out.println("Scheduling for: " + t.name);
-            for (Team d : t.teamSchedule){
-
-                System.out.println(d.name + " ");
-            }
-            System.out.println();
-        }
 
         playGames(TEAM_LIST);
         advanceWeek();
@@ -86,8 +78,6 @@ public class League {
         ArrayList<Team> teams = new ArrayList<>();
         teams.addAll(teamList);
         teams.remove(0);
-
-        System.out.println("Week " + (week + 1)); // week + 1
         int teamIdx = week % teamsSize;
         System.out.println("" + teams.get(teamIdx).name + " vs " +  teamList.get(0).name);
 
@@ -99,7 +89,6 @@ public class League {
             teamOne.teamSchedule[week] = teamTwo; //add the teams in each other's schedule list
             teamTwo.teamSchedule[week] = teamOne;
             playGame(teamOne,teamTwo);
-            System.out.println("" + teamOne.name + " vs " + teamTwo.name);
         }
 
     }

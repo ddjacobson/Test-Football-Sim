@@ -10,9 +10,6 @@ public class PlayerRB extends Player {
     private static final int numTypes = playerTypes.length;
 
     //Ratings
-    public int trucking;
-    public int elusiveness;
-    public int catching;
 
     //Rating weights
     final public double truckingWeight = 0.15;
@@ -25,6 +22,7 @@ public class PlayerRB extends Player {
 
     public PlayerRB(Team t){
         team = t;
+        getNames();
 
         position = "Running Back";
         this.playerType = playerTypes[(int) (Math.random() * numTypes)];

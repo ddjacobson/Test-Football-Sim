@@ -44,7 +44,7 @@ public class PlayerTE extends Player{
 
     private int getOverall() {
         int overall =
-            (int) (routeRunning*routeRunningWeight + breakTackle*breakTackleWeight + blocking*blockingWeight + catching*catchingWeight + speedWeight*speed + strength*strengthWeight + quickness*quicknessWeight);
+            (int) (routeRunning*routeRunningWeight + truckingWeight*trucking + blocking*blockingWeight + catching*catchingWeight + speedWeight*speed + strength*strengthWeight + quickness*quicknessWeight);
         return overall;
     }
 
@@ -65,7 +65,7 @@ public class PlayerTE extends Player{
 
         int maxTrucking = 84;
         int minTrucking = 64;
-        this.breakTackle = rand.nextInt(minTrucking, maxTrucking);
+        this.trucking = rand.nextInt(minTrucking, maxTrucking);
 
         int maxBlocking = 82;
         int minBlocking = 59;
@@ -105,7 +105,7 @@ public class PlayerTE extends Player{
 
         int maxTrucking = 82;
         int minTrucking = 68;
-        this.breakTackle = rand.nextInt(minTrucking, maxTrucking);
+        this.trucking = rand.nextInt(minTrucking, maxTrucking);
 
         int maxBlocking = 84;
         int minBlocking = 72;
@@ -145,7 +145,7 @@ public class PlayerTE extends Player{
 
         int maxTrucking = 77;
         int minTrucking = 62;
-        this.breakTackle = rand.nextInt(minTrucking, maxTrucking);
+        this.trucking = rand.nextInt(minTrucking, maxTrucking);
 
         int maxBlocking = 73;
         int minBlocking = 57;
@@ -185,7 +185,7 @@ public class PlayerTE extends Player{
 
         int maxTrucking = 82;
         int minTrucking = 65;
-        this.breakTackle = rand.nextInt(minTrucking, maxTrucking);
+        this.trucking = rand.nextInt(minTrucking, maxTrucking);
 
         int maxBlocking = 82;
         int minBlocking = 65;

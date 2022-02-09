@@ -77,7 +77,7 @@ public class PlayerFS extends Player{
 
     int maxCatching = 75;
     int minCatching = 60;
-    this.passRush = rand.nextInt(minCatching, maxCatching);
+    this.catching = rand.nextInt(minCatching, maxCatching);
 
     int maxManCoverage = 78;
     int minManCoverage = 70;
@@ -85,7 +85,7 @@ public class PlayerFS extends Player{
 
     int maxZoneCoverage = 92;
     int minZoneCoverage = 79;
-    this.strength = rand.nextInt(minZoneCoverage, maxZoneCoverage);
+    this.zoneCoverage = rand.nextInt(minZoneCoverage, maxZoneCoverage);
 
     int maxTackle = 83;
     int minTackle = 70;
@@ -123,7 +123,7 @@ public class PlayerFS extends Player{
 
     int maxCatching = 68;
     int minCatching = 59;
-    this.passRush = rand.nextInt(minCatching, maxCatching);
+    this.catching = rand.nextInt(minCatching, maxCatching);
 
     int maxManCoverage = 73;
     int minManCoverage = 67;
@@ -131,7 +131,7 @@ public class PlayerFS extends Player{
 
     int maxZoneCoverage = 83;
     int minZoneCoverage = 74;
-    this.strength = rand.nextInt(minZoneCoverage, maxZoneCoverage);
+    this.zoneCoverage = rand.nextInt(minZoneCoverage, maxZoneCoverage);
 
     int maxTackle = 85;
     int minTackle = 76;
@@ -168,7 +168,7 @@ public class PlayerFS extends Player{
 
     int maxCatching = 83;
     int minCatching = 70;
-    this.passRush = rand.nextInt(minCatching, maxCatching);
+    this.catching = rand.nextInt(minCatching, maxCatching);
 
     int maxManCoverage = 80;
     int minManCoverage = 68;
@@ -176,7 +176,7 @@ public class PlayerFS extends Player{
 
     int maxZoneCoverage = 94;
     int minZoneCoverage = 72;
-    this.strength = rand.nextInt(minZoneCoverage, maxZoneCoverage);
+    this.zoneCoverage = rand.nextInt(minZoneCoverage, maxZoneCoverage);
 
     int maxTackle = 65;
     int minTackle = 57;

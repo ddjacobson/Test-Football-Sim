@@ -78,7 +78,7 @@ public class PlayerILB extends Player{
 
     int maxCatching = 65;
     int minCatching = 48;
-    this.passRush = rand.nextInt(minCatching, maxCatching);
+    this.catching = rand.nextInt(minCatching, maxCatching);
 
     int maxManCoverage = 69;
     int minManCoverage = 60;
@@ -86,7 +86,7 @@ public class PlayerILB extends Player{
 
     int maxZoneCoverage = 72;
     int minZoneCoverage = 64;
-    this.strength = rand.nextInt(minZoneCoverage, maxZoneCoverage);
+    this.zoneCoverage = rand.nextInt(minZoneCoverage, maxZoneCoverage);
 
     int maxTackle = 88;
     int minTackle = 80;
@@ -124,7 +124,7 @@ public class PlayerILB extends Player{
 
     int maxCatching = 74;
     int minCatching = 66;
-    this.passRush = rand.nextInt(minCatching, maxCatching);
+    this.catching = rand.nextInt(minCatching, maxCatching);
 
     int maxManCoverage = 73;
     int minManCoverage = 63;
@@ -132,7 +132,7 @@ public class PlayerILB extends Player{
 
     int maxZoneCoverage = 80;
     int minZoneCoverage = 69;
-    this.strength = rand.nextInt(minZoneCoverage, maxZoneCoverage);
+    this.zoneCoverage = rand.nextInt(minZoneCoverage, maxZoneCoverage);
 
     int maxTackle = 84;
     int minTackle = 74;
@@ -169,7 +169,7 @@ public class PlayerILB extends Player{
 
     int maxCatching = 67;
     int minCatching = 58;
-    this.passRush = rand.nextInt(minCatching, maxCatching);
+    this.catching = rand.nextInt(minCatching, maxCatching);
 
     int maxManCoverage = 76;
     int minManCoverage = 66;
@@ -177,7 +177,7 @@ public class PlayerILB extends Player{
 
     int maxZoneCoverage = 80;
     int minZoneCoverage = 70;
-    this.strength = rand.nextInt(minZoneCoverage, maxZoneCoverage);
+    this.zoneCoverage = rand.nextInt(minZoneCoverage, maxZoneCoverage);
 
     int maxTackle = 82;
     int minTackle = 69;
@@ -215,7 +215,7 @@ public class PlayerILB extends Player{
 
     int maxCatching = 59;
     int minCatching = 44;
-    this.passRush = rand.nextInt(minCatching, maxCatching);
+    this.catching = rand.nextInt(minCatching, maxCatching);
 
     int maxManCoverage = 68;
     int minManCoverage = 45;
@@ -223,7 +223,7 @@ public class PlayerILB extends Player{
 
     int maxZoneCoverage = 70;
     int minZoneCoverage = 59;
-    this.strength = rand.nextInt(minZoneCoverage, maxZoneCoverage);
+    this.zoneCoverage = rand.nextInt(minZoneCoverage, maxZoneCoverage);
 
     int maxTackle = 89;
     int minTackle = 80;
@@ -244,7 +244,8 @@ public class PlayerILB extends Player{
   }
 
   private int getOverall(){
-    int overall = (int)(passRush *catchingWeight + manCoverage *manCoverageWeight + strength *zoneCoverageWeight + speed*speedWeight + quickness*quicknessWeight + tackle*tackleWeight);
+    int overall =
+        (int)(catchingWeight *catchingWeight + manCoverage *manCoverageWeight + zoneCoverage *zoneCoverageWeight + speed*speedWeight + quickness*quicknessWeight + tackle*tackleWeight);
     return overall;
   }
 

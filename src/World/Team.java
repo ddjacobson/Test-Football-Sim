@@ -32,6 +32,8 @@ public class Team {
     public boolean [] hasGameOnWeek;
     public int divWins;
     public int playsDivisionIndex; //index of same conf division that the team plays
+    public int totalGamePlays;
+    public Coach hc;
 
 
     Team [] teamSchedule;
@@ -59,7 +61,7 @@ public class Team {
 
     public int passRtg;
     public int runRtg;
-    private int gamesPlayed;
+    public int gamesPlayed;
     public double winPct;
 
     //bye team
@@ -67,7 +69,6 @@ public class Team {
         this.name = name;
         this.city = city;
         hasGameOnWeek = new boolean[17];
-
 
 
 
@@ -86,6 +87,8 @@ public class Team {
         createRoster();
 
         getTeamStats();
+
+        hc = new Coach();
 
         switch (division){
             case "East" -> index = 0;
