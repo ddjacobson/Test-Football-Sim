@@ -679,7 +679,7 @@ public class Game {
         if (offense.gameScore <= defense.gameScore && this.qtrTime <= 120) {
             timeBetweenPlay = rand.nextInt(10, 25);
         } else {
-            timeBetweenPlay = rand.nextInt(20, 35);
+            timeBetweenPlay = rand.nextInt(15, 35);
         }
 
         return timeBetweenPlay;
@@ -736,7 +736,9 @@ public class Game {
 
     private void runFieldGoalPlay(Team offense, Team defense) {
         offense.gameScore += 3;
-        this.gameLog = this.gameLog + "The " + offense.name + " kick a field goal.\n";
+        this.gameLog =
+            this.gameLog + "  The " + offense.name + " kick a " + (yardsToScore()+17) + " yard "
+                + "field goal.\n";
         this.time -= 10;
         this.qtrTime -= 10;
         this.kickOff(defense, offense);
@@ -829,7 +831,12 @@ public class Game {
         int oLineRating = getOlineRating(offense, "Run");
         int dlRating = getDLRating(defense, "Run");
         int rbRating = playRB.overall;
-        yardsGained += ((rand.nextGaussian()*oLineRating + (rbRating + playRB.speed)/2)/(dlRating/2));
+        yardsGained += ((rand.nextGaussian()*oLineRating + (rbRating + playRB.speed)/2)/(dlRating/4.5));
+
+        if (playRB.speed > 90 && rand.nextInt(100) > 90){
+            gameLog += "     BIG RUN!!!\n";
+            yardsGained += rand.nextInt(playRB.speed);
+        }
 
         gameLog += "(" + getQtr() + " " + getQtrTime() + " " + downDist + " ball on the " + getYardLine()  +
             ") ";
@@ -1288,7 +1295,7 @@ public class Game {
         int interceptionChance = (int)(Math.random() * dFocus.manCoverage - (100 - dFocus.overall));
 
         int qbIntChance = (int)((double)playQB.throwAccuracy - Math.random() * (double)playQB.throwAccuracy);
-        int randBreakup = (int)(Math.random() * 100);
+        int randBreakup = (int)(Math.random() * 150);
 
         if (!focus.position.equals("Running Back")) {
             if (dFocus.manCoverage > focus.routeRunning) {
@@ -1297,7 +1304,7 @@ public class Game {
                 breakupChance -= focus.routeRunning - dFocus.manCoverage;
             }
         }
-
+        System.out.println("Breakup Chance: " + breakupChance + "\nRand Breakup: " + randBreakup);
         if (breakupChance > 40 && breakupChance < randBreakup) {
             System.out.println("BREAKUP");
             dFocus.defensePBUs++;
@@ -1464,6 +1471,8 @@ public class Game {
         }
     }
 
+
+
     private String getDownDist() {
         String downDist = "";
         switch(this.down) {
@@ -1484,52 +1493,136 @@ public class Game {
         return downDist;
     }
 
-    private String choosePlay(Team offense, Team defense) {
+    private String choosePlay(Team offense, Team defense){
+        Random rand = new Random();
         int passRtg = offense.passRtg;
         int runRtg = offense.runRtg;
-        int passChance = 50;
-        int runChance = 500;
-        if (passRtg <= runRtg) {
-             passChance = passChance + (passRtg - runRtg);
-        } else {
-             runChance = runChance + (runRtg - passRtg);
-        }
+        int passChance =rand.nextInt(85);
+        int runChance = rand.nextInt(65);
 
-        Random rand = new Random();
-        int choice = rand.nextInt(40);
-        if (down > 4) {
-            hasPossession = !hasPossession;
+        if (down > 4){
+            //turnover on downs;
+            gameLog += " TURNOVER ON DOWNS";
+            changePossession();
             down = 1;
-            time = 10;
-            time = 100 - time;
+            yardsNeeded = 10;
+            //flip field
+            yardLine = 100 - yardsNeeded;
             return "Hi";
-        } else {
-            double preferRush = Math.random() * 50;
-            double preferPass = Math.random() * 70;
 
-            if (down == 1 && yardLine >= 91) {
-                yardsNeeded = 100 - yardLine;
-            }
+        }  else {
+//            double preferPass = (offense.getPassProf() - defense.getPassDef()) / 100 + Math.random() * offense.playbookOff.getPassPref();       //STRATEGIES
+//            double preferRush = (offense.getRushProf() - defense.getRushDef()) / 90 + Math.random() * offense.playbookOff.getRunPref();
 
-            if (this.time > 20 || (!this.hasPossession || this.awayScore < this.homeScore) && (this.hasPossession || this.homeScore < this.awayScore)) {
-                if (this.down >= 4) {
-                    if ((this.hasPossession && this.awayScore - this.homeScore > 3 || !this.hasPossession && this.homeScore - this.awayScore > 3) && this.time < 300) {
-                        return this.yardsNeeded < 3 && preferRush * 3.0D > preferPass ? "Run" : "Pass";
-                    } else if (this.yardsNeeded < 3) {
-                        if (this.yardLine > 65) {
-                            return "Field Goal";
-                        } else {
-                            return this.yardLine > 55 ? "Run" : "Punt";
-                        }
+            if (down == 1 && yardLine >= 91) yardsNeeded = 100 - yardLine;
+
+            //FIXME: Add OT
+            if (time <= 20 && ((hasPossession && (awayScore >= homeScore)) || (!hasPossession && (homeScore >= awayScore)))) {
+                //Down by 3 or less, or tied, and you have the ball
+                if (((hasPossession && (awayScore - homeScore) <= 3) || (!hasPossession && (homeScore - awayScore) <= 3)) && yardsToScore() < 45) {
+                    //last second FGA
+                    gameLog += "WTF\n";
+                    return "Field Goal";
+                } else {
+                    //hail mary
+                   return "Hail Mary";
+                }
+            } else if (down >= 4) {
+                if (((hasPossession && (awayScore - homeScore) > 3) || (!hasPossession && (homeScore - awayScore) > 3)) && time < 300) {
+                    //go for it since we need 7 to win -- This also forces going for it if down by a TD in BOT OT
+                    if (yardsNeeded < 3 && runChance * 3 > passChance) {
+                        return "Run";
                     } else {
-                        return this.yardLine > 60 ? "Field Goal" : "Punt";
+                        return "Pass";
                     }
                 } else {
-                    return (this.down != 3 || this.yardsNeeded <= 4) && (this.down != 1 && this.down != 2 || !(preferPass >= preferRush)) ? "Run" : "Pass";
+                    //4th down
+                    if (yardsNeeded < 3) {
+                        if (yardsToScore() < 40) {
+                            //fga
+
+                            return "Field Goal";
+                        } else if (yardsToScore() > 45) {
+                            // run play, go for it!
+                            return "Run";
+                        } else {
+                            //punt
+                            return "Punt";
+                        }
+                    } else if (yardsToScore() <= 40 ) {
+                        //fga
+                        return "Field Goal";
+                    } else {
+                        //punt
+                        return "Punt";
+                    }
                 }
+            } else if ((down == 3 && yardsNeeded > 4) || ((down == 1 || down == 2) && (passChance >= runChance))) {
+                // pass play
+
+                return "Pass";
             } else {
-                return (this.hasPossession && this.awayScore - this.homeScore <= 3 || !this.hasPossession && this.homeScore - this.awayScore <= 3) && this.yardLine > 60 ? "Field Goal" : "Pass";
+                //run play
+                return "Run";
             }
+        }
+
+    }
+
+//    private String choosePlay(Team offense, Team defense) {
+//        int passRtg = offense.passRtg;
+//        int runRtg = offense.runRtg;
+//        int passChance = 50;
+//        int runChance = 500;
+//        if (passRtg <= runRtg) {
+//             passChance = passChance + (passRtg - runRtg);
+//        } else {
+//             runChance = runChance + (runRtg - passRtg);
+//        }
+//
+//        Random rand = new Random();
+//        int choice = rand.nextInt(40);
+//        if (down > 4) {
+//            hasPossession = !hasPossession;
+//            down = 1;
+//            time = 10;
+//            time = 100 - time;
+//            return "Hi";
+//        } else {
+//            double preferRush = Math.random() * 50;
+//            double preferPass = Math.random() * 70;
+//
+//            if (down == 1 && yardLine >= 91) {
+//                yardsNeeded = 100 - yardLine;
+//            }
+//
+//            if (this.time > 20 || (!this.hasPossession || this.awayScore < this.homeScore) && (this.hasPossession || this.homeScore < this.awayScore)) {
+//                if (this.down >= 4) {
+//                    if ((this.hasPossession && this.awayScore - this.homeScore > 3 || !this.hasPossession && this.homeScore - this.awayScore > 3) && this.time < 300) {
+//                        return this.yardsNeeded < 3 && preferRush * 3.0D > preferPass ? "Run" : "Pass";
+//                    } else if (this.yardsNeeded < 3) {
+//                        if (this.yardLine > 65) {
+//                            return "Field Goal";
+//                        } else {
+//                            return this.yardLine > 55 ? "Run" : "Punt";
+//                        }
+//                    } else {
+//                        return this.yardLine > 60 ? "Field Goal" : "Punt";
+//                    }
+//                } else {
+//                    return (this.down != 3 || this.yardsNeeded <= 4) && (this.down != 1 && this.down != 2 || !(preferPass >= preferRush)) ? "Run" : "Pass";
+//                }
+//            } else {
+//                return (this.hasPossession && this.awayScore - this.homeScore <= 3 && this.yardLine< 40 || !this.hasPossession && this.homeScore - this.awayScore <= 3) && this.yardLine > 60 ? "Field Goal" : "Pass";
+//            }
+//        }
+//    }
+
+    private int yardsToScore(){
+        if (hasPossession){
+            return yardLine;
+        } else {
+            return 100 - yardLine;
         }
     }
 
