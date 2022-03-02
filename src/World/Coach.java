@@ -24,6 +24,10 @@ public class Coach {
   public int careerTies = 0;
   public String careerRecord;
 
+  /*
+   * A coach will have one gameplan, and that gameplan will have different formations.
+   * The gameplan can be looked as the coach's playbook.
+   */
   public Coach() {
     this.getNames();
     this.race = this.findRace();

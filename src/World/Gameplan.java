@@ -54,6 +54,7 @@ public class Gameplan {
 
   private void createOptionPlan() {
     this.name = "Option";
+
     this.sets.add(new Formation(1, 0, 3, 1, 55, "Base"));
     this.sets.add(new Formation(1, 0, 3, 1, 10, "I-Formation"));
     this.sets.add(new Formation(1, 0, 2, 2, 20, "Twin TE"));

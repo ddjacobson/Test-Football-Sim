@@ -8,7 +8,6 @@ public class PlayerWR extends Player{
     private static final String [] playerTypes = {"Possession", "Slot", "Deep Threat", "All Purpose", "Physical"};
     private static final int numTypes = playerTypes.length;
     final public double catchingWeight = 0.20;
-    public int routeRunning;
     final public double routeRunningWeight = 0.20;
     public int fieldVision;
     final public double fieldVisionWeight = 0.10;

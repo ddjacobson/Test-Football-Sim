@@ -36,6 +36,7 @@ public class Player {
     public int speed;
     public int quickness;
     public int strength;
+    public int fatigue;
 
     // offense attributes
     public int trucking;
@@ -142,7 +143,7 @@ public class Player {
         List firstNames = (List)nameList.get(randInt);
         this.firstName = (String)firstNames.get(0);
         int randIntLast = rand.nextInt(1799);
-        List lastNameList = (List)NameFile.lastLines.get(randIntLast);
+        List lastNameList = NameFile.lastLines.get(randIntLast);
         this.lastName = ((String)lastNameList.get(0)).toLowerCase();
         String var10001 = this.lastName.substring(0, 1).toUpperCase();
         this.lastName = var10001 + this.lastName.substring(1);

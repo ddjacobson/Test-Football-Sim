@@ -2,13 +2,17 @@ package World;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.lang.reflect.Array;
 import java.util.*;
+import Comparator.CompareTeamWinPct;
 
 public class League {
     public static Team[][][] leagueList; //0-1 World.Conference | 0-3 World.Division | 0-3 World.Team
     final public static int START_YEAR = 2022;
     public int currYear;
     final public static int NUM_WEEKS = 17;
+
+    public static int DIVISION_LIST;
 
     final public int [] preseasonWeeks = {-1, -2, -3, -4};
     final public int [] regularSeasonWeeks = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17};
@@ -17,6 +21,10 @@ public class League {
     public static ArrayList<Team> TEAM_LIST = new ArrayList<>();      //Add teams a second time - same division
 
     public ArrayList<Conference> conferenceList;
+
+
+    private ArrayList<Team> playoffTeamsAFC;
+    private ArrayList<Team> playoffTeamsNFC;
 
     public static int PATRIOTS = 0;
 
@@ -51,6 +59,8 @@ public class League {
         conferenceList = new ArrayList<>();
         conferenceList.add(new Conference("AFC"));
         conferenceList.add(new Conference("NFC"));
+        playoffTeamsAFC = new ArrayList<>();
+        playoffTeamsNFC = new ArrayList<>();
 
         //NFL-like schedule creation is borderline impossible... I've resorted to round-robin
         //when we advance the season, we want to move our TEAM_LIST, so we get
@@ -59,14 +69,119 @@ public class League {
 
         listMatches(TEAM_LIST);
 
+        // allows for season simming
+        for (int week : regularSeasonWeeks){
+            playGames(TEAM_LIST);
+            advanceWeek();
+        }
 
-        playGames(TEAM_LIST);
-        advanceWeek();
-        playGames(TEAM_LIST);
+        printSeasonRecords();
+        getPlayoffTeams();
+        printPlayoffTeams();
+    }
+
+    private void getPlayoffTeams(){
+
+        // get division leaders
+        for (Conference c : conferenceList){
+
+
+            if (c.name.equals("AFC")){
+
+                ArrayList<Team> AFCdiv = new ArrayList<>();
+                ArrayList<Team> AFCwc = new ArrayList<>();
+
+
+                c.sortTeams();
+                // get afc
+                for (Division d : c.divisionList){
+                    d.sortTeams();
+                    AFCdiv.add(d.divisionTeamList.get(0));
+                }
+
+                // get afc wc
+                int teamsAdded = 0;
+                for (Team t : c.teamList){
+                    if (teamsAdded < 3){
+                        if ( !AFCdiv.contains(t) ){
+                            AFCwc.add(t);
+                            teamsAdded++;
+                        }
+                    }
+                }
+
+                Collections.sort(AFCwc, new CompareTeamWinPct());
+                Collections.sort(AFCdiv, new CompareTeamWinPct());
+
+                playoffTeamsAFC.addAll(AFCdiv);
+                playoffTeamsAFC.addAll(AFCwc);
+
+
+            } else {
+
+                ArrayList<Team> NFCdiv = new ArrayList<>();
+                ArrayList<Team> NFCwc = new ArrayList<>();
+
+
+                c.sortTeams();
+
+                for (Division d : c.divisionList){
+                    d.sortTeams();
+                    NFCdiv.add(d.divisionTeamList.get(0));
+                }
+
+            // get nfc wc
+            int teamsAdded = 0;
+            for (Team t : c.teamList){
+                if (teamsAdded < 3){
+                    if ( !NFCdiv.contains(t) ){
+                        NFCwc.add(t);
+                        teamsAdded++;
+                    }
+                }
+            }
+
+            Collections.sort(NFCwc, new CompareTeamWinPct());
+            Collections.sort(NFCdiv, new CompareTeamWinPct());
+
+            // add both sorted wc and div arrays
+            playoffTeamsNFC.addAll(NFCdiv);
+            playoffTeamsNFC.addAll(NFCwc);
+
+            }
+        }
 
     }
 
+    public void printPlayoffTeams(){
+        System.out.println("\nAFC Playoff Teams: ");
+        for (Team t : playoffTeamsAFC){
+            System.out.println(t.name + " " + t.getRecord());
+        }
+        System.out.println("\nNFC Playoff Teams: ");
+        for (Team t : playoffTeamsNFC){
+            System.out.println(t.name + " " + t.getRecord());
+        }
 
+    }
+
+    public void printDivisions(){
+        for (Conference c : conferenceList){
+            for (Division d : c.divisionList){
+                d.printRecords();
+            }
+        }
+    }
+
+
+
+    public void printSeasonRecords(){
+
+        for (Team t : TEAM_LIST){
+            System.out.println(t.name + " " + t.getRecord());
+        }
+
+    }
 
 
     public void playGames(ArrayList<Team> teamList){
@@ -79,7 +194,7 @@ public class League {
         teams.addAll(teamList);
         teams.remove(0);
         int teamIdx = week % teamsSize;
-        System.out.println("" + teams.get(teamIdx).name + " vs " +  teamList.get(0).name);
+        playGame(teams.get(teamIdx), teamList.get(0));
 
         for (int idx = 1; idx< halfSize; idx++){
             int firstTeam = (week+idx) % teamsSize;
@@ -95,7 +210,8 @@ public class League {
 
     private void playGame(Team teamOne, Team teamTwo) {
         //System.out.println("Today we have the " + teamOne.name + " vs. the " + teamTwo.name);
-
+        Game game = new Game(teamOne, teamTwo);
+        game.playGame();
     }
 
     /**
@@ -127,6 +243,7 @@ public class League {
             robin.teamSchedule[week] = t;
             t.teamSchedule[week] = robin;
             //System.out.println("" + teams.get(teamIdx).name + " vs " +  teamList.get(0).name);
+
 
             for (int idx = 1; idx< halfSize; idx++){
                 int firstTeam = (week+idx) % teamsSize;

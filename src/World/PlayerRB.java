@@ -4,7 +4,6 @@ import java.util.Random;
 
 public class PlayerRB extends Player {
 
-    public int overall;
     public String playerType;
     private static final String [] playerTypes = {"Bulldozer", "Elusive ", "Speed", "All-Purpose", "One Cut"};
     private static final int numTypes = playerTypes.length;
@@ -25,6 +24,7 @@ public class PlayerRB extends Player {
         getNames();
 
         position = "Running Back";
+        fatigue = 0;
         this.playerType = playerTypes[(int) (Math.random() * numTypes)];
         
         switch (this.playerType){
