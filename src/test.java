@@ -14,8 +14,8 @@ public class test {
 
         League myLeague = new League();
 
-        Game game = new Game(TEAM_LIST.get(0), TEAM_LIST.get(17));
-        game.playGame();
+//        Game game = new Game(TEAM_LIST.get(0), TEAM_LIST.get(17), 0);
+//        game.playGame();
 
 
 

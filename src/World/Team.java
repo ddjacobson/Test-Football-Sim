@@ -531,4 +531,9 @@ public class Team {
         this.winPct = (double)this.wins / (double)this.gamesPlayed;
         this.winPct = Double.parseDouble(df.format(this.winPct));
     }
+
+    @Override
+    public String toString(){
+        return this.city + " " + this.name;
+    }
 }

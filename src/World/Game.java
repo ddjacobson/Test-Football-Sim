@@ -17,6 +17,7 @@ public class Game {
     private boolean printLog = false;
     private boolean printStats = false;
 
+    public int week;
     public Team homeTeam;
     public Team awayTeam;
     public String gameLog;
@@ -44,7 +45,8 @@ public class Game {
     int teTargets = 0;
     int rbTargets = 0;
 
-    public Game(Team home, Team away) {
+    public Game(Team home, Team away, int week) {
+        this.week = week;
         this.homeTeam = home;
         this.awayTeam = away;
         this.qtr = 1;
@@ -101,6 +103,14 @@ public class Game {
         }
 
         this.endGame();
+
+        for (PlayerQB player : homeTeam.qbs){
+            if (player.passAttempts > 0){
+                player.printGameStats(week);
+            }
+        }
+
+
         if (printLog){
             System.out.println(this.gameLog);
         }
@@ -1357,6 +1367,11 @@ public class Game {
             " " + playQB.firstName + " " + playQB.lastName + " throws a pass to " + focus.position + " " + focus.firstName + " " + focus.lastName + ".\n";
 
         playQB.passAttempts++;
+        playQB.gameStats[week][Player.PASS][Player.ATTMP]++;
+        playQB.seasonStats[Player.PASS][Player.ATTMP]++;
+
+
+
 
         int breakupChance = 39;
         int interceptionChance = (int)(Math.random() * dFocus.manCoverage - (100 - dFocus.overall));
@@ -1377,6 +1392,9 @@ public class Game {
             if (interceptionChance - 30 > qbIntChance) {
                 dFocus.defenseInterceptions++;
                 playQB.passInterceptions++;
+                playQB.gameStats[week][Player.PASS][Player.PINTS]++;
+                playQB.seasonStats[Player.PASS][Player.PINTS]++;
+
                 gameLog += " The pass is INTERCEPTED by " + dFocus.team.name + " " + dFocus.position + " " + dFocus.firstName + " " + dFocus.lastName + "!! \n";
                 down = 1;
                 yardsNeeded = 10;
@@ -1419,10 +1437,15 @@ public class Game {
 
                 gameLog += " " + focus.position + " " + focus.firstName + " " + focus.lastName + " caught a " + yardsGained + " yard pass for a TOUCHDOWN!\n";
                 playQB.passTDs++;
+                playQB.gameStats[week][Player.PASS][Player.PTDS]++;
+                playQB.seasonStats[Player.PASS][Player.PTDS]++;
                 focus.recYards += yardsGained;
                 focus.recTDs++;
+
                 playQB.passYards += yardsGained;
+                playQB.gameStats[week][Player.PASS][Player.PYARDS] += yardsGained;
                 playQB.passCompletions++;
+                playQB.gameStats[week][Player.PASS][Player.COMP]++;
                 offense.gameScore += 6;
                 runExtraPoint(offense, defense);
 
@@ -1430,8 +1453,14 @@ public class Game {
                 //not a touchdown, collect stats for the play
                 gameLog += " " + focus.firstName + " " + focus.lastName + " catches the pass for a gain of " + yardsGained + " yards.\n";
                 focus.recYards += yardsGained;
+
                 playQB.passYards += yardsGained;
+                playQB.gameStats[week][Player.PASS][Player.PYARDS] += yardsGained;
+                playQB.seasonStats[Player.PASS][Player.PYARDS] += yardsGained;
                 playQB.passCompletions++;
+                playQB.seasonStats[Player.PASS][Player.COMP]++;
+                playQB.gameStats[week][Player.PASS][Player.COMP]++;
+
                 yardsNeeded -= yardsGained;
                 endPlay("Catch", offense, defense);
             }

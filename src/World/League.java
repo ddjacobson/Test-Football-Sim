@@ -76,8 +76,8 @@ public class League {
         }
 
         printSeasonRecords();
-        getPlayoffTeams();
-        printPlayoffTeams();
+//        getPlayoffTeams();
+//        printPlayoffTeams();
     }
 
     private void getPlayoffTeams(){
@@ -181,6 +181,14 @@ public class League {
             System.out.println(t.name + " " + t.getRecord());
         }
 
+        for (int i = 0; i < 31; ++i){
+            for (PlayerQB qb : TEAM_LIST.get(i).qbs){
+                qb.printSeasonStats();
+            }
+
+        }
+
+
     }
 
 
@@ -194,7 +202,7 @@ public class League {
         teams.addAll(teamList);
         teams.remove(0);
         int teamIdx = week % teamsSize;
-        playGame(teams.get(teamIdx), teamList.get(0));
+        playGame(teams.get(teamIdx), teamList.get(0), week);
 
         for (int idx = 1; idx< halfSize; idx++){
             int firstTeam = (week+idx) % teamsSize;
@@ -203,14 +211,14 @@ public class League {
             Team teamTwo = teams.get(secondTeam);
             teamOne.teamSchedule[week] = teamTwo; //add the teams in each other's schedule list
             teamTwo.teamSchedule[week] = teamOne;
-            playGame(teamOne,teamTwo);
+            playGame(teamOne,teamTwo, week);
         }
 
     }
 
-    private void playGame(Team teamOne, Team teamTwo) {
+    private void playGame(Team teamOne, Team teamTwo, int week) {
         //System.out.println("Today we have the " + teamOne.name + " vs. the " + teamTwo.name);
-        Game game = new Game(teamOne, teamTwo);
+        Game game = new Game(teamOne, teamTwo, week);
         game.playGame();
     }
 

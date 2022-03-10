@@ -1,5 +1,6 @@
 package World;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 public class PlayerQB extends Player{
@@ -10,6 +11,12 @@ public class PlayerQB extends Player{
 
     public double hispanicWeight;
     public double islanderWeight;
+
+    // week, second is the stats. 0 = completions 1 = attempts 2 = yards 3 = tds 4 = ints
+    // 5 = carries 6 = yards 7 = rush td 8 = fumbles
+
+
+
 
 
     final public double throwPwrWeight = 0.30;
@@ -196,8 +203,42 @@ public class PlayerQB extends Player{
 
     @Override
     public void printStats(){
-        System.out.println("Name: " + firstName + " " + lastName + "\nRace: " + getRace() + "\nPosition: " + position + "\nWorld.Player Archetype: " + playerType + "\nWorld.Team: " + team.name + "\nOverall: " + overall + "\nHeight: " + inToFt(heightIn) + "\nWeight: " + weight + " lbs.\nSpeed: " + speed + "\nArm Strength: " + throwPower + "\nThrow Accuracy: " + throwAccuracy + "\nPoise: " + poise + "\n");
+        super.printStats();
+        System.out.println("Speed: " + speed + "\nArm Strength: " + throwPower + "\nThrow Accuracy: " + throwAccuracy + "\nPoise: " + poise + "\n");
     }
+
+    @Override
+    public void printGameStats(int week){
+        super.printGameStats(week);
+        System.out.println("STATS:");
+        System.out.println(this.gameStats[week][PASS][COMP] + "/" + this.gameStats[week][PASS][ATTMP] + " " + this.gameStats[week][PASS][PYARDS] + " yards " + this.gameStats[week][PASS][PTDS] + " touchdowns " + this.gameStats[week][PASS][PINTS] + " interceptions\n");
+
+    }
+
+    public void printGameStats(int week, boolean isFull){
+        System.out.println("STATS:");
+        System.out.println(this.gameStats[week][PASS][COMP] + "/" + this.gameStats[week][PASS][ATTMP] + " " + this.gameStats[week][PASS][PYARDS] + " yards " + this.gameStats[week][PASS][PTDS] + " touchdowns " + this.gameStats[week][PASS][PINTS] + " interceptions\n");
+    }
+
+    @Override
+    public void printSeasonStats(){
+        if (gameSnaps < 1){
+            return;
+        }
+        System.out.println(position + " " + firstName + " " + lastName + "\n" + team);
+        for (int i = 0; i < 17; ++i){
+
+            System.out.println("Week " + (i+1) + " vs. " + team.teamSchedule[i]);
+            printGameStats(i, true);
+        }
+
+        System.out.println("TOTAL:\n" + this.seasonStats[PASS][COMP] + "/" + this.seasonStats[PASS][ATTMP] +
+            " " + this.seasonStats[PASS][PYARDS] + " yards " + this.seasonStats[PASS][PTDS] + " "
+            + "touchdowns " + this.seasonStats[PASS][PINTS] + " interceptions\n");
+
+
+    }
+
 
 
 }

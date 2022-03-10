@@ -61,6 +61,38 @@ public class Player {
     public int pursuit;
 
     public final String[] letterGrades;
+    public int[][][] gameStats;
+    public int[][] seasonStats;
+
+    //INDICIES
+    final public static int PASS = 0;
+    final public static int RUSH = 1;
+    final public static int REC = 2;
+    final public static int DEF = 3;
+
+    //PASS VARS
+    final public static int COMP = 0;
+    final public static int ATTMP = 1;
+    final public static int PYARDS = 2;
+    final public static int PTDS = 3;
+    final public static int PINTS = 4;
+    // RUSH VARS
+    final public static int CARRIES = 0;
+    final public static int RSHYARDS = 1;
+    final public static int RSHTDS = 2;
+    final public static int FMBLS = 3;
+    // REC VARS
+    final public static int CATCHES = 0;
+    final public static int RECYARDS = 1;
+    final public static int RECTDS = 2;
+    final public static int DROPS = 3;
+    //DEF VARS
+    final public static int TCKLS = 0;
+    final public static int SACKS = 1;
+    final public static int FFMBLS = 2;
+    final public static int INTS = 3;
+
+
 
     public int gameSnaps;
 
@@ -105,11 +137,11 @@ public class Player {
     public int seasonDefensePBUs;
     public int seasonDefenseInterceptions;
     public double seasonDefenseSacks;
-    public HashMap<String, Integer> gameStats;
-    public HashMap<String, Integer> seasonStats;
 
     public Player() {
         this.fullName = this.firstName + " " + this.lastName;
+        gameStats = new int[17][4][6];
+        seasonStats = new int[4][6];
         this.letterGrades = new String[]{"A+", "A", "A-", "B+", "B", "B-", "C+", "C", "C-", "D+", "D", "D-", "F+", "F", "F-"};
     }
 
@@ -171,25 +203,23 @@ public class Player {
         return feet + "'" + in + "\"";
     }
 
-    public void printStats() {
-        String var10001 = this.firstName;
-        System.out.println("Name: " + var10001 + " " + this.lastName + "\nRace: " + this.getRace() + "\nWorld.Team: " + this.team + "\nPosition: " + this.position + "\nWorld.Player Archetype: " + this.playerType + "\nOverall: " + this.overall + "\nHeight: " + this.inToFt(this.heightIn) + "\nWeight: " + this.weight + " lbs.\nSpeed: " + this.speed + "\nQuickness: " + this.quickness + "\nStrength: " + this.strength + "\nTrucking: " + this.breakTackle + "\nElusiveness: " + this.elusiveness + "\nCatching: " + this.passRush + "\n");
+    public void printBio() {
+        System.out.println("Name: " + firstName + " " + this.lastName + "\nRace: " + this.getRace() +
+            "\nWorld.Team: " + this.team + "\nPosition: " + this.position + "\nWorld.Player Archetype: " + this.playerType + "\nOverall: " + this.overall + "\nHeight: " + this.inToFt(this.heightIn) + "\nWeight: " + this.weight + " lbs.\nSpeed: " + this.speed + "\nQuickness: " + this.quickness + "\nStrength: " + this.strength + "\nTrucking: " + this.breakTackle + "\nElusiveness: " + this.elusiveness + "\nCatching: " + this.passRush + "\n");
     }
 
-    private void statSetup() {
-        this.gameStats.put("Rushes", 0);
-        this.gameStats.put("Rush Yards", 0);
-        this.gameStats.put("Rush TDs", 0);
-        this.gameStats.put("Catches", 0);
-        this.gameStats.put("Rec Yards", 0);
-        this.gameStats.put("Rec TDs", 0);
-        this.gameStats.put("Drops", 0);
-        this.seasonStats.put("Rushes", 0);
-        this.seasonStats.put("Rush Yards", 0);
-        this.seasonStats.put("Rush TDs", 0);
-        this.seasonStats.put("Catches", 0);
-        this.seasonStats.put("Rec Yards", 0);
-        this.seasonStats.put("Rec TDs", 0);
-        this.seasonStats.put("Drops", 0);
+    public void printStats(){
+        System.out.println("Name: " + firstName + " " + lastName + "\nTeam: " + team +
+            "\nPosition " + position + "\nPlayer Type: " + playerType + "\nHeight: " + inToFt(heightIn) +
+            "\nWeight: " + weight + "\nOverall: " + this.overall);
     }
+
+
+    public void printGameStats(int week){
+        printStats();
+    }
+
+    public void printSeasonStats(){
+    }
+
 }
