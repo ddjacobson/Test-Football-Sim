@@ -1,0 +1,32 @@
+0,AFC,East,0,New England,Patriots
+1,AFC,East,1,New York,Jets
+2,AFC,East,2,Buffalo,Bills
+3,AFC,East,3,Miami,Dolphins
+4,AFC,North,0,Pittsburgh,Steelers
+5,AFC,North,1,Cleveland,Browns
+6,AFC,North,2,Cincinnati,Bengals
+7,AFC,North,3,Baltimore,Ravens
+8,AFC,South,0,Houston,Texans
+9,AFC,South,1,Jacksonville,Jaguars
+10,AFC,South,2,Indianapolis,Colts
+11,AFC,South,3,Tennessee,Titans
+12,AFC,West,0,Kansas City,Chiefs
+13,AFC,West,1,Los Angeles,Chargers
+14,AFC,West,2,Denver,Broncos
+15,AFC,West,3,Las Vegas,Raiders
+16,NFC,East,0,Dallas,Cowboys
+17,NFC,East,1,Washington,Commanders
+18,NFC,East,2,New York,Giants
+19,NFC,East,3,Philadelphia,Eagles
+20,NFC,North,0,Green Bay,Packers
+21,NFC,North,1,Detroit,Lions
+22,NFC,North,2,Minnesota,Vikings
+23,NFC,North,3,Chicago,Bears
+24,NFC,South,0,Atlanta,Falcons
+25,NFC,South,1,New Orleans,Saints
+26,NFC,South,2,Carolina,Panthers
+27,NFC,South,3,Tampa Bay,Buccaneers
+28,NFC,West,0,Arizona,Cardinals
+29,NFC,West,1,San Francisco,49ers
+30,NFC,West,2,Seattle,Seahawks
+31,NFC,West,3,Los Angeles,Rams
