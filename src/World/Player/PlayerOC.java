@@ -1,9 +1,10 @@
-package World;
+package World.Player;
+import World.Team;
 
 import java.util.Random;
 
-public class PlayerOG extends Player{
-  private static final String [] playerTypes = {"Mauler", "Agile", "Puller"};
+public class PlayerOC extends Player{
+  private static final String [] playerTypes = {"Mauler", "Agile"};
   private static final int numTypes = playerTypes.length;
 
 
@@ -15,64 +16,31 @@ public class PlayerOG extends Player{
 
 
   //Use this constructor for populating teams during league creation
-  public PlayerOG(Team t){
+  public PlayerOC(Team t){
 
-    whiteWeight = 47;
-    blackWeight = 53;
+    whiteWeight = 65;
+    blackWeight = 35;
 
     this.race = findRace();
     getNames();
 
 
     team = t;
-    position = "Offensive Guard";
+    position = "Offensive Center";
     this.playerType = playerTypes[(int) (Math.random() * numTypes)];
 
     switch (this.playerType){
       case "Mauler" -> getMaulerStats();
       case "Agile" -> getAgileStats();
-      case "Puller" -> getPullerStats();
     }
     this.overall = getOverall();
 
 
   }
 
-  private void getPullerStats() {
-    Random rand = new Random();
-    int maxHeight = 76;
-    int minHeight = 74;
-    this.heightIn = rand.nextInt(minHeight, maxHeight);
-
-    int maxWeight = 325;
-    int minWeight = 298;
-    this.weight = rand.nextInt(minWeight, maxWeight);
-
-    int maxSpeed = 70;
-    int minSpeed = 62;
-    this.speed = rand.nextInt(minSpeed, maxSpeed);
-
-    int maxPassBlock = 83;
-    int minPassBlock = 74;
-    this.passBlock = rand.nextInt(minPassBlock, maxPassBlock);
-
-    int maxRunBlock = 93;
-    int minRunBlock = 82;
-    this.runBlock = rand.nextInt(minRunBlock, maxRunBlock);
-
-    int maxQuickness = 69;
-    int minQuickness = 50;
-    this.quickness = rand.nextInt(minQuickness, maxQuickness);
-
-    int maxStrength = 97;
-    int minStrength = 88;
-    this.strength = rand.nextInt(minStrength, maxStrength);
-
-  }
-
   private int getOverall() {
-    int o = (int) ( + passBlockWeight*passBlock + runBlockWeight*runBlock + strength*strengthWeight + quickness*quicknessWeight);
-    return o;
+    int overall = (int) ( + passBlockWeight*passBlock + runBlockWeight*runBlock + strength*strengthWeight + quickness*quicknessWeight);
+    return overall;
   }
 
   private void getMaulerStats() {

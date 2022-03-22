@@ -1,5 +1,7 @@
 
-package World;
+package World.Player;
+import World.Team;
+
 import java.util.Random;
 
 public class PlayerDE extends Player{

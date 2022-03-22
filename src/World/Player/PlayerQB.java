@@ -1,11 +1,12 @@
-package World;
+package World.Player;
 
-import java.util.ArrayList;
+import World.Team;
+
 import java.util.Random;
 
 public class PlayerQB extends Player{
 
-    //World.Player stats
+    //World.Player.Player stats
     private static final String [] playerTypes = {"Dual Threat", "Pocket Passer", "Strong Arm", "Gunslinger", "Game Manager"};
     private static final int numTypes = playerTypes.length;
 

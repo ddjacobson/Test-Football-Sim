@@ -3,7 +3,10 @@
 // (powered by FernFlower decompiler)
 //
 
-package World;
+package World.Player;
+
+import World.NameFile;
+import World.Team;
 
 import java.util.HashMap;
 import java.util.List;
@@ -205,7 +208,7 @@ public class Player {
 
     public void printBio() {
         System.out.println("Name: " + firstName + " " + this.lastName + "\nRace: " + this.getRace() +
-            "\nWorld.Team: " + this.team + "\nPosition: " + this.position + "\nWorld.Player Archetype: " + this.playerType + "\nOverall: " + this.overall + "\nHeight: " + this.inToFt(this.heightIn) + "\nWeight: " + this.weight + " lbs.\nSpeed: " + this.speed + "\nQuickness: " + this.quickness + "\nStrength: " + this.strength + "\nTrucking: " + this.breakTackle + "\nElusiveness: " + this.elusiveness + "\nCatching: " + this.passRush + "\n");
+            "\nWorld.Team: " + this.team + "\nPosition: " + this.position + "\nWorld.Player.Player Archetype: " + this.playerType + "\nOverall: " + this.overall + "\nHeight: " + this.inToFt(this.heightIn) + "\nWeight: " + this.weight + " lbs.\nSpeed: " + this.speed + "\nQuickness: " + this.quickness + "\nStrength: " + this.strength + "\nTrucking: " + this.breakTackle + "\nElusiveness: " + this.elusiveness + "\nCatching: " + this.passRush + "\n");
     }
 
     public void printStats(){

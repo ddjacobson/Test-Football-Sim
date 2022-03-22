@@ -1,4 +1,6 @@
-package World;
+package World.Player;
+
+import World.Team;
 
 import java.util.Random;
 
@@ -141,7 +143,7 @@ public class PlayerOT extends Player {
     }
 
     public void printStats(){
-        System.out.println("Name: " + firstName + " " + lastName + "\nRace: " + getRace() + "\nPosition: " + position + "\nWorld.Player Archetype: " + playerType + "\nOverall: " + overall + "\nHeight: " + inToFt(heightIn) + "\nWeight: " + weight + " lbs.\nSpeed: " + speed + "\nQuickness: " + quickness + "\nStrength: " + strength + "\nPass Block: " + passBlock + "\nRun Block: " + runBlock);
+        System.out.println("Name: " + firstName + " " + lastName + "\nRace: " + getRace() + "\nPosition: " + position + "\nWorld.Player.Player Archetype: " + playerType + "\nOverall: " + overall + "\nHeight: " + inToFt(heightIn) + "\nWeight: " + weight + " lbs.\nSpeed: " + speed + "\nQuickness: " + quickness + "\nStrength: " + strength + "\nPass Block: " + passBlock + "\nRun Block: " + runBlock);
     }
 
 }

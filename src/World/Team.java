@@ -6,6 +6,8 @@
 package World;
 
 import Comparator.ComparePlayerOvr;
+import World.Player.*;
+
 import java.text.DecimalFormat;
 import java.util.*;
 
@@ -36,7 +38,7 @@ public class Team {
     public Coach hc;
 
 
-    Team [] teamSchedule;
+    public Team [] teamSchedule;
 
     public int gameScore;
 

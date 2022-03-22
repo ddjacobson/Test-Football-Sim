@@ -1,6 +1,6 @@
 package Comparator;
 
-import World.Player;
+import World.Player.Player;
 import java.util.Comparator;
 
 public class ComparePlayerOvr implements Comparator<Player> {

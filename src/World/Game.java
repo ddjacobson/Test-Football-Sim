@@ -6,9 +6,10 @@
 package World;
 
 import Comparator.ComparePlayerOvr;
+import World.Player.*;
+
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Iterator;
 import java.util.Random;
 
 public class Game {

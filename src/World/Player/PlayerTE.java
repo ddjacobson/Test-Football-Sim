@@ -1,4 +1,6 @@
-package World;
+package World.Player;
+
+import World.Team;
 
 import java.util.Random;
 
@@ -211,7 +213,7 @@ public class PlayerTE extends Player{
 
     public void printStats(){
         System.out.println("Name: " + firstName + " " + lastName + "\nRace: " + getRace() +
-            "\nPosition: " + position + "\nWorld.Player Archetype: " + playerType + "\nOverall: " + overall + "\nHeight: " + inToFt(heightIn) + "\nWeight: " + weight + " lbs.\nSpeed: " + speed + "\nQuickness: " + quickness + "\nStrength: " + strength + "\nTrucking: " + breakTackle + "\nBlocking: " + blocking + "\nCatching: " + catching + "\nRoute Running: " + routeRunning);
+            "\nPosition: " + position + "\nWorld.Player.Player Archetype: " + playerType + "\nOverall: " + overall + "\nHeight: " + inToFt(heightIn) + "\nWeight: " + weight + " lbs.\nSpeed: " + speed + "\nQuickness: " + quickness + "\nStrength: " + strength + "\nTrucking: " + breakTackle + "\nBlocking: " + blocking + "\nCatching: " + catching + "\nRoute Running: " + routeRunning);
     }
 
 

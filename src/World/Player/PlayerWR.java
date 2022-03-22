@@ -1,10 +1,12 @@
-package World;
+package World.Player;
+
+import World.Team;
 
 import java.util.Random;
 
 public class PlayerWR extends Player{
 
-    //World.Player stats
+    //World.Player.Player stats
     private static final String [] playerTypes = {"Possession", "Slot", "Deep Threat", "All Purpose", "Physical"};
     private static final int numTypes = playerTypes.length;
     final public double catchingWeight = 0.20;
@@ -239,7 +241,7 @@ public class PlayerWR extends Player{
 
 
     public void printStats(){
-        System.out.println("Name: " + firstName + " " + lastName + "\nRace: " + getRace() + "\nPosition: " + position + "\nWorld.Player Archetype: " + playerType + "\nOverall: " + overall + "\nHeight: " + inToFt(heightIn) + "\nWeight: " + weight + " lbs.\nSpeed: " + speed + "\nQuickness: " + quickness + "\nCatching: " + catching + "\nRoute Running: " + routeRunning + "\nField Vision: " + fieldVision);
+        System.out.println("Name: " + firstName + " " + lastName + "\nRace: " + getRace() + "\nPosition: " + position + "\nWorld.Player.Player Archetype: " + playerType + "\nOverall: " + overall + "\nHeight: " + inToFt(heightIn) + "\nWeight: " + weight + " lbs.\nSpeed: " + speed + "\nQuickness: " + quickness + "\nCatching: " + catching + "\nRoute Running: " + routeRunning + "\nField Vision: " + fieldVision);
     }
 
 
